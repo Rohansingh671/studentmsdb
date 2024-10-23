@@ -3,9 +3,9 @@
 require_once 'databaseConnection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     // Required fields validation
     if (
+        isset($_POST['student_id']) &&
         isset($_POST['academic_year']) && isset($_POST['admission_number']) && isset($_POST['admission_date']) &&
         isset($_POST['roll_number']) && isset($_POST['status']) && isset($_POST['first_name']) &&
         isset($_POST['last_name']) && isset($_POST['father_name']) && isset($_POST['mother_name']) &&
@@ -66,9 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $guardian_contact = $_POST['guardian_contact'];
         }
 
-
-
         // Assigning basic values to variables
+        $student_id = $_POST['student_id'];
         $academic_year = $_POST['academic_year'];
         $admission_number = $_POST['admission_number'];
         $admission_date = $_POST['admission_date'];
@@ -129,21 +128,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Prepared SQL statement for student details
-    $stmt = $mysqli->prepare("INSERT INTO `addstudent`(`ID`, `imageOfStudent`, `academicYear`, 
-    `admissionNumber`, `admissionDate`, `rollNumber`, `studentStatus`, `fnameOfStudent`, 
-    `lnameOfStudent`, `class`, `section`, `gender`, `dateOfBirth`, `bloodGroup`, `house`, 
-    `religion`, `category`, `caste`, `primaryContact`, `emailOfstudent`, `motherTongue`, 
-    `languageKnown`, `imageOfFather`, `fatherName`, `emailOfFather`, `fatherContact`, 
-    `fatherProfession`, `imageOfMother`, `motherName`, `emailOfMother`, `motherContact`, 
-    `motherProfession`, `guardianName`, `guardianRelation`, `guardianContact`, 
-    `guardianEmail`, `guardianOccupation`, `guardianAddress`, `imageOfGuardian`, `currentAddressOfStudent`, 
-    `permanentAddressOfStudent`, `districtOfStudent`, `provinceOfStudent`, `transportRoute`, `vehicleNumber`, `pickUpPoint`, `hostel`, `hostelRoomNumber`, 
-    `documentOfBirthCertificate`, `documentOfTransferCertificate`, `medicalConditionSelected`, `allergiesOfStudent`, 
-    `medicationOfStudent`, `previousSchoolName`, `previousSchoolAddress`, `bankName`, `branchOfBank`, `ifscNumber`, `otherInfo`) 
-    VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-
+    // Prepare SQL statement for updating student details
+    $stmt = $mysqli->prepare("UPDATE `addstudent` SET 
+        `academicYear` = ?, 
+        `admissionNumber` = ?, 
+        `admissionDate` = ?, 
+        `rollNumber` = ?, 
+        `studentStatus` = ?, 
+        `fnameOfStudent` = ?, 
+        `lnameOfStudent` = ?, 
+        `class` = ?, 
+        `section` = ?, 
+        `gender` = ?, 
+        `dateOfBirth` = ?, 
+        `bloodGroup` = ?, 
+        `house` = ?, 
+        `religion` = ?, 
+        `category` = ?, 
+        `caste` = ?, 
+        `primaryContact` = ?, 
+        `emailOfstudent` = ?, 
+        `motherTongue` = ?, 
+        `languageKnown` = ?, 
+        `fatherName` = ?, 
+        `emailOfFather` = ?, 
+        `fatherContact` = ?, 
+        `fatherProfession` = ?, 
+        `motherName` = ?, 
+        `emailOfMother` = ?, 
+        `motherContact` = ?, 
+        `motherProfession` = ?, 
+        `guardianName` = ?, 
+        `guardianRelation` = ?, 
+        `guardianContact` = ?, 
+        `guardianEmail` = ?, 
+        `guardianOccupation` = ?, 
+        `guardianAddress` = ?, 
+        `currentAddressOfStudent` = ?, 
+        `permanentAddressOfStudent` = ?, 
+        `districtOfStudent` = ?, 
+        `provinceOfStudent` = ?, 
+        `transportRoute` = ?, 
+        `vehicleNumber` = ?, 
+        `pickUpPoint` = ?, 
+        `hostel` = ?, 
+        `hostelRoomNumber` = ?, 
+        `medicalConditionSelected` = ?, 
+        `allergiesOfStudent` = ?, 
+        `medicationOfStudent` = ?, 
+        `previousSchoolName` = ?, 
+        `previousSchoolAddress` = ?, 
+        `bankName` = ?, 
+        `branchOfBank` = ?, 
+        `ifscNumber` = ?, 
+        `otherInfo` = ? 
+        WHERE `ID` = ?");
 
     if ($stmt === false) {
         echo "Error in SQL statement preparation: " . $mysqli->error;
@@ -182,36 +221,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Image upload section for student, father, mother, and guardian
-    $student_id = $mysqli->insert_id; // Get the last inserted student ID
+    // Get the existing data to check for images
+    $existingQuery = $mysqli->prepare("SELECT * FROM `addstudent` WHERE `ID` = ?");
+    $existingQuery->bind_param("i", $student_id);
+    $existingQuery->execute();
+    $existingResult = $existingQuery->get_result();
+    $existingData = $existingResult->fetch_assoc();
+    $existingQuery->close();
 
-    // Upload student image
-    $image_path = !empty($_FILES["image"]["name"]) ? uploadFile($_FILES["image"], $image_folder, $maxFileSize, $student_id) : null;
-    if (!$image_path) {
+    // Image upload section for student, father, mother, and guardian
+    $image_path = !empty($_FILES["image"]["name"]) ? uploadFile($_FILES["image"], $image_folder, $maxFileSize, $student_id) : $existingData['imageOfStudent'];
+    if ($image_path === false) {
         echo "Failed to upload student image.";
         exit;
     }
     $image_path = substr($image_path, 3); // Strip the first 3 characters for database storage
 
     // Upload father's image
-    $father_image_path = !empty($_FILES["father_image"]["name"]) ? uploadFile($_FILES["father_image"], $image_folder, $maxFileSize, $student_id) : null;
+    $father_image_path = !empty($_FILES["father_image"]["name"]) ? uploadFile($_FILES["father_image"], $image_folder, $maxFileSize, $student_id) : $existingData['imageOfFather'];
     $father_image_path = $father_image_path ? substr($father_image_path, 3) : null;
 
     // Upload mother's image
-    $mother_image_path = !empty($_FILES["mother_image"]["name"]) ? uploadFile($_FILES["mother_image"], $image_folder, $maxFileSize, $student_id) : null;
+    $mother_image_path = !empty($_FILES["mother_image"]["name"]) ? uploadFile($_FILES["mother_image"], $image_folder, $maxFileSize, $student_id) : $existingData['imageOfMother'];
     $mother_image_path = $mother_image_path ? substr($mother_image_path, 3) : null;
 
     // Upload guardian's image
-    $guardian_image_path = !empty($_FILES["guardian_image"]["name"]) ? uploadFile($_FILES["guardian_image"], $image_folder, $maxFileSize, $student_id) : null;
+    $guardian_image_path = !empty($_FILES["guardian_image"]["name"]) ? uploadFile($_FILES["guardian_image"], $image_folder, $maxFileSize, $student_id) : $existingData['imageOfGuardian'];
     $guardian_image_path = $guardian_image_path ? substr($guardian_image_path, 3) : null;
-
-    // Upload birthCertificate
-    $birthCertificate_image_path = !empty($_FILES["birthCertificate"]["name"]) ? uploadFile($_FILES["birthCertificate"], $image_folder, $maxFileSize, $student_id) : null;
-    $birthCertificate_image_path = $birthCertificate_image_path ? substr($birthCertificate_image_path, 3) : null;
-
-    // Upload transferCertificate
-    $transferCertificate_image_path = !empty($_FILES["transferCertificate"]["name"]) ? uploadFile($_FILES["transferCertificate"], $image_folder, $maxFileSize, $student_id) : null;
-    $transferCertificate_image_path = $transferCertificate_image_path ? substr($transferCertificate_image_path, 3) : null;
 
     // Check if image paths are not the same
     if (
@@ -228,8 +264,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Bind parameters and execute the statement
     $stmt->bind_param(
-        "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",  // 39 's' for 39 string parameters
-        $image_path,
+        "sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",  // 40 's' for 40 string parameters
         $academic_year,
         $admission_number,
         $admission_date,
@@ -250,12 +285,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email,
         $mother_tongue,
         $languages_known,
-        $father_image_path,
         $father_name,
         $fatherEmail,
         $father_contact,
         $father_occupation,
-        $mother_image_path,
         $mother_name,
         $motherEmail,
         $mother_contact,
@@ -266,7 +299,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $guardianEmail,
         $guardian_occupation,
         $guardian_address,
-        $guardian_image_path,
         $current_addressOfStudent,
         $permanent_addressOfStudent,
         $districtOfStudent,
@@ -276,8 +308,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pickUpPoint,
         $hostel,
         $hostelRoomNumber,
-        $birthCertificate_image_path,
-        $transferCertificate_image_path,
         $medicalConditionSelected,
         $allergiesOfStudent,
         $medicationOfStudent,
@@ -286,11 +316,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $bankName,
         $branchOfBank,
         $ifscNumber,
-        $otherInfo
+        $otherInfo,
+        $student_id // Last parameter for the WHERE clause
     );
 
     if ($stmt->execute()) {
-        echo "Student details inserted successfully.";
+        echo "Student details updated successfully.";
     } else {
         echo "Error in statement execution: " . $stmt->error;
     }

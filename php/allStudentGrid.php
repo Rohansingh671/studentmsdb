@@ -76,6 +76,27 @@ $stmt->bind_result(
 );
 
 $stmt->fetch();
+// Assign the data to an associative array for easier access in the frontend
+$data = array(
+    'studentStatus' => $status,
+    'gender' => $gender,
+    'class' => $class,
+    'section' => $section,
+    'academicYear' => $academic_year,
+    'bloodGroup' => $blood_group,
+    'house' => $house,
+    'religion' => $religion,
+    'category' => $category,
+    'motherTongue' => $mother_tongue,
+    'languageKnown' => $languages_known,
+    'districtOfStudent' => $districtOfStudent,
+    'provinceOfStudent' => $provinceOfStudent,
+    'transportRoute' => $transportationRoute,
+    'vehicleNumber' => $vehicleNumber,
+    'pickUpPoint' => $pickUpPoint,
+    'hostel' => $hostel,
+    'hostelRoomNumber' => $hostelRoomNumber,
+);
 $stmt->close();
 
 db_close($mysqli);

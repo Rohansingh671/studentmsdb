@@ -959,7 +959,10 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 
 </div>
 <div class="row">
+    <?php
 
+    require_once 'php/allStudentGrid.php';
+    ?>
 <div class="col-xxl-3 col-xl-4 theiaStickySidebar">
 <div class="card border-white">
 <div class="card-header">
@@ -969,8 +972,8 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 </div>
 <div class="overflow-hidden">
 <span class="badge badge-soft-success d-inline-flex align-items-center mb-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<h5 class="mb-1 text-truncate">Janet Daniel</h5>
-<p class="text-primary">AD1256589</p>
+<h5 class="mb-1 text-truncate"><?php echo $first_name . " " . $last_name; ?></h5>
+<p class="text-primary"><?php echo $admission_number; ?></p>
 </div>
 </div>
 </div>
@@ -979,25 +982,25 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <h5 class="mb-3">Basic Information</h5>
 <dl class="row mb-0">
 <dt class="col-6 fw-medium text-dark mb-3">Roll No</dt>
-<dd class="col-6 mb-3">35013</dd>
+<dd class="col-6 mb-3"><?php echo $roll_number; ?></dd>
 <dt class="col-6 fw-medium text-dark mb-3">Gender</dt>
-<dd class="col-6 mb-3">Female</dd>
+<dd class="col-6 mb-3"><?php echo $gender; ?></dd>
 <dt class="col-6 fw-medium text-dark mb-3">Date Of Birth</dt>
-<dd class="col-6 mb-3">25 Jan 2008</dd>
+<dd class="col-6 mb-3"><?php echo $dob; ?></dd>
 <dt class="col-6 fw-medium text-dark mb-3">Blood Group</dt>
-<dd class="col-6 mb-3">O +ve</dd>
-<dt class="col-6 fw-medium text-dark mb-3">Blood Group</dt>
-<dd class="col-6 mb-3">Red</dd>
+<dd class="col-6 mb-3"><?php echo $blood_group; ?></dd>
+<dt class="col-6 fw-medium text-dark mb-3">House</dt>
+<dd class="col-6 mb-3"><?php echo $house; ?></dd>
 <dt class="col-6 fw-medium text-dark mb-3">Reigion</dt>
-<dd class="col-6 mb-3">Christianity</dd>
+<dd class="col-6 mb-3"><?php echo $religion; ?></dd>
 <dt class="col-6 fw-medium text-dark mb-3">Caste</dt>
-<dd class="col-6 mb-3">Catholic</dd>
+<dd class="col-6 mb-3"><?php echo $caste; ?></dd>
 <dt class="col-6 fw-medium text-dark mb-3">Category</dt>
-<dd class="col-6 mb-3">OBC</dd>
+<dd class="col-6 mb-3"><?php echo $category; ?></dd>
 <dt class="col-6 fw-medium text-dark mb-3">Mother tongue</dt>
-<dd class="col-6 mb-3">English</dd>
+<dd class="col-6 mb-3"><?php echo $mother_tongue; ?></dd>
 <dt class="col-6 fw-medium text-dark mb-3">Language</dt>
-<dd class="col-6 mb-3"><span class="badge badge-light text-dark me-2">English</span><span class="badge badge-light text-dark">Spanish</span></dd>
+<dd class="col-6 mb-3"><span class="badge badge-light text-dark me-2"><?php echo $languages_known; ?></span></dd>
 </dl>
 <a href="#" data-bs-toggle="modal" data-bs-target="#add_fees_collect" class="btn btn-primary btn-sm w-100">Add Fees</a>
 </div>
@@ -1011,14 +1014,14 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-phone"></i></span>
 <div>
 <span class="text-dark fw-medium mb-1">Phone Number</span>
-<p>+1 46548 84498</p>
+<p><?php echo $primary_contact; ?></p>
 </div>
 </div>
 <div class="d-flex align-items-center">
 <span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-mail"></i></span>
 <div>
 <span class="text-dark fw-medium mb-1">Email Address</span>
-<p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abc1cac5ebced3cac6dbc7ce85c8c4c6">[email�&nbsp;protected]</a></p>
+<p><a href="/cdn-cgi/l/email-protection" class="__cf_email__"><?php echo $email; ?></a></p>
 </div>
 </div>
 </div>
@@ -1061,8 +1064,8 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <div class="d-flex align-items-center mb-3">
 <span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-building-fortress fs-16"></i></span>
 <div>
-<h6 class="fs-14 mb-1">HI-Hostel, Floor</h6>
-<p class="text-primary">Room No : 25</p>
+<h6 class="fs-14 mb-1"><?php echo $hostel; ?>, Floor</h6>
+<p class="text-primary">Room No : <?php echo $hostelRoomNumber; ?></p>
 </div>
 </div>
 </div>
@@ -1071,20 +1074,20 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-bus fs-16"></i></span>
 <div>
 <span class="fs-12 mb-1">Route</span>
-<p class="text-dark">Newyork</p>
+<p class="text-dark"><?php echo $transportationRoute; ?></p>
 </div>
 </div>
 <div class="row">
 <div class="col-sm-6">
 <div class="mb-3">
 <span class="fs-12 mb-1">Bus Number</span>
-<p class="text-dark">AM 54548</p>
+<p class="text-dark"><?php echo $vehicleNumber; ?></p>
 </div>
 </div>
 <div class="col-sm-6">
 <div class="mb-3">
 <span class="fs-12 mb-1">Pickup Point</span>
-<p class="text-dark">Cincinatti</p>
+<p class="text-dark"><?php echo $pickUpPoint; ?></p>
 </div>
 </div>
 </div>
@@ -1134,7 +1137,7 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <img src="images/parent-13.jpg" class="img-fluid rounded" alt="img">
 </span>
 <div class="ms-2 overflow-hidden">
-<h6 class="text-truncate">Jerald Vicinius</h6>
+<h6 class="text-truncate"><?php echo $father_name; ?></h6>
 <p class="text-primary">Father</p>
 </div>
 </div>
@@ -1142,14 +1145,14 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <div class="col-sm-6 col-lg-4">
 <div class="mb-3">
 <p class="text-dark fw-medium mb-1">Phone</p>
-<p>+1 45545 46464</p>
+<p><?php echo $father_contact; ?></p>
 </div>
 </div>
 <div class="col-sm-6 col-lg-4">
 <div class="d-flex align-items-center justify-content-between">
 <div class="mb-3 overflow-hidden me-3">
 <p class="text-dark fw-medium mb-1">Email</p>
-<p class="text-truncate"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="234946514263465b424e534f460d404c4e">[email�&nbsp;protected]</a></p>
+<p class="text-truncate"><a href="/cdn-cgi/l/email-protection" class="__cf_email__"><?php echo $fatherEmail; ?></a></p>
 </div>
 <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Print" data-bs-original-title="Reset Password" class="btn btn-dark btn-icon btn-sm mb-3"><i class="ti ti-lock-x"></i></a>
 </div>
@@ -1164,7 +1167,7 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <img src="images/parent-14.jpg" class="img-fluid rounded" alt="img">
 </span>
 <div class="ms-2 overflow-hidden">
-<h6 class="text-truncate">Roberta Webber</h6>
+<h6 class="text-truncate"><?php echo $mother_name; ?></h6>
 <p class="text-primary">Mother</p>
 </div>
 </div>
@@ -1172,14 +1175,14 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <div class="col-lg-4 col-sm-6 ">
 <div class="mb-3">
 <p class="text-dark fw-medium mb-1">Phone</p>
-<p>+1 46499 24357</p>
+<p><?php echo $mother_contact; ?></p>
 </div>
 </div>
 <div class="col-lg-4 col-sm-6">
 <div class="d-flex align-items-center justify-content-between">
 <div class="mb-3 overflow-hidden me-3">
 <p class="text-dark fw-medium mb-1">Email</p>
-<p class="text-truncate"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9deff2fff8ddf8e5fcf0edf1f8b3fef2f0">[email�&nbsp;protected]</a></p>
+<p class="text-truncate"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" ><?php echo $motherEmail; ?></a></p>
 </div>
 <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Print" data-bs-original-title="Reset Password" class="btn btn-dark btn-icon btn-sm mb-3"><i class="ti ti-lock-x"></i></a>
 </div>
@@ -1194,7 +1197,7 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <img src="images/parent-13.jpg" class="img-fluid rounded" alt="img">
 </span>
 <div class="ms-2 overflow-hidden">
-<h6 class="text-truncate">Jerald Vicinius</h6>
+<h6 class="text-truncate"><?php echo $guardian_name; ?></h6>
 <p class="text-primary">Gaurdian (Father)</p>
 </div>
 </div>
@@ -1202,14 +1205,14 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <div class="col-lg-4 col-sm-6">
 <div class="mb-3">
 <p class="text-dark fw-medium mb-1">Phone</p>
-<p>+1 45545 46464</p>
+<p><?php echo $guardian_contact; ?></p>
 </div>
 </div>
 <div class="col-lg-4 col-sm-6">
 <div class="d-flex align-items-center justify-content-between">
 <div class="mb-3 overflow-hidden me-3">
 <p class="text-dark fw-medium mb-1">Email</p>
-<p class="text-truncate"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0d67687f6c4d68756c607d6168236e6260">[email�&nbsp;protected]</a></p>
+<p class="text-truncate"><a href="/cdn-cgi/l/email-protection" class="__cf_email__"><?php echo $guardianEmail; ?></a></p>
 </div>
 <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Print" data-bs-original-title="Reset Password" class="btn btn-dark btn-icon btn-sm mb-3"><i class="ti ti-lock-x"></i></a>
 </div>
@@ -1260,14 +1263,14 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-map-pin-up"></i></span>
 <div>
 <p class="text-dark fw-medium mb-1">Current Address</p>
-<p>3495 Red Hawk Road, Buffalo Lake, MN 55314</p>
+<p><?php echo $current_addressOfStudent; ?></p>
 </div>
 </div>
 <div class="d-flex align-items-center">
 <span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-map-pins"></i></span>
 <div>
 <p class="text-dark fw-medium mb-1">Permanent Address</p>
-<p>3495 Red Hawk Road, Buffalo Lake, MN 55314</p>
+<p><?php echo $permanent_addressOfStudent; ?></p>
 </div>
 </div>
 </div>
@@ -1285,13 +1288,13 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <div class="col-md-6">
 <div class="mb-3">
 <p class="text-dark fw-medium mb-1">Previous School Name</p>
-<p>Oxford Matriculation, USA</p>
+<p><?php echo $previousSchoolName; ?></p>
 </div>
 </div>
 <div class="col-md-6">
 <div class="mb-3">
 <p class="text-dark fw-medium mb-1">School Address</p>
-<p>1852 Barnes Avenue, Cincinnati, OH 45202</p>
+<p><?php echo $previousSchoolAddress; ?></p>
 </div>
 </div>
 </div>
@@ -1310,19 +1313,19 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <div class="col-md-4">
 <div class="mb-3">
 <p class="text-dark fw-medium mb-1">Bank Name</p>
-<p>Bank of America</p>
+<p><?php echo $bankName; ?></p>
 </div>
 </div>
 <div class="col-md-4">
 <div class="mb-3">
 <p class="text-dark fw-medium mb-1">Branch</p>
-<p>Cincinnati</p>
+<p><?php echo $branchOfBank; ?></p>
 </div>
 </div>
 <div class="col-md-4">
 <div class="mb-3">
 <p class="text-dark fw-medium mb-1">IFSC</p>
-<p>BOA83209832</p>
+<p><?php echo $ifscNumber; ?></p>
 </div>
 </div>
 </div>
@@ -1341,13 +1344,13 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <div class="col-md-6">
 <div class="mb-3">
 <p class="text-dark fw-medium mb-1">Known Allergies</p>
-<span class="badge bg-light text-dark">Rashes</span>
+<span class="badge bg-light text-dark"><?php echo $allergiesOfStudent; ?></span>
 </div>
 </div>
 <div class="col-md-6">
 <div class="mb-3">
 <p class="text-dark fw-medium mb-1">Medications</p>
-<p>-</p>
+<p><?php echo $medicationOfStudent; ?></p>
 </div>
 </div>
 </div>

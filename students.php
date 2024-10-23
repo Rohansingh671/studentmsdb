@@ -12,13 +12,11 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
 
-    <script src="js/theme-script.js" type="c72b652e6a54438762359041-text/javascript"></script>
+    <script src="js/theme-script.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <link rel="stylesheet" href="css/feather.css">
-
-    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
 
     <link rel="stylesheet" href="css/tabler-icons.css">
 
@@ -27,7 +25,11 @@
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/all.min.css">
 
+    <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
+
     <link rel="stylesheet" href="css/select2.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -386,8 +388,8 @@
                                 <li class="submenu">
                                     <a href="javascript:void(0);" class="subdrop active"><i class="ti ti-school"></i><span>Students</span><span class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="student-grid.html" class="active">All Students</a></li>
-                                        <li><a href="students.html">Student List</a></li>
+                                        <li><a href="student-grid.html">All Students</a></li>
+                                        <li><a href="students.html" class="active">Student List</a></li>
                                         <li><a href="student-details.html">Student Details</a></li>
                                         <li><a href="student-promotion.html">Student Promotion</a></li>
                                     </ul>
@@ -931,21 +933,22 @@
             </div>
         </div>
 
+
         <div class="page-wrapper">
-            <div class="content content-two">
+            <div class="content">
 
                 <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
                     <div class="my-auto mb-2">
-                        <h3 class="page-title mb-1">Students</h3>
+                        <h3 class="page-title mb-1">Students List</h3>
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item">
                                     <a href="index.html">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    Peoples
+                                    Students
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Students Grid</li>
+                                <li class="breadcrumb-item active" aria-current="page">All Students</li>
                             </ol>
                         </nav>
                     </div>
@@ -980,192 +983,282 @@
                 </div>
 
 
-                <div class="bg-white p-3 border rounded-1 d-flex align-items-center justify-content-between flex-wrap mb-4 pb-0">
-                    <h4 class="mb-3">Students Grid</h4>
-                    <div class="d-flex align-items-center flex-wrap">
-                        <div class="input-icon-start mb-3 me-2 position-relative">
-                            <span class="icon-addon">
-                                <i class="ti ti-calendar"></i>
-                            </span>
-                            <input type="text" class="form-control date-range bookingrange" placeholder="Select" value="Academic Year : 2024 / 2025">
-                        </div>
-                        <div class="dropdown mb-3 me-2">
-                            <a href="javascript:void(0);" class="btn btn-outline-light bg-white dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ti ti-filter me-2"></i>Filter</a>
-                            <div class="dropdown-menu drop-width">
-                                <form action="student-grid.html">
-                                    <div class="d-flex align-items-center border-bottom p-3">
-                                        <h4>Filter</h4>
-                                    </div>
-                                    <div class="p-3 pb-0 border-bottom">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Class</label>
-                                                    <select class="select">
-                                                        <option>Select</option>
-                                                        <option>I</option>
-                                                        <option>II</option>
-                                                        <option>III</option>
-                                                    </select>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap pb-0">
+                        <h4 class="mb-3">Students List</h4>
+                        <div class="d-flex align-items-center flex-wrap">
+                            <div class="input-icon-start mb-3 me-2 position-relative">
+                                <span class="icon-addon">
+                                    <i class="ti ti-calendar"></i>
+                                </span>
+                                <input type="text" class="form-control date-range bookingrange" placeholder="Select" value="Academic Year : 2024 / 2025">
+                            </div>
+                            <div class="dropdown mb-3 me-2">
+                                <a href="javascript:void(0);" class="btn btn-outline-light bg-white dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ti ti-filter me-2"></i>Filter</a>
+                                <div class="dropdown-menu drop-width">
+                                    <form action="students.html">
+                                        <div class="d-flex align-items-center border-bottom p-3">
+                                            <h4>Filter</h4>
+                                        </div>
+                                        <div class="p-3 pb-0 border-bottom">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Class</label>
+                                                        <select class="select">
+                                                            <option>Select</option>
+                                                            <option>I</option>
+                                                            <option>II</option>
+                                                            <option>III</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Section</label>
-                                                    <select class="select">
-                                                        <option>Select</option>
-                                                        <option>A</option>
-                                                        <option>B</option>
-                                                        <option>C</option>
-                                                    </select>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Section</label>
+                                                        <select class="select">
+                                                            <option>Select</option>
+                                                            <option>A</option>
+                                                            <option>B</option>
+                                                            <option>C</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Name</label>
-                                                    <select class="select">
-                                                        <option>Select</option>
-                                                        <option>Janet</option>
-                                                        <option>Joann</option>
-                                                        <option>Kathleen</option>
-                                                    </select>
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Name</label>
+                                                        <select class="select">
+                                                            <option>Select</option>
+                                                            <option>Janet</option>
+                                                            <option>Joann</option>
+                                                            <option>Kathleen</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Gender</label>
-                                                    <select class="select">
-                                                        <option>Select</option>
-                                                        <option>Male</option>
-                                                        <option>Female</option>
-                                                    </select>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Gender</label>
+                                                        <select class="select">
+                                                            <option>Select</option>
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Status</label>
-                                                    <select class="select">
-                                                        <option>Select</option>
-                                                        <option>Active</option>
-                                                        <option>Inactive</option>
-                                                    </select>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Status</label>
+                                                        <select class="select">
+                                                            <option>Select</option>
+                                                            <option>Active</option>
+                                                            <option>Inactive</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="p-3 d-flex align-items-center justify-content-end">
-                                        <a href="#" class="btn btn-light me-3">Reset</a>
-                                        <button type="submit" class="btn btn-primary">Apply</button>
-                                    </div>
-                                </form>
+                                        <div class="p-3 d-flex align-items-center justify-content-end">
+                                            <a href="#" class="btn btn-light me-3">Reset</a>
+                                            <button type="submit" class="btn btn-primary">Apply</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center bg-white border rounded-2 p-1 mb-3 me-2">
+                                <a href="students.html" class="active btn btn-icon btn-sm me-1 primary-hover"><i class="ti ti-list-tree"></i></a>
+                                <a href="student-grid.html" class="btn btn-icon btn-sm bg-light primary-hover"><i class="ti ti-grid-dots"></i></a>
+                            </div>
+                            <div class="dropdown mb-3">
+                                <a href="javascript:void(0);" class="btn btn-outline-light bg-white dropdown-toggle" data-bs-toggle="dropdown"><i class="ti ti-sort-ascending-2 me-2"></i>Sort by A-Z
+                                </a>
+                                <ul class="dropdown-menu p-3">
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item rounded-1 active">
+                                            Ascending
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item rounded-1">
+                                            Descending
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item rounded-1">
+                                            Recently Viewed
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item rounded-1">
+                                            Recently Added
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center bg-white border rounded-2 p-1 mb-3 me-2">
-                            <a href="students.html" class="btn btn-icon btn-sm me-1 bg-light primary-hover"><i class="ti ti-list-tree"></i></a>
-                            <a href="student-grid.html" class="active btn btn-icon btn-sm primary-hover"><i class="ti ti-grid-dots"></i></a>
+                    </div>
+                    <div class="card-body p-0 py-3">
+
+                        <div class="custom-datatable-filter table-responsive">
+                            <table class="table datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="no-sort">
+                                            <div class="form-check form-check-md">
+                                                <input class="form-check-input" type="checkbox" id="select-all">
+                                            </div>
+                                        </th>
+                                        <th>Admission No</th>
+                                        <th>Roll No</th>
+                                        <th>Name</th>
+                                        <th>Class </th>
+                                        <th>Section</th>
+                                        <th>Gender</th>
+                                        <th>Status</th>
+                                        <th>Date of Join</th>
+                                        <th>DOB</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+
+                                    require_once 'php/allStudentGrid.php';
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-check-md">
+                                                <input class="form-check-input" type="checkbox">
+                                            </div>
+                                        </td>
+                                        <td><a href="student-details.html" class="link-primary"><?php echo $admission_number; ?></a></td>
+                                        <td><?php echo $roll_number; ?></td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <a href="student-details.html" class="avatar avatar-md"><img src="<?php echo $image_path; ?>" class="img-fluid rounded-circle" alt="img"></a>
+                                                <div class="ms-2">
+                                                    <p class="text-dark mb-0"><a href="student-details.html"><?php echo $first_name; ?></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><?php echo $class; ?></td>
+                                        <td><?php echo $section; ?></td>
+                                        <td><?php echo $gender; ?></td>
+                                        <td>
+                                            <span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i><?php echo $status; ?></span>
+                                        </td>
+                                        <td><?php echo $admission_date; ?></td>
+                                        <td><?php echo $dob; ?></td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <a href="#" class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle  p-0 me-2"><i class="ti ti-brand-hipchat"></i></a>
+                                                <a href="#" class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle  p-0 me-2"><i class="ti ti-phone"></i></a>
+                                                <a href="#" class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle p-0 me-3"><i class="ti ti-mail"></i></a>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#add_fees_collect" class="btn btn-light fs-12 fw-semibold me-3">Collect Fees</a>
+                                                <div class="dropdown">
+                                                    <a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="ti ti-dots-vertical fs-14"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right p-3">
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="student-details.html"><i class="ti ti-menu me-2"></i>View Student</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="edit-student.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#login_detail"><i class="ti ti-lock me-2"></i>Login Details</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="javascript:void(0);"><i class="ti ti-toggle-right me-2"></i>Disable</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="student-promotion.html"><i class="ti ti-arrow-ramp-right-2 me-2"></i>Promote
+                                                                Student</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="dropdown mb-3">
-                            <a href="javascript:void(0);" class="btn btn-outline-light bg-white dropdown-toggle" data-bs-toggle="dropdown"><i class="ti ti-sort-ascending-2 me-2"></i>Sort by A-Z </a>
-                            <ul class="dropdown-menu p-3">
-                                <li>
-                                    <a href="javascript:void(0);" class="dropdown-item rounded-1 active">
-                                        Ascending
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" class="dropdown-item rounded-1">
-                                        Descending
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" class="dropdown-item rounded-1">
-                                        Recently Viewed
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" class="dropdown-item rounded-1">
-                                        Recently Added
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
 
-                <div class="row">
-                    <?php
+            </div>
+        </div>
 
-                    require_once 'php/allStudentGrid.php';
-                    ?>
-                    <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-                        <div class="card flex-fill">
-                            <div class="card-header d-flex align-items-center justify-content-between">
-                                <a href="student-details.html" class="link-primary"><?php echo $admission_number; ?></a>
-                                <div class="d-flex align-items-center">
-                                    <span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i><?php echo $status; ?></span>
-                                    <div class="dropdown">
-                                        <a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="ti ti-dots-vertical fs-14"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-right p-3">
-                                            <li>
-                                                <a class="dropdown-item rounded-1" href="student-details.html"><i class="ti ti-menu me-2"></i>View Student</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item rounded-1" href="edit-student.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item rounded-1" href="student-promotion.html"><i class="ti ti-arrow-ramp-right-2 me-2"></i>Promote Student</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="bg-light-300 rounded-2 p-3 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <a href="student-details.html" class="avatar avatar-lg flex-shrink-0"><img src="<?php echo $image_path; ?>" class="img-fluid rounded-circle" alt="img"></a>
-                                        <div class="ms-2">
-                                            <h5 class="mb-0"><a href="student-details.html"><?php echo $first_name . " " . $last_name; ?></a></h5>
-                                            <p><?php echo $class; ?>, <?php echo $section; ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between gx-2">
-                                    <div>
-                                        <p class="mb-0">Roll No</p>
-                                        <p class="text-dark"><?php echo $roll_number; ?></p>
-                                    </div>
-                                    <div>
-                                        <p class="mb-0">Gender</p>
-                                        <p class="text-dark"><?php echo $gender; ?></p>
-                                    </div>
-                                    <div>
-                                        <p class="mb-0">Joined On</p>
-                                        <p class="text-dark"><?php echo $admission_date; ?></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <a href="#" class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle  p-0 me-2"><i class="ti ti-brand-hipchat"></i></a>
-                                    <a href="#" class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle  p-0 me-2"><i class="ti ti-phone"></i></a>
-                                    <a href="#" class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle p-0 me-3"><i class="ti ti-mail"></i></a>
-                                </div>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#add_fees_collect" class="btn btn-light btn-sm fw-semibold">Add Fees</a>
+
+        <div class="modal fade" id="login_detail">
+            <div class="modal-dialog modal-dialog-centered  modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Login Details</h4>
+                        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="ti ti-x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="student-detail-info">
+                            <span class="student-img"><img src="images/student-01.jpg" alt="Img"></span>
+                            <div class="name-info">
+                                <h6>Janet <span>III, A</span></h6>
                             </div>
                         </div>
+                        <div class="table-responsive custom-table no-datatable_length">
+                            <table class="table datanew">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>User Type</th>
+                                        <th>User Name</th>
+                                        <th>Password </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Parent</td>
+                                        <td>parent53</td>
+                                        <td>parent@53</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Student</td>
+                                        <td>student20</td>
+                                        <td>stdt@53</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-
-
-                    
-
-                    <div class="col-md-12 text-center">
-                        <a href="#" class="btn btn-primary"><i class="ti ti-loader-3 me-2"></i>Load More</a>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
                     </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="delete-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="students.html">
+                        <div class="modal-body text-center">
+                            <span class="delete-icon">
+                                <i class="ti ti-trash-x"></i>
+                            </span>
+                            <h4>Confirm Deletion</h4>
+                            <p>You want to delete all the marked items, this cant be undone once you delete.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="javascript:void(0);" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</a>
+                                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -1183,7 +1276,7 @@
                             <i class="ti ti-x"></i>
                         </button>
                     </div>
-                    <form action="student-grid.html">
+                    <form action="students.html">
                         <div class="modal-body">
                             <div class="bg-light-300 p-3 pb-0 rounded mb-4">
                                 <div class="row align-items-center">
@@ -1299,47 +1392,29 @@
             </div>
         </div>
 
-
-        <div class="modal fade" id="delete-modal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <form action="student-grid.html">
-                        <div class="modal-body text-center">
-                            <span class="delete-icon">
-                                <i class="ti ti-trash-x"></i>
-                            </span>
-                            <h4>Confirm Deletion</h4>
-                            <p>You want to delete all the marked items, this cant be undone once you delete.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="javascript:void(0);" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</a>
-                                <button type="submit" class="btn btn-danger">Yes, Delete</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
     </div>
 
 
-    <script src="js/jquery-3.7.1.min.js" type="c72b652e6a54438762359041-text/javascript"></script>
+    <script src="js/jquery-3.7.1.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/bootstrap.bundle.min.js" type="c72b652e6a54438762359041-text/javascript"></script>
+    <script src="js/bootstrap.bundle.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/moment.js" type="c72b652e6a54438762359041-text/javascript"></script>
-    <script src="js/daterangepicker.js" type="c72b652e6a54438762359041-text/javascript"></script>
+    <script src="js/moment.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
+    <script src="js/daterangepicker.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/feather.min.js" type="c72b652e6a54438762359041-text/javascript"></script>
+    <script src="js/feather.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/bootstrap-datetimepicker.min.js" type="c72b652e6a54438762359041-text/javascript"></script>
+    <script src="js/jquery.slimscroll.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/jquery.slimscroll.min.js" type="c72b652e6a54438762359041-text/javascript"></script>
+    <script src="js/jquery.dataTables.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
+    <script src="js/dataTables.bootstrap5.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/select2.min.js" type="c72b652e6a54438762359041-text/javascript"></script>
+    <script src="js/select2.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/script.js" type="c72b652e6a54438762359041-text/javascript"></script>
-    <script src="js/rocket-loader.min.js" data-cf-settings="c72b652e6a54438762359041-|49" defer=""></script>
+    <script src="js/bootstrap-datetimepicker.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
+
+    <script src="js/script.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
+    <script src="js/rocket-loader.min.js" data-cf-settings="44d8235a5b1af716cddb820b-|49" defer=""></script>
 </body>
 
 </html>
