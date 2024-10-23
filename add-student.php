@@ -1765,7 +1765,7 @@ require_once 'php/databaseConnection.php';
                                 <div class="card-body pb-1">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="mb-2">
+                                            <div class="mb-2" hidden>
                                                 <label class="form-label">Medical Condition</label>
                                                 <div class="d-flex align-items-center flex-wrap">
                                                     <label class="form-label text-dark fw-normal me-2">Medical Condition of a Student</label>

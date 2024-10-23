@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         isset($_POST['districtOfStudent']) && isset($_POST['provinceOfStudent']) &&
         isset($_POST['transportationRoute']) && isset($_POST['vehicleNumber']) && isset($_POST['pickUpPoint']) &&
         isset($_POST['hostel']) && isset($_POST['hostelRoomNumber']) &&
-        isset($_POST['medicalConditionSelected']) && isset($_POST['allergiesOfStudent']) && isset($_POST['medicationOfStudent']) &&
+        isset($_POST['allergiesOfStudent']) && isset($_POST['medicationOfStudent']) &&
         isset($_POST['previousSchoolName']) && isset($_POST['previousSchoolAddress']) &&
         isset($_POST['bankName']) && isset($_POST['branchOfBank']) && isset($_POST['ifscNumber'])
     ) {
@@ -66,8 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $guardian_contact = $_POST['guardian_contact'];
         }
 
-
-
         // Assigning basic values to variables
         $academic_year = $_POST['academic_year'];
         $admission_number = $_POST['admission_number'];
@@ -87,7 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pickUpPoint = $_POST['pickUpPoint'];
         $hostel = $_POST['hostel'];
         $hostelRoomNumber = $_POST['hostelRoomNumber'];
-        $medicalConditionSelected = $_POST['medicalConditionSelected'];
         $allergiesOfStudent = $_POST['allergiesOfStudent'];
         $medicationOfStudent = $_POST['medicationOfStudent'];
         $previousSchoolAddress = $_POST['previousSchoolAddress'];
@@ -139,11 +136,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     `motherProfession`, `guardianName`, `guardianRelation`, `guardianContact`, 
     `guardianEmail`, `guardianOccupation`, `guardianAddress`, `imageOfGuardian`, `currentAddressOfStudent`, 
     `permanentAddressOfStudent`, `districtOfStudent`, `provinceOfStudent`, `transportRoute`, `vehicleNumber`, `pickUpPoint`, `hostel`, `hostelRoomNumber`, 
-    `documentOfBirthCertificate`, `documentOfTransferCertificate`, `medicalConditionSelected`, `allergiesOfStudent`, 
+    `documentOfBirthCertificate`, `documentOfTransferCertificate`, `allergiesOfStudent`, 
     `medicationOfStudent`, `previousSchoolName`, `previousSchoolAddress`, `bankName`, `branchOfBank`, `ifscNumber`, `otherInfo`) 
     VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-
 
     if ($stmt === false) {
         echo "Error in SQL statement preparation: " . $mysqli->error;
@@ -158,78 +153,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mkdir($image_folder, 0755, true); // Create the folder if it doesn't exist
     }
 
-    $maxFileSize = 4 * 1024 * 1024;  // 4 MB
+    $maxFileSize = 4 * 1024 * 1024; // 4MB limit
 
-    function generateFileName($fileName, $student_id)
-    {
-        $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
-        $baseFileName = "student_{$student_id}_" . uniqid();
-        return "{$baseFileName}.{$fileExtension}";
-    }
-
-    function uploadFile($file, $folder, $maxFileSize, $student_id)
-    {
-        if ($file['size'] > $maxFileSize) {
-            echo "File size exceeds the limit of 4 MB.";
-            return false;
+    // Student image upload
+    if (isset($_FILES['imageOfStudent']) && $_FILES['imageOfStudent']['error'] == UPLOAD_ERR_OK) {
+        $imageOfStudent = $_FILES['imageOfStudent'];
+        $imageOfStudentName = uniqid('student_', true) . '.' . pathinfo($imageOfStudent['name'], PATHINFO_EXTENSION);
+        if ($imageOfStudent['size'] > $maxFileSize) {
+            echo "Image size exceeds 4MB.";
+            exit;
         }
-        $uniqueFileName = generateFileName($file["name"], $student_id);
-        $target_file = $folder . $uniqueFileName;
-        if (move_uploaded_file($file["tmp_name"], $target_file)) {
-            return $target_file;
-        } else {
-            return false;
-        }
-    }
-
-    // Image upload section for student, father, mother, and guardian
-    $student_id = $mysqli->insert_id; // Get the last inserted student ID
-
-    // Upload student image
-    $image_path = !empty($_FILES["image"]["name"]) ? uploadFile($_FILES["image"], $image_folder, $maxFileSize, $student_id) : null;
-    if (!$image_path) {
-        echo "Failed to upload student image.";
-        exit;
-    }
-    $image_path = substr($image_path, 3); // Strip the first 3 characters for database storage
-
-    // Upload father's image
-    $father_image_path = !empty($_FILES["father_image"]["name"]) ? uploadFile($_FILES["father_image"], $image_folder, $maxFileSize, $student_id) : null;
-    $father_image_path = $father_image_path ? substr($father_image_path, 3) : null;
-
-    // Upload mother's image
-    $mother_image_path = !empty($_FILES["mother_image"]["name"]) ? uploadFile($_FILES["mother_image"], $image_folder, $maxFileSize, $student_id) : null;
-    $mother_image_path = $mother_image_path ? substr($mother_image_path, 3) : null;
-
-    // Upload guardian's image
-    $guardian_image_path = !empty($_FILES["guardian_image"]["name"]) ? uploadFile($_FILES["guardian_image"], $image_folder, $maxFileSize, $student_id) : null;
-    $guardian_image_path = $guardian_image_path ? substr($guardian_image_path, 3) : null;
-
-    // Upload birthCertificate
-    $birthCertificate_image_path = !empty($_FILES["birthCertificate"]["name"]) ? uploadFile($_FILES["birthCertificate"], $image_folder, $maxFileSize, $student_id) : null;
-    $birthCertificate_image_path = $birthCertificate_image_path ? substr($birthCertificate_image_path, 3) : null;
-
-    // Upload transferCertificate
-    $transferCertificate_image_path = !empty($_FILES["transferCertificate"]["name"]) ? uploadFile($_FILES["transferCertificate"], $image_folder, $maxFileSize, $student_id) : null;
-    $transferCertificate_image_path = $transferCertificate_image_path ? substr($transferCertificate_image_path, 3) : null;
-
-    // Check if image paths are not the same
-    if (
-        ($image_path && $image_path === $father_image_path) ||
-        ($image_path && $image_path === $mother_image_path) ||
-        ($image_path && $image_path === $guardian_image_path) ||
-        ($father_image_path && $father_image_path === $mother_image_path) ||
-        ($father_image_path && $father_image_path === $guardian_image_path) ||
-        ($mother_image_path && $mother_image_path === $guardian_image_path)
-    ) {
-        echo "Student, Father, Mother, and Guardian images must be different.";
+        move_uploaded_file($imageOfStudent['tmp_name'], $image_folder . $imageOfStudentName);
+    } else {
+        echo "Student image upload error.";
         exit;
     }
 
-    // Bind parameters and execute the statement
-    $stmt->bind_param(
-        "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",  // 39 's' for 39 string parameters
-        $image_path,
+    // Father's image upload
+    if (isset($_FILES['imageOfFather']) && $_FILES['imageOfFather']['error'] == UPLOAD_ERR_OK) {
+        $imageOfFather = $_FILES['imageOfFather'];
+        $imageOfFatherName = uniqid('father_', true) . '.' . pathinfo($imageOfFather['name'], PATHINFO_EXTENSION);
+        if ($imageOfFather['size'] > $maxFileSize) {
+            echo "Father's image size exceeds 4MB.";
+            exit;
+        }
+        move_uploaded_file($imageOfFather['tmp_name'], $image_folder . $imageOfFatherName);
+    } else {
+        echo "Father's image upload error.";
+        exit;
+    }
+
+    // Mother's image upload
+    if (isset($_FILES['imageOfMother']) && $_FILES['imageOfMother']['error'] == UPLOAD_ERR_OK) {
+        $imageOfMother = $_FILES['imageOfMother'];
+        $imageOfMotherName = uniqid('mother_', true) . '.' . pathinfo($imageOfMother['name'], PATHINFO_EXTENSION);
+        if ($imageOfMother['size'] > $maxFileSize) {
+            echo "Mother's image size exceeds 4MB.";
+            exit;
+        }
+        move_uploaded_file($imageOfMother['tmp_name'], $image_folder . $imageOfMotherName);
+    } else {
+        echo "Mother's image upload error.";
+        exit;
+    }
+
+    // Guardian's image upload
+    if (isset($_FILES['imageOfGuardian']) && $_FILES['imageOfGuardian']['error'] == UPLOAD_ERR_OK) {
+        $imageOfGuardian = $_FILES['imageOfGuardian'];
+        $imageOfGuardianName = uniqid('guardian_', true) . '.' . pathinfo($imageOfGuardian['name'], PATHINFO_EXTENSION);
+        if ($imageOfGuardian['size'] > $maxFileSize) {
+            echo "Guardian's image size exceeds 4MB.";
+            exit;
+        }
+        move_uploaded_file($imageOfGuardian['tmp_name'], $image_folder . $imageOfGuardianName);
+    } else {
+        echo "Guardian's image upload error.";
+        exit;
+    }
+
+    // Execute the prepared statement
+    if ($stmt->bind_param(
+        "sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+        $imageOfStudentName,
         $academic_year,
         $admission_number,
         $admission_date,
@@ -250,12 +235,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email,
         $mother_tongue,
         $languages_known,
-        $father_image_path,
+        $imageOfFatherName,
         $father_name,
         $fatherEmail,
         $father_contact,
         $father_occupation,
-        $mother_image_path,
+        $imageOfMotherName,
         $mother_name,
         $motherEmail,
         $mother_contact,
@@ -266,7 +251,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $guardianEmail,
         $guardian_occupation,
         $guardian_address,
-        $guardian_image_path,
+        $imageOfGuardianName,
         $current_addressOfStudent,
         $permanent_addressOfStudent,
         $districtOfStudent,
@@ -276,9 +261,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pickUpPoint,
         $hostel,
         $hostelRoomNumber,
-        $birthCertificate_image_path,
-        $transferCertificate_image_path,
-        $medicalConditionSelected,
         $allergiesOfStudent,
         $medicationOfStudent,
         $previousSchoolName,
@@ -287,13 +269,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $branchOfBank,
         $ifscNumber,
         $otherInfo
-    );
-
-    if ($stmt->execute()) {
-        echo "Student details inserted successfully.";
+    )) {
+        $stmt->execute();
+        echo "Record inserted successfully.";
     } else {
-        echo "Error in statement execution: " . $stmt->error;
+        echo "Error binding parameters: " . $stmt->error;
     }
 
-    db_close($mysqli);
+    // Closing the statement and connection
+    $stmt->close();
+    $mysqli->close();
 }
+?>

@@ -1096,13 +1096,14 @@
                     <?php
 
                     require_once 'php/allStudentGrid.php';
+                    foreach ($students as $student) {
                     ?>
                     <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
                         <div class="card flex-fill">
                             <div class="card-header d-flex align-items-center justify-content-between">
-                                <a href="student-details.html" class="link-primary"><?php echo $admission_number; ?></a>
+                                <a href="student-details.html" class="link-primary"><?php echo $student['admission_number']; ?></a>
                                 <div class="d-flex align-items-center">
-                                    <span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i><?php echo $status; ?></span>
+                                    <span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i><?php echo $student['status']; ?></span>
                                     <div class="dropdown">
                                         <a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="ti ti-dots-vertical fs-14"></i>
@@ -1127,25 +1128,25 @@
                             <div class="card-body">
                                 <div class="bg-light-300 rounded-2 p-3 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <a href="student-details.html" class="avatar avatar-lg flex-shrink-0"><img src="<?php echo $image_path; ?>" class="img-fluid rounded-circle" alt="img"></a>
+                                        <a href="student-details.html" class="avatar avatar-lg flex-shrink-0"><img src="<?php echo $student['image_path']; ?>" class="img-fluid rounded-circle" alt="img"></a>
                                         <div class="ms-2">
-                                            <h5 class="mb-0"><a href="student-details.html"><?php echo $first_name . " " . $last_name; ?></a></h5>
-                                            <p><?php echo $class; ?>, <?php echo $section; ?></p>
+                                            <h5 class="mb-0"><a href="student-details.html"><?php echo $student['first_name'] . " " . $student['last_name']; ?></a></h5>
+                                            <p><?php echo $student['class']; ?>, <?php echo $student['section']; ?></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between gx-2">
                                     <div>
                                         <p class="mb-0">Roll No</p>
-                                        <p class="text-dark"><?php echo $roll_number; ?></p>
+                                        <p class="text-dark"><?php echo $student['roll_number']; ?></p>
                                     </div>
                                     <div>
                                         <p class="mb-0">Gender</p>
-                                        <p class="text-dark"><?php echo $gender; ?></p>
+                                        <p class="text-dark"><?php echo $student['gender']; ?></p>
                                     </div>
                                     <div>
                                         <p class="mb-0">Joined On</p>
-                                        <p class="text-dark"><?php echo $admission_date; ?></p>
+                                        <p class="text-dark"><?php echo $student['admission_date']; ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -1159,7 +1160,7 @@
                             </div>
                         </div>
                     </div>
-
+<?php } ?>
 
                     
 

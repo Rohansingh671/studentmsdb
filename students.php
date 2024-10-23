@@ -1123,6 +1123,7 @@
                                     <?php
 
                                     require_once 'php/allStudentGrid.php';
+                                    foreach ($students as $student) {
                                     ?>
                                     <tr>
                                         <td>
@@ -1130,25 +1131,25 @@
                                                 <input class="form-check-input" type="checkbox">
                                             </div>
                                         </td>
-                                        <td><a href="student-details.html" class="link-primary"><?php echo $admission_number; ?></a></td>
+                                        <td><a href="student-details.html" class="link-primary"><?php echo $student['admission_number']; ?></a></td>
                                         <td><?php echo $roll_number; ?></td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <a href="student-details.html" class="avatar avatar-md"><img src="<?php echo $image_path; ?>" class="img-fluid rounded-circle" alt="img"></a>
+                                                <a href="student-details.html" class="avatar avatar-md"><img src="<?php echo $student['image_path']; ?>" class="img-fluid rounded-circle" alt="img"></a>
                                                 <div class="ms-2">
-                                                    <p class="text-dark mb-0"><a href="student-details.html"><?php echo $first_name; ?></a>
+                                                    <p class="text-dark mb-0"><a href="student-details.html"><?php echo $student['first_name']; ?></a>
                                                     </p>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><?php echo $class; ?></td>
-                                        <td><?php echo $section; ?></td>
-                                        <td><?php echo $gender; ?></td>
+                                        <td><?php echo $student['class']; ?></td>
+                                        <td><?php echo $student['section']; ?></td>
+                                        <td><?php echo $student['gender']; ?></td>
                                         <td>
                                             <span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i><?php echo $status; ?></span>
                                         </td>
-                                        <td><?php echo $admission_date; ?></td>
-                                        <td><?php echo $dob; ?></td>
+                                        <td><?php echo $student['admission_date']; ?></td>
+                                        <td><?php echo $student['dob']; ?></td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <a href="#" class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle  p-0 me-2"><i class="ti ti-brand-hipchat"></i></a>
@@ -1184,6 +1185,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

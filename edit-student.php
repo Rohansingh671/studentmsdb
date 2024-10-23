@@ -955,7 +955,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="php/updateStudent.php" method="POST">
+                        <form action="php/updateStudent.php" method="POST" enctype="multipart/form-data">
                             <?php
 
                             require_once 'php/allStudentGrid.php';
@@ -1788,27 +1788,27 @@
                                         <h4 class="text-dark">Medical History</h4>
                                     </div>
                                 </div>
-                                <div class="card-body pb-0">
+                                <div class="card-body pb-1">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="mb-2">
+                                            <div class="mb-2" hidden>
                                                 <label class="form-label">Medical Condition</label>
                                                 <div class="d-flex align-items-center flex-wrap">
                                                     <label class="form-label text-dark fw-normal me-2">Medical Condition of a Student</label>
                                                     <div class="form-check me-3 mb-2">
-                                                        <input class="form-check-input" type="radio" name="condition" id="good" checked="">
+                                                        <input class="form-check-input" type="radio" name="medicalConditionSelected" id="good" checked="">
                                                         <label class="form-check-label" for="good">
                                                             Good
                                                         </label>
                                                     </div>
                                                     <div class="form-check me-3 mb-2">
-                                                        <input class="form-check-input" type="radio" name="condition" id="bad">
+                                                        <input class="form-check-input" type="radio" name="medicalConditionSelected" id="bad">
                                                         <label class="form-check-label" for="bad">
                                                             Bad
                                                         </label>
                                                     </div>
                                                     <div class="form-check mb-2">
-                                                        <input class="form-check-input" type="radio" name="condition" id="others">
+                                                        <input class="form-check-input" type="radio" name="medicalConditionSelected" id="others">
                                                         <label class="form-check-label" for="others">
                                                             Others
                                                         </label>
@@ -1816,90 +1816,90 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mb-4">
+                                        <div class="mb-3">
                                             <label class="form-label">Allergies</label>
-                                            <input class="input-tags form-control" type="text" data-role="tagsinput" name="allergiesOfStudent" value="<?php echo $allergiesOfStudent; ?>">
+                                            <input class="input-tags form-control" type="text" data-role="tagsinput" name="allergiesOfStudent" value="Allergy, Skin Allergy">
                                         </div>
-                                        <div class="mb-4">
+                                        <div class="mb-3">
                                             <label class="form-label">Medications</label>
-                                            <input class="input-tags form-control" type="text" data-role="tagsinput" name="medicationOfStudent" value="<?php echo $medicationOfStudent; ?>">
+                                            <input class="input-tags form-control" type="text" data-role="tagsinput" name="medicationOfStudent" value="Medecine Name">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="card">
-                                <div class="card-header bg-light">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-                                            <i class="ti ti-building fs-16"></i>
-                                        </span>
-                                        <h4 class="text-dark">Previous School Details</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-0">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">School Name</label>
-                                                <input type="text" class="form-control" name="previousSchoolName" value="<?php echo $previousSchoolName; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Address</label>
-                                                <input type="text" class="form-control" name="previousSchoolAddress" value="<?php echo $previousSchoolAddress; ?>">
-                                            </div>
+                                <div class="card">
+                                    <div class="card-header bg-light">
+                                        <div class="d-flex align-items-center">
+                                            <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
+                                                <i class="ti ti-building fs-16"></i>
+                                            </span>
+                                            <h4 class="text-dark">Previous School Details</h4>
                                         </div>
                                     </div>
+                                    <div class="card-body pb-0">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label">School Name</label>
+                                                    <input type="text" class="form-control" name="previousSchoolName" value="<?php echo $previousSchoolName; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Address</label>
+                                                    <input type="text" class="form-control" name="previousSchoolAddress" value="<?php echo $previousSchoolAddress; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
 
-                            <div class="card">
-                                <div class="card-header bg-light">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-                                            <i class="ti ti-building-bank fs-16"></i>
-                                        </span>
-                                        <h4 class="text-dark">Other Details</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-0">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="mb-4">
-                                                <label class="form-label">Bank Name</label>
-                                                <input type="text" class="form-control" name="bankName" value="<?php echo $bankName; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="mb-4">
-                                                <label class="form-label">Branch</label>
-                                                <input type="text" class="form-control" name="branchOfBank" value="<?php echo $branchOfBank; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="mb-4">
-                                                <label class="form-label">IFSC Number</label>
-                                                <input type="text" class="form-control" name="ifscNumber" value="<?php echo $ifscNumber; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-4">
-                                                <label class="form-label">Other Information</label>
-                                                <textarea class="form-control" placeholder="Other Information" rows="3" name="otherInfo"><?php echo $otherInfo; ?></textarea>
-                                            </div>
+                                <div class="card">
+                                    <div class="card-header bg-light">
+                                        <div class="d-flex align-items-center">
+                                            <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
+                                                <i class="ti ti-building-bank fs-16"></i>
+                                            </span>
+                                            <h4 class="text-dark">Other Details</h4>
                                         </div>
                                     </div>
+                                    <div class="card-body pb-0">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Bank Name</label>
+                                                    <input type="text" class="form-control" name="bankName" value="<?php echo $bankName; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Branch</label>
+                                                    <input type="text" class="form-control" name="branchOfBank" value="<?php echo $branchOfBank; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="mb-4">
+                                                    <label class="form-label">IFSC Number</label>
+                                                    <input type="text" class="form-control" name="ifscNumber" value="<?php echo $ifscNumber; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Other Information</label>
+                                                    <textarea class="form-control" placeholder="Other Information" rows="3" name="otherInfo"><?php echo $otherInfo; ?></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="text-end">
-                                <button type="button" class="btn btn-light me-3">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
-                            </div>
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-light me-3">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
                         </form>
                     </div>
                 </div>
