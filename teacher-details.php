@@ -9,7 +9,7 @@
 
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
 
-<script src="js/theme-script.js" type="48e4db01089c2adcf048d809-text/javascript"></script>
+<script src="js/theme-script.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -23,8 +23,6 @@
 <link rel="stylesheet" href="css/all.min.css">
 
 <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
-
-<link rel="stylesheet" href="css/select2.min.css">
 
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -405,9 +403,9 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
     <li class="submenu">
     <a href="javascript:void(0);" class="subdrop active"><i class="ti ti-users"></i><span>Teachers</span><span class="menu-arrow"></span></a>
     <ul>
-    <li><a href="teacher-grid.html" class="active">All Teachers</a></li>
+    <li><a href="teacher-grid.html">All Teachers</a></li>
     <li><a href="teachers.html">Teacher List</a></li>
-    <li><a href="teacher-details.html">Teacher Details</a></li>
+    <li><a href="teacher-details.html" class="active">Teacher Details</a></li>
     <li><a href="routine-teachers.html">Routine</a></li>
     </ul>
     </li>
@@ -927,758 +925,472 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
     </div>
     </div>
 
-<div class="page-wrapper">
-<div class="content content-two">
 
+<div class="page-wrapper">
+<div class="content">
+<div class="row">
+    <?php
+
+    require_once 'php/allTeacherGrid.php';
+    ?>
+
+<div class="col-md-12">
 <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
 <div class="my-auto mb-2">
-<h3 class="page-title mb-1">Teachers </h3>
+<h3 class="page-title mb-1">Teacher Details</h3>
 <nav>
 <ol class="breadcrumb mb-0">
 <li class="breadcrumb-item">
 <a href="index.html">Dashboard</a>
 </li>
 <li class="breadcrumb-item">
-Peoples
+<a href="teachers.html">Teachers</a>
 </li>
-<li class="breadcrumb-item active" aria-current="page">Teachers </li>
+<li class="breadcrumb-item active" aria-current="page">Teacher Details</li>
 </ol>
 </nav>
 </div>
-<div class="d-flex my-xl-auto right-content align-items-center flex-wrap">
-<div class="pe-1 mb-2">
-<a href="#" class="btn btn-outline-light bg-white btn-icon me-1" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Refresh" data-bs-original-title="Refresh">
-<i class="ti ti-refresh"></i>
+<div class="d-flex my-xl-auto right-content align-items-center  flex-wrap">
+<a href="#" class="btn btn-light me-2 mb-2" data-bs-toggle="modal" data-bs-target="#login_detail" hidden><i class="ti ti-lock me-2"></i>Login Details</a>
+<a href="edit-teacher.html" class="btn btn-primary d-flex align-items-center mb-2"><i class="ti ti-edit-circle me-2"></i>Edit Teacher</a>
+</div>
+</div>
+</div>
+
+
+<div class="col-xxl-3 col-xl-4 theiaStickySidebar">
+<div class="card border-white">
+<div class="card-header">
+<div class="d-flex align-items-center flex-wrap row-gap-3">
+<div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
+<img src="./php/uploads/teacher_images/<?php echo $teacher['teacher_image']; ?>" class="img-fluid" alt="img">
+</div>
+<div>
+<h5 class="mb-1 mb-1 text-truncate"><?php echo $teacher['first_name']; ?></h5>
+<p class="text-primary mb-1"><?php echo $teacher['teacher_id']; ?></p>
+<p>Joined : <?php echo $teacher['date_of_joining']; ?></p>
+</div>
+</div>
+</div>
+<div class="card-body">
+<h5 class="mb-3">Basic Information</h5>
+<dl class="row mb-0">
+<dt class="col-6 fw-medium text-dark mb-3">Class &amp; Section</dt>
+<dd class="col-6  mb-3"><?php echo $teacher['class']; ?></dd>
+<dt class="col-6 fw-medium text-dark mb-3">Subject</dt>
+<dd class="col-6  mb-3"><?php echo $teacher['subject']; ?></dd>
+<dt class="col-6 fw-medium text-dark mb-3">Gender</dt>
+<dd class="col-6  mb-3"><?php echo $teacher['gender']; ?></dd>
+<dt class="col-6 fw-medium text-dark mb-3">Blood Group</dt>
+<dd class="col-6  mb-3"><?php echo $teacher['blood_group']; ?></dd>
+<dt class="col-6 fw-medium text-dark mb-3">Language Known</dt>
+<dd class="col-6  mb-3"><?php echo $teacher['language_known']; ?></dd>
+</dl>
+</div>
+</div>
+<div class="card border-white">
+<div class="card-body">
+<h5 class="mb-3 ">Primary Contact Info</h5>
+<div class="d-flex align-items-center mb-3">
+<span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-phone"></i></span>
+<div>
+<span class=" text-dark fw-medium mb-1">Phone Number</span>
+<p><?php echo $teacher['primary_contact_number']; ?></p>
+</div>
+</div>
+<div class="d-flex align-items-center">
+<span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-mail"></i></span>
+<div>
+<span class="text-dark fw-medium mb-1">Email Address</span>
+<p><a href="/cdn-cgi/l/email-protection" class="__cf_email__"><?php echo $teacher['email_address']; ?></a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="card border-white">
+<div class="card-body pb-1">
+<h5 class="mb-3">PAN Number / ID Number</h5>
+<div class="d-flex align-items-center justify-content-between">
+<div class="d-flex align-items-center mb-3">
+<span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-id"></i></span>
+<div>
+<p class="text-dark"><?php echo $teacher['pan_number']; ?></p>
+</div>
+</div>
+<a class="btn btn-primary btn-icon btn-sm mb-3">
+<i class="ti ti-copy"></i>
 </a>
 </div>
-<div class="pe-1 mb-2">
-<button type="button" class="btn btn-outline-light bg-white btn-icon me-1" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Print" data-bs-original-title="Print">
-<i class="ti ti-printer"></i>
+</div>
+</div>
+<div class="card border-white">
+<div class="card-body pb-1">
+<ul class="nav nav-tabs nav-tabs-bottom mb-3">
+<li class="nav-item"><a class="nav-link active" href="#hostel" data-bs-toggle="tab">Hostel</a></li>
+<li class="nav-item"><a class="nav-link" href="#transport" data-bs-toggle="tab">Transportation</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane fade show active" id="hostel">
+<div class="d-flex align-items-center mb-3">
+<span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-building-fortress fs-16"></i></span>
+<div>
+<h6 class="mb-1"><?php echo $teacher['hostel']; ?>, Floor</h6>
+<p class="text-primary">Room No : <?php echo $teacher['room_number']; ?></p>
+</div>
+</div>
+</div>
+<div class="tab-pane fade" id="transport">
+<div class="d-flex align-items-center mb-3">
+<span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-bus fs-16"></i></span>
+<div>
+<span class="fs-12 mb-1">Route</span>
+<p class="text-dark"><?php echo $teacher['route']; ?></p>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-6">
+<div class="mb-3">
+<span class="fs-12 mb-1">Bus Number</span>
+<p class="text-dark"><?php echo $teacher['vehicle_number']; ?></p>
+</div>
+</div>
+<div class="col-sm-6">
+<div class="mb-3">
+<span class="fs-12 mb-1">Pickup Point</span>
+<p class="text-dark"><?php echo $teacher['pickup_point']; ?></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-xxl-9 col-xl-8">
+<div class="row">
+<div class="col-md-12">
+
+<ul class="nav nav-tabs nav-tabs-bottom mb-4">
+<li>
+<a href="teacher-details.html" class="nav-link active"><i class="ti ti-school me-2"></i>Teacher Details</a>
+</li>
+<li>
+<a href="routine-teachers.html" class="nav-link"><i class="ti ti-table-options me-2"></i>Routine</a>
+</li>
+<li>
+<a href="teacher-leaves.html" class="nav-link"><i class="ti ti-calendar-due me-2"></i>Leave &amp; Attendance</a>
+</li>
+<li>
+<a href="teacher-salary.html" class="nav-link"><i class="ti ti-report-money me-2"></i>Salary</a>
+</li>
+<li>
+<a href="teacher-library.html" class="nav-link"><i class="ti ti-bookmark-edit me-2"></i>Library</a>
+</li>
+</ul>
+
+
+<div class="card">
+<div class="card-header">
+<h5>Profile Details</h5>
+</div>
+<div class="card-body">
+<div class="border rounded p-3 pb-0">
+<div class="row">
+<div class="col-sm-6 col-lg-4">
+<div class="mb-3">
+<p class="text-dark fw-medium mb-1">Father’s Name</p>
+<p><?php echo $teacher['father_name']; ?></p>
+</div>
+</div>
+<div class="col-sm-6 col-lg-4">
+<div class="mb-3">
+<p class="text-dark fw-medium mb-1">Mother Name</p>
+<p><?php echo $teacher['mother_name']; ?></p>
+</div>
+</div>
+<div class="col-sm-6 col-lg-4">
+<div class="mb-3">
+<p class="text-dark fw-medium mb-1">DOB</p>
+<p><?php echo $teacher['date_of_birth']; ?></p>
+</div>
+</div>
+<div class="col-sm-6 col-lg-4">
+<div class="mb-3">
+<p class="text-dark fw-medium mb-1">Martial Status</p>
+<p><?php echo $teacher['marital_status']; ?></p>
+</div>
+</div>
+<div class="col-sm-6 col-lg-4">
+<div class="mb-3">
+<p class="text-dark fw-medium mb-1">Qualification</p>
+<p><?php echo $teacher['qualification']; ?></p>
+</div>
+</div>
+<div class="col-sm-6 col-lg-4">
+<div class="mb-3">
+<p class="text-dark fw-medium mb-1">Experience</p>
+<p><?php echo $teacher['work_experience']; ?></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="col-xxl-6 d-flex">
+<div class="card flex-fill">
+<div class="card-header">
+<h5>Documents</h5>
+</div>
+<div class="card-body">
+<div class="bg-light-300 border rounded d-flex align-items-center justify-content-between mb-3 p-2">
+<div class="d-flex align-items-center overflow-hidden">
+<span class="avatar avatar-md bg-white rounded flex-shrink-0 text-default"><i class="ti ti-pdf fs-15"></i></span>
+<div class="ms-2">
+<p class="text-truncate fw-medium text-dark"><?php echo $teacher['resume']; ?></p>
+</div>
+</div>
+<a href="#" class="btn btn-dark btn-icon btn-sm"><i class="ti ti-download"></i></a>
+</div>
+<div class="bg-light-300 border rounded d-flex align-items-center justify-content-between p-2">
+<div class="d-flex align-items-center overflow-hidden">
+<span class="avatar avatar-md bg-white rounded flex-shrink-0 text-default"><i class="ti ti-pdf fs-15"></i></span>
+<div class="ms-2">
+<p class="text-truncate fw-medium text-dark"><?php echo $teacher['joining_letter']; ?></p>
+</div>
+</div>
+<a href="#" class="btn btn-dark btn-icon btn-sm"><i class="ti ti-download"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-xxl-6 d-flex">
+<div class="card flex-fill">
+<div class="card-header">
+<h5>Address</h5>
+</div>
+<div class="card-body">
+<div class="d-flex align-items-center mb-3">
+<span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-map-pin-up"></i></span>
+<div>
+<p class="text-dark fw-medium mb-1">Current Address</p>
+<p><?php echo $teacher['address']; ?></p>
+</div>
+</div>
+<div class="d-flex align-items-center">
+<span class="avatar avatar-md bg-light-300 rounded me-2 flex-shrink-0 text-default"><i class="ti ti-map-pins"></i></span>
+<div>
+<p class="text-dark fw-medium mb-1">Permanent Address</p>
+<p><?php echo $teacher['permanent_address']; ?></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-xxl-12">
+<div class="card">
+<div class="card-header">
+<h5>Previous School Details</h5>
+</div>
+<div class="card-body pb-1">
+<div class="row">
+<div class="col-md-4">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Previous School Name</p>
+<p><?php echo $teacher['previous_school_name']; ?></p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">School Address</p>
+<p><?php echo $teacher['previous_school_address']; ?></p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Phone Number</p>
+<p><?php echo $teacher['previous_school_contact_number']; ?></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-xxl-6 d-flex">
+<div class="card flex-fill">
+<div class="card-header">
+<h5>Bank Details</h5>
+</div>
+<div class="card-body pb-1">
+<div class="row">
+<div class="col-md-4">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Bank Name</p>
+<p><?php echo $teacher['bank_name']; ?></p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Branch</p>
+<p><?php echo $teacher['branch_name']; ?></p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">IFSC</p>
+<p><?php echo $teacher['ifsc_code']; ?></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-xxl-6 d-flex">
+<div class="card flex-fill">
+<div class="card-header">
+<h5>Work Details</h5>
+</div>
+<div class="card-body pb-1">
+<div class="row">
+<div class="col-md-4">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Contract Type</p>
+<p><?php echo $teacher['contract_type']; ?></p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Shift</p>
+<p><?php echo $teacher['work_shift']; ?></p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Work Location</p>
+<p><?php echo $teacher['work_location']; ?></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-xxl-12 d-flex">
+<div class="card flex-fill">
+<div class="card-header">
+<h5>Social Media</h5>
+</div>
+<div class="card-body pb-1">
+<div class="row row-cols-xxl-5 row-cols-xl-3">
+<div class="col">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Facebook</p>
+<p><?php echo $teacher['facebook']; ?></p>
+</div>
+</div>
+<div class="col">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Twitter</p>
+<p><?php echo $teacher['twitter_url']; ?></p>
+</div>
+</div>
+<div class="col">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Linkedin</p>
+<p><?php echo $teacher['linkedin']; ?></p>
+</div>
+</div>
+<div class="col">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Youtube</p>
+<p><?php echo $teacher['youtube']; ?></p>
+</div>
+</div>
+<div class="col">
+<div class="mb-3">
+<p class="mb-1 text-dark fw-medium">Instagram</p>
+<p><?php echo $teacher['instagram']; ?></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-xxl-12">
+<div class="card">
+<div class="card-header">
+<h5>Other Info</h5>
+</div>
+<div class="card-body">
+<p><?php echo $teacher['other_info']; ?></p>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="login_detail" hidden>
+<div class="modal-dialog modal-dialog-centered  modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">Login Details</h4>
+<button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
+<i class="ti ti-x"></i>
 </button>
 </div>
-<div class="dropdown me-2 mb-2">
-<a href="javascript:void(0);" class="dropdown-toggle btn btn-light fw-medium d-inline-flex align-items-center" data-bs-toggle="dropdown">
-<i class="ti ti-file-export me-2"></i>Export
-</a>
-<ul class="dropdown-menu  dropdown-menu-end p-3">
-<li>
-<a href="javascript:void(0);" class="dropdown-item rounded-1"><i class="ti ti-file-type-pdf me-2"></i>Export as PDF</a>
-</li>
-<li>
-<a href="javascript:void(0);" class="dropdown-item rounded-1"><i class="ti ti-file-type-xls me-2"></i>Export as Excel </a>
-</li>
-</ul>
+<div class="modal-body">
+<div class="student-detail-info">
+<span class="student-img"><img src="images/teacher-01.jpg" alt="img"></span>
+<div class="name-info">
+<h6>Teresa <span>III, A</span></h6>
+</div>
+</div>
+<div class="table-responsive custom-table no-datatable_length">
+<table class="table datanew">
+<thead class="thead-light">
+<tr>
+<th>User Type</th>
+<th>User Name</th>
+<th>Password </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Teacher</td>
+<td>teacher20</td>
+<td>teacher@53</td>
+</tr>
+<tr>
+<td>Parent</td>
+<td>parent53</td>
+<td>parent@53</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="modal-footer">
+<a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
 </div>
-<div class="mb-2">
-<a href="add-teacher.html" class="btn btn-primary d-flex align-items-center"><i class="ti ti-square-rounded-plus me-2"></i>Add Teacher</a>
-</div>
-</div>
-</div>
-
-<div class="bg-white p-3 border rounded-1 d-flex align-items-center justify-content-between flex-wrap mb-4 pb-0">
-<h4 class="mb-3">Teachers Grid</h4>
-<div class="d-flex align-items-center flex-wrap">
-<div class="input-icon-start mb-3 me-2 position-relative">
-<span class="icon-addon">
-<i class="ti ti-calendar"></i>
-</span>
-<input type="text" class="form-control date-range bookingrange" placeholder="Select" value="Academic Year : 2024 / 2025">
-</div>
-<div class="dropdown mb-3 me-2">
-<a href="javascript:void(0);" class="btn btn-outline-light bg-white dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ti ti-filter me-2"></i>Filter</a>
-<div class="dropdown-menu drop-width">
-<form action="guardians.html">
-<div class="d-flex align-items-center border-bottom p-3">
-<h4>Filter</h4>
-</div>
-<div class="p-3 pb-0 border-bottom">
-<div class="row">
-<div class="col-md-6">
-<div class="mb-3">
-<label class="form-label">Name</label>
-<select class="select">
-<option>Select</option>
-<option>William</option>
-<option>Stacey</option>
-<option>George</option>
-</select>
-</div>
-</div>
-<div class="col-md-6">
-<div class="mb-3">
-<label class="form-label">Class</label>
-<select class="select">
-<option>Select</option>
-<option>III A</option>
-<option>II (A)</option>
-<option>VI (A)</option>
-</select>
-</div>
-</div>
-</div>
-</div>
-<div class="p-3 d-flex align-items-center justify-content-end">
-<a href="#" class="btn btn-light me-3">Reset</a>
-<button type="submit" class="btn btn-primary">Apply</button>
-</div>
-</form>
-</div>
-</div>
-<div class="d-flex align-items-center bg-white border rounded-2 p-1 mb-3 me-2">
-<a href="teachers.html" class=" btn btn-icon btn-sm me-1 bg-light primary-hover"><i class="ti ti-list-tree"></i></a>
-<a href="teacher-grid.html" class=" active btn btn-icon btn-sm  primary-hover"><i class="ti ti-grid-dots"></i></a>
-</div>
-<div class="dropdown mb-3">
-<a href="javascript:void(0);" class="btn btn-outline-light bg-white dropdown-toggle" data-bs-toggle="dropdown"><i class="ti ti-sort-ascending-2 me-2"></i>Sort by A-Z </a>
-<ul class="dropdown-menu p-3">
-<li>
-<a href="javascript:void(0);" class="dropdown-item rounded-1 active">
-Ascending
-</a>
-</li>
-<li><a href="javascript:void(0);" class="dropdown-item rounded-1">
-Descending
-</a>
-</li>
-<li>
-<a href="javascript:void(0);" class="dropdown-item rounded-1">
-Recently Viewed
-</a>
-</li>
-<li>
-<a href="javascript:void(0);" class="dropdown-item rounded-1">
-Recently Added
-</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="row">
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849127</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-01.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Teresa</a></h6>
-<p>III A</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0672637463756746637e676b766a632865696b">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 82392 37359</p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">Physics</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849126</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-02.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Daniel</a></h6>
-<p>II (A)</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3470555a5d515874514c55594458511a575b59">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 56752 86742</p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">Computer</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849125</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-03.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Hellana</a></h6>
-<p>VI (A)</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d098b5bcbcb1beb190b5a8b1bda0bcb5feb3bfbd">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 23566 52683</p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">English</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849124</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-04.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Erickson</a></h6>
-<p>VI (B) , V (A)</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b0f5c2d9d3dbc3dfdef0d5c8d1ddc0dcd59ed3dfdd">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 14259 85573</p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">Spanish</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849123</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-05.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Morgan</a></h6>
-<p>VIII</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dd90b2afbabcb39db8a5bcb0adb1b8f3beb2b0">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 63204 35730</p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">Env Science</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849122</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-danger d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Inactive</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-06.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Aaron</a></h6>
-<p>I (A)</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="612000130e0f210419000c110d044f020e0c">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 26267 80542</p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">Chemistry</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849121</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-07.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Jacquelin</a></h6>
-<p>IV</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9dd7fcfeece8f8f1f4f3ddf8e5fcf0edf1f8b3fef2f0">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 77502 54845</p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">Maths</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849120</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-08.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Raul</a></h6>
-<p>IV</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5e0c3f2b321e3b263f332e323b703d3133">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 67845 78784</p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">Biology</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849119</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-09.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Elizabeth</a></h6>
-<p>VII</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0441686d7e656661706c44617c65697468612a676b69">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 23566 52683</p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">Finance</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849118</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-10.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Edward</a></h6>
-<p>IX (C) , X (C)</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9fcddced8cbddf9dcc1d8d4c9d5dc97dad6d4">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 14259 85573 </p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">Economics</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849117</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-07.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Maria</a></h6>
-<p>IX (C) , X (C)</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2865495a4149684d50494558444d064b4745">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 97846 84518</p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">Spanish</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-
-<div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
-<div class="card flex-fill">
-<div class="card-header d-flex align-items-center justify-content-between">
-<a href="teacher-details.html" class="link-primary">T849116</a>
-<div class="d-flex align-items-center">
-<span class="badge badge-soft-success d-inline-flex align-items-center me-1"><i class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-<div class="dropdown">
-<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-<i class="ti ti-dots-vertical fs-14"></i>
-</a>
-<ul class="dropdown-menu dropdown-menu-right p-3">
-<li>
-<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-</li>
-<li>
-<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div class="bg-light-300 rounded-2 p-3 mb-3">
-<div class="d-flex align-items-center">
-<a href="teacher-details.html" class="avatar avatar-lg flex-shrink-0"><img src="images/teacher-07.jpg" class="img-fluid rounded-circle" alt="img"></a>
-<div class="ms-2">
-<h6 class="text-dark text-truncate mb-0"><a href="teacher-details.html">Jacky</a></h6>
-<p>VI (A)</p>
-</div>
-</div>
-</div>
-<div>
-<div class="mb-2">
-<p class="mb-0">Email</p>
-<p class="text-dark"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bef4dfddd5c7fedbc6dfd3ced2db90ddd1d3">[email�&nbsp;protected]</a></p>
-</div>
-<div>
-<p class="mb-0">Phone</p>
-<p class="text-dark">+1 98392 37378</p>
-</div>
-</div>
-</div>
-<div class="card-footer d-flex align-items-center justify-content-between">
-<span class="badge badge-soft-danger">English</span>
-<a href="teacher-details.html" class="btn btn-light btn-sm">View Details</a>
-</div>
-</div>
-</div>
-
-<div class="text-center">
-<a href="#" class="btn btn-primary d-inline-flex align-items-center"><i class="ti ti-loader-3 me-2"></i>Load More</a>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="modal fade" id="delete-modal">
-<div class="modal-dialog modal-dialog-centered">
-<div class="modal-content">
-<form action="parent-grid.html">
-<div class="modal-body text-center">
-<span class="delete-icon">
-<i class="ti ti-trash-x"></i>
-</span>
-<h4>Confirm Deletion</h4>
-<p>You want to delete all the marked items, this cant be undone once you delete.</p>
-<div class="d-flex justify-content-center">
-<a href="javascript:void(0);" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</a>
-<button type="submit" class="btn btn-danger">Yes, Delete</button>
-</div>
-</div>
-</form>
 </div>
 </div>
 </div>
@@ -1686,22 +1398,23 @@ Recently Added
 </div>
 
 
-<script data-cfasync="false" src="js/email-decode.min.js"></script><script src="js/jquery-3.7.1.min.js" type="48e4db01089c2adcf048d809-text/javascript"></script>
+<script data-cfasync="false" src="js/email-decode.min.js"></script><script src="js/jquery-3.7.1.min.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
 
-<script src="js/bootstrap.bundle.min.js" type="48e4db01089c2adcf048d809-text/javascript"></script>
+<script src="js/bootstrap.bundle.min.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
 
-<script src="js/moment.js" type="48e4db01089c2adcf048d809-text/javascript"></script>
-<script src="js/daterangepicker.js" type="48e4db01089c2adcf048d809-text/javascript"></script>
+<script src="js/moment.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
+<script src="js/daterangepicker.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
 
-<script src="js/feather.min.js" type="48e4db01089c2adcf048d809-text/javascript"></script>
+<script src="js/feather.min.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
 
-<script src="js/jquery.slimscroll.min.js" type="48e4db01089c2adcf048d809-text/javascript"></script>
+<script src="js/jquery.slimscroll.min.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
 
-<script src="js/jquery.dataTables.min.js" type="48e4db01089c2adcf048d809-text/javascript"></script>
-<script src="js/dataTables.bootstrap5.min.js" type="48e4db01089c2adcf048d809-text/javascript"></script>
+<script src="js/jquery.dataTables.min.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
+<script src="js/dataTables.bootstrap5.min.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
 
-<script src="js/select2.min.js" type="48e4db01089c2adcf048d809-text/javascript"></script>
+<script src="js/ResizeSensor.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
+<script src="js/theia-sticky-sidebar.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
 
-<script src="js/script.js" type="48e4db01089c2adcf048d809-text/javascript"></script>
-<script src="js/rocket-loader.min.js" data-cf-settings="48e4db01089c2adcf048d809-|49" defer=""></script>
+<script src="js/script.js" type="782ca94e19d1e86cda3738a1-text/javascript"></script>
+<script src="js/rocket-loader.min.js" data-cf-settings="782ca94e19d1e86cda3738a1-|49" defer=""></script>
 </body></html>

@@ -1,5 +1,5 @@
 <?php
-require_once 'php/databaseConnection.php';
+require_once 'databaseConnection.php';
 $mysqli = db_connect();
 
 $stmt = $mysqli->prepare("SELECT `imageOfStudent`, `academicYear`, `admissionNumber`, `admissionDate`, `rollNumber`, `studentStatus`, 
@@ -12,8 +12,11 @@ $stmt = $mysqli->prepare("SELECT `imageOfStudent`, `academicYear`, `admissionNum
 `documentOfBirthCertificate`, `documentOfTransferCertificate`, `allergiesOfStudent`, 
 `medicationOfStudent`, `previousSchoolName`, `previousSchoolAddress`, `bankName`, `branchOfBank`, `ifscNumber`, 
 `otherInfo` FROM `addstudent`");
+
 $stmt->execute();
 $stmt->store_result();
+
+// Bind the results to variables once
 $stmt->bind_result(
     $image_path,
     $academic_year,
@@ -64,7 +67,6 @@ $stmt->bind_result(
     $hostelRoomNumber,
     $birthCertificate_image_path,
     $transferCertificate_image_path,
-    // Removed medicalConditionSelected from here
     $allergiesOfStudent,
     $medicationOfStudent,
     $previousSchoolName,
@@ -75,33 +77,10 @@ $stmt->bind_result(
     $otherInfo
 );
 
-$stmt->fetch();
-// Assign the data to an associative array for easier access in the frontend
-$data = array(
-    'studentStatus' => $status,
-    'gender' => $gender,
-    'class' => $class,
-    'section' => $section,
-    'academicYear' => $academic_year,
-    'bloodGroup' => $blood_group,
-    'house' => $house,
-    'religion' => $religion,
-    'category' => $category,
-    'motherTongue' => $mother_tongue,
-    'languageKnown' => $languages_known,
-    'districtOfStudent' => $districtOfStudent,
-    'provinceOfStudent' => $provinceOfStudent,
-    'transportRoute' => $transportationRoute,
-    'vehicleNumber' => $vehicleNumber,
-    'pickUpPoint' => $pickUpPoint,
-    'hostel' => $hostel,
-    'hostelRoomNumber' => $hostelRoomNumber,
-);
-
 // Create an empty array to store all rows
 $students = array();
 
-// Use a while loop to fetch all rows
+// Fetch data row by row in the while loop
 while ($stmt->fetch()) {
     $student = array(
         'image_path' => $image_path,
@@ -153,7 +132,6 @@ while ($stmt->fetch()) {
         'hostelRoomNumber' => $hostelRoomNumber,
         'birthCertificate_image_path' => $birthCertificate_image_path,
         'transferCertificate_image_path' => $transferCertificate_image_path,
-        // Removed medicalConditionSelected from here
         'allergiesOfStudent' => $allergiesOfStudent,
         'medicationOfStudent' => $medicationOfStudent,
         'previousSchoolName' => $previousSchoolName,
@@ -170,3 +148,5 @@ while ($stmt->fetch()) {
 
 $stmt->close();
 db_close($mysqli);
+
+?>

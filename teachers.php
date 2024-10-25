@@ -9,7 +9,7 @@
 
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
 
-<script src="js/theme-script.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
+<script src="js/theme-script.js" type="dde9696b66c133de05567290-text/javascript"></script>
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -24,9 +24,7 @@
 
 <link rel="stylesheet" href="css/select2.min.css">
 
-<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
-
-<link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+<link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
 
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -405,10 +403,10 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
     </ul>
     </li>
     <li class="submenu">
-    <a href="javascript:void(0);" class="active"><i class="ti ti-users"></i><span>Teachers</span><span class="menu-arrow"></span></a>
+    <a href="javascript:void(0);" class="subdrop active"><i class="ti ti-users"></i><span>Teachers</span><span class="menu-arrow"></span></a>
     <ul>
     <li><a href="teacher-grid.html">All Teachers</a></li>
-    <li><a href="teachers.html">Teacher List</a></li>
+    <li><a href="teachers.html" class="active">Teacher List</a></li>
     <li><a href="teacher-details.html">Teacher Details</a></li>
     <li><a href="routine-teachers.html">Routine</a></li>
     </ul>
@@ -931,641 +929,324 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 
 
 <div class="page-wrapper">
-<div class="content content-two">
+<div class="content">
 
 <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
 <div class="my-auto mb-2">
-<h3 class="mb-1">Edit Teacher</h3>
+<h3 class="page-title mb-1">Teacher List</h3>
 <nav>
 <ol class="breadcrumb mb-0">
 <li class="breadcrumb-item">
 <a href="index.html">Dashboard</a>
 </li>
-<li class="breadcrumb-item">Teachers</li>
-<li class="breadcrumb-item active" aria-current="page">Edit Teacher</li>
+<li class="breadcrumb-item">
+<a href="javascript:void(0);">Peoples</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">Teacher List</li>
 </ol>
 </nav>
 </div>
+<div class="d-flex my-xl-auto right-content align-items-center flex-wrap">
+<div class="pe-1 mb-2">
+<a href="#" class="btn btn-outline-light bg-white btn-icon me-1" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Refresh" data-bs-original-title="Refresh">
+<i class="ti ti-refresh"></i>
+</a>
+</div>
+<div class="pe-1 mb-2">
+<button type="button" class="btn btn-outline-light bg-white btn-icon me-1" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Print" data-bs-original-title="Print">
+<i class="ti ti-printer"></i>
+</button>
+</div>
+<div class="dropdown me-2 mb-2">
+<a href="javascript:void(0);" class="dropdown-toggle btn btn-light fw-medium d-inline-flex align-items-center" data-bs-toggle="dropdown">
+<i class="ti ti-file-export me-2"></i>Export
+</a>
+<ul class="dropdown-menu  dropdown-menu-end p-3">
+<li>
+<a href="javascript:void(0);" class="dropdown-item rounded-1"><i class="ti ti-file-type-pdf me-1"></i>Export as PDF</a>
+</li>
+<li>
+<a href="javascript:void(0);" class="dropdown-item rounded-1"><i class="ti ti-file-type-xls me-1"></i>Export as Excel </a>
+</li>
+</ul>
+</div>
+<div class="mb-2">
+<a href="add-teacher.html" class="btn btn-primary d-flex align-items-center"><i class="ti ti-square-rounded-plus me-2"></i>Add Teacher</a>
+</div>
+</div>
 </div>
 
-<div class="row">
-<div class="col-md-12">
-<form action="teachers.html">
 
 <div class="card">
-<div class="card-header bg-light">
-<div class="d-flex align-items-center">
-<span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-<i class="ti ti-info-square-rounded fs-16"></i>
+<div class="card-header d-flex align-items-center justify-content-between flex-wrap pb-0">
+<h4 class="mb-3">Teachers List</h4>
+<div class="d-flex align-items-center flex-wrap">
+<div class="input-icon-start mb-3 me-2 position-relative">
+<span class="icon-addon">
+<i class="ti ti-calendar"></i>
 </span>
-<h4 class="text-dark">Personal Information</h4>
+<input type="text" class="form-control date-range bookingrange" placeholder="Select" value="Academic Year : 2024 / 2025">
 </div>
+<div class="dropdown mb-3 me-2">
+<a href="javascript:void(0);" class="btn btn-outline-light bg-white dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ti ti-filter me-2"></i>Filter</a>
+<div class="dropdown-menu drop-width">
+<form action="teachers.html">
+<div class="d-flex align-items-center border-bottom p-3">
+<h4>Filter</h4>
 </div>
-<div class="card-body pb-1">
+<div class="p-3 border-bottom pb-0">
 <div class="row">
 <div class="col-md-12">
-<div class="d-flex align-items-center flex-wrap row-gap-3 mb-3">
-<div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-<i class="ti ti-photo-plus fs-16"></i>
-</div>
-<div class="profile-upload">
-<div class="profile-uploader d-flex align-items-center">
-<div class="drag-upload-btn mb-3">
-Upload
-<input type="file" class="form-control image-sign" multiple="">
-</div>
-<a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
-</div>
-<p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
-</div>
-</div>
-</div>
-</div>
-<div class="row row-cols-xxl-5 row-cols-md-6">
-<div class="col-xxl col-xl-3 col-md-6">
 <div class="mb-3">
-<label class="form-label">Teacher ID</label>
-<input type="text" class="form-control" value="T849126">
+<label class="form-label">Name</label>
+<select class="select">
+<option>Select</option>
+<option>Teresa</option>
+<option>Daniel</option>
+<option>Hellana</option>
+</select>
 </div>
 </div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">First Name</label>
-<input type="text" class="form-control" value="Teresa">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Last Name</label>
-<input type="text" class="form-control">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
+<div class="col-md-12">
 <div class="mb-3">
 <label class="form-label">Class</label>
 <select class="select">
 <option>Select</option>
-<option selected="">III A</option>
-<option>II (A)</option>
-<option>VI (A)</option>
-<option>VIII</option>
+<option>I</option>
+<option>II</option>
+<option>III</option>
 </select>
 </div>
 </div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Subject</label>
-<select class="select">
-<option>Select</option>
-<option selected="">Physics</option>
-<option>Computer</option>
-<option>English</option>
-<option>Spanish</option>
-</select>
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Gender</label>
-<select class="select">
-<option>Select</option>
-<option>Male</option>
-<option selected="">Female</option>
-</select>
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Primary Contact Number</label>
-<input type="text" class="form-control" value="+1 46548 84498">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Email Address</label>
-<input type="email" class="form-control" value="jan@example.com">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Blood Group</label>
-<select class="select">
-<option>Select</option>
-<option selected="">O +ve</option>
-<option>B +ve</option>
-<option>B -ve</option>
-</select>
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Date of Joining</label>
-<div class="input-icon position-relative">
-<span class="input-icon-addon">
-<i class="ti ti-calendar"></i>
-</span>
-<input type="text" class="form-control datetimepicker" value="15-12-2023">
-</div>
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Father’s Name</label>
-<input type="text" class="form-control" value="Francis Saviour">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Mother’s Name</label>
-<input type="text" class="form-control" value="Stella Bruce">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Date of Birth</label>
-<div class="input-icon position-relative">
-<span class="input-icon-addon">
-<i class="ti ti-calendar"></i>
-</span>
-<input type="text" class="form-control datetimepicker" value="15-12-1992">
-</div>
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Marital Status</label>
-<select class="select">
-<option>Select</option>
-<option selected="">Single</option>
-<option>Married</option>
-</select>
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Language Known</label>
-<input class="input-tags form-control" type="text" data-role="tagsinput" name="Label" value="English, Spanish">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Qualification</label>
-<input type="text" class="form-control" value="MBA">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Work Experience</label>
-<input type="text" class="form-control" value="2  Years">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Previous School if Any</label>
-<input type="text" class="form-control" value="Oxford Matriculation, USA">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Previous School Address</label>
-<input type="text" class="form-control" value="1852 Barnes Avenue, Cincinnati, OH 45202">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Previous School Phone No</label>
-<input type="text" class="form-control" value="+1 35676 45556">
-</div>
-</div>
-<div class="col-xxl-3 col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Address</label>
-<input type="text" class="form-control" value="3495 Red Hawk Road, Buffalo Lake, MN 55314">
-</div>
-</div>
-<div class="col-xxl-3 col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Permanent Address</label>
-<input type="text" class="form-control" value="3495 Red Hawk Road, Buffalo Lake, MN 55314">
-</div>
-</div>
-<div class="col-xxl-3 col-xl-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">PAN Number / ID Number</label>
-<input type="text" class="form-control" value="343445954908">
-</div>
-</div>
-<div class="col-xxl-3 col-xl-3 col-md-6">
+<div class="col-md-12">
 <div class="mb-3">
 <label class="form-label">Status</label>
 <select class="select">
 <option>Select</option>
-<option selected="">Active</option>
+<option>Active</option>
 <option>Inactive</option>
 </select>
 </div>
 </div>
-<div class="col-xxl-12 col-xl-12">
-<div class="mb-3">
-<label class="form-label">Notes</label>
-<textarea class="form-control" placeholder="Other Information" rows="4">Depending on the specific needs of your organization or system, additional information may be collected or tracked. It's important to ensure that any data collected complies with privacy regulations and policies to protect students' sensitive information.</textarea>
+</div>
+</div>
+<div class="p-3 d-flex align-items-center justify-content-end">
+<a href="#" class="btn btn-light me-3">Reset</a>
+<button type="submit" class="btn btn-primary">Apply</button>
+</div>
+</form>
+</div>
+</div>
+<div class="d-flex align-items-center bg-white border rounded-2 p-1 mb-3 me-2">
+<a href="teachers.html" class="active btn btn-icon btn-sm me-1 primary-hover"><i class="ti ti-list-tree"></i></a>
+<a href="teacher-grid.html" class="btn btn-icon btn-sm bg-light primary-hover"><i class="ti ti-grid-dots"></i></a>
+</div>
+<div class="dropdown mb-3">
+<a href="javascript:void(0);" class="btn btn-outline-light bg-white dropdown-toggle" data-bs-toggle="dropdown"><i class="ti ti-sort-ascending-2 me-2"></i>Sort by A-Z
+</a>
+<ul class="dropdown-menu p-3">
+<li>
+<a href="javascript:void(0);" class="dropdown-item rounded-1 active">
+Ascending
+</a>
+</li>
+<li>
+<a href="javascript:void(0);" class="dropdown-item rounded-1">
+Descending
+</a>
+</li>
+<li>
+<a href="javascript:void(0);" class="dropdown-item rounded-1">
+Recently Viewed
+</a>
+</li>
+<li>
+<a href="javascript:void(0);" class="dropdown-item rounded-1">
+Recently Added
+</a>
+</li>
+</ul>
 </div>
 </div>
 </div>
-</div>
-</div>
+<div class="card-body p-0 py-3">
 
+<div class="custom-datatable-filter table-responsive">
+<table class="table datatable">
+<thead class="thead-light">
+<tr>
+<th class="no-sort">
+<div class="form-check form-check-md">
+<input class="form-check-input" type="checkbox" id="select-all">
+</div>
+</th>
+<th>ID</th>
+<th>Name</th>
+<th>Class </th>
+<th>Subject</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Date of Join</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<?php
 
-<div class="card">
-<div class="card-header bg-light">
+require_once 'php/allTeacherGrid.php';
+foreach ($teachers as $teacher) {
+?>
+<tr>
+<td>
+<div class="form-check form-check-md">
+<input class="form-check-input" type="checkbox">
+</div>
+</td>
+<td><a href="teacher-details.html" class="link-primary"><?php echo $teacher['teacher_id']; ?></a></td>
+<td>
 <div class="d-flex align-items-center">
-<span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-<i class="ti ti-user-shield fs-16"></i>
-</span>
-<h4 class="text-dark">Payroll</h4>
+<a href="teacher-details.html" class="avatar avatar-md"><img src="./php/uploads/teacher_images/<?php echo $teacher['teacher_image']; ?>" class="img-fluid rounded-circle" alt="img"></a>
+<div class="ms-2">
+<p class="text-dark mb-0"><a href="teacher-details.html"><?php echo $teacher['first_name']; ?></a>
+</p>
 </div>
 </div>
-<div class="card-body pb-1">
-<div class="row">
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">EPF No</label>
-<input type="text" class="form-control" value="34234345">
-</div>
-</div>
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Basic Salary</label>
-<input type="text" class="form-control" value="150000">
-</div>
-</div>
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Contract Type</label>
-<select class="select">
-<option>Select</option>
-<option selected="">Permanent</option>
-<option>Temporary</option>
-</select>
-</div>
-</div>
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Work Shift</label>
-<select class="select">
-<option>Select</option>
-<option selected="">Morning</option>
-<option>Afternoon</option>
-</select>
-</div>
-</div>
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Work Location</label>
-<input type="text" class="form-control" value="2nd Floor">
-</div>
-</div>
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Date of Leaving</label>
-<div class="input-icon position-relative">
-<span class="input-icon-addon">
-<i class="ti ti-calendar"></i>
-</span>
-<input type="text" class="form-control datetimepicker" value="01-12-2024">
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="card">
-<div class="card-header bg-light">
+</td>
+<td><?php echo $teacher['class']; ?></td>
+<td><?php echo $teacher['teacher_id']; ?></td>
+<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"><?php echo $teacher['email_address']; ?></a></td>
+<td><?php echo $teacher['primary_contact_number']; ?></td>
+<td><?php echo $teacher['date_of_joining']; ?></td>
+<td>
+<span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i><?php echo $teacher['status_of_teacher']; ?></span>
+</td>
+<td>
 <div class="d-flex align-items-center">
-<span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-<i class="ti ti-users fs-16"></i>
+<div class="dropdown">
+<a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
+<i class="ti ti-dots-vertical fs-14"></i>
+</a>
+<ul class="dropdown-menu dropdown-menu-right p-3">
+<li>
+<a class="dropdown-item rounded-1" href="teacher-details.html"><i class="ti ti-menu me-2"></i>View Teacher</a>
+</li>
+<li>
+<a class="dropdown-item rounded-1" href="edit-teacher.html"><i class="ti ti-edit-circle me-2"></i>Edit</a>
+</li>
+<li>
+<a class="dropdown-item rounded-1" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#login_detail"><i class="ti ti-lock me-2"></i>Login Details</a>
+</li>
+<li>
+<a class="dropdown-item rounded-1" href="javascript:void(0);"><i class="ti ti-toggle-right me-2"></i>Disable</a>
+</li>
+<li>
+<a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
+</li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<?php } ?>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="modal fade" id="login_detail">
+<div class="modal-dialog modal-dialog-centered  modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">Login Details</h4>
+<button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
+<i class="ti ti-x"></i>
+</button>
+</div>
+<div class="modal-body">
+<div class="student-detail-info">
+<span class="student-img"><img src="images/teacher-01.jpg" alt="img"></span>
+<div class="name-info">
+<h6>Teresa <span>III, A</span></h6>
+</div>
+</div>
+<div class="table-responsive custom-table no-datatable_length">
+<table class="table datanew">
+<thead class="thead-light">
+<tr>
+<th>User Type</th>
+<th>User Name</th>
+<th>Password </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Teacher</td>
+<td>teacher20</td>
+<td>teacher@53</td>
+</tr>
+<tr>
+<td>Parent</td>
+<td>parent53</td>
+<td>parent@53</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="modal-footer">
+<a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="delete-modal">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<form action="teachers.html">
+<div class="modal-body text-center">
+<span class="delete-icon">
+<i class="ti ti-trash-x"></i>
 </span>
-<h4 class="text-dark">Leaves</h4>
+<h4>Confirm Deletion</h4>
+<p>You want to delete all the marked items, this cant be undone once you delete.</p>
+<div class="d-flex justify-content-center">
+<a href="javascript:void(0);" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</a>
+<button type="submit" class="btn btn-danger">Yes, Delete</button>
 </div>
-</div>
-<div class="card-body pb-1">
-<div class="row">
-<div class="col-lg-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Medical Leaves</label>
-<input type="text" class="form-control">
-</div>
-</div>
-<div class="col-lg-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Casual Leaves</label>
-<input type="text" class="form-control" value="02">
-</div>
-</div>
-<div class="col-lg-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Maternity Leaves</label>
-<input type="text" class="form-control">
-</div>
-</div>
-<div class="col-lg-3 col-md-6">
-<div class="mb-3">
-<label class="form-label">Sick Leaves</label>
-<input type="text" class="form-control" value="02">
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="card">
-<div class="card-header bg-light">
-<div class="d-flex align-items-center">
-<span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-<i class="ti ti-map fs-16"></i>
-</span>
-<h4 class="text-dark">Bank Account Detail</h4>
-</div>
-</div>
-<div class="card-body pb-1">
-<div class="row">
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Account Name</label>
-<input type="text" class="form-control" value="Teresa">
-</div>
-</div>
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Account Number</label>
-<input type="text" class="form-control" value="0126784900">
-</div>
-</div>
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Bank Name</label>
-<input type="text" class="form-control" value="Bank of America">
-</div>
-</div>
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">IFSC Code</label>
-<input type="text" class="form-control" value="BOA83209832">
-</div>
-</div>
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Branch Name</label>
-<input type="text" class="form-control" value="Cincinnati">
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="card">
-<div class="card-header bg-light">
-<div class="d-flex align-items-center">
-<span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-<i class="ti ti-bus-stop fs-16"></i>
-</span>
-<h4 class="text-dark">Transport Information</h4>
-</div>
-</div>
-<div class="card-body pb-1">
-<div class="row">
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Route</label>
-<select class="select">
-<option>Select</option>
-<option selected="">Newyork</option>
-<option>Denver</option>
-<option>Chicago</option>
-</select>
-</div>
-</div>
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Vehicle Number</label>
-<select class="select">
-<option>Select</option>
-<option selected="">AM 54548</option>
-<option>AM 64528</option>
-<option>AM 123548</option>
-</select>
-</div>
-</div>
-<div class="col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Pickup Point</label>
-<select class="select">
-<option>Select</option>
-<option selected="">Cincinatti</option>
-<option>Illinois</option>
-<option>Morgan</option>
-</select>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="card">
-<div class="card-header bg-light">
-<div class="d-flex align-items-center">
-<span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-<i class="ti ti-building-fortress fs-16"></i>
-</span>
-<h4 class="text-dark">Hostel Information</h4>
-</div>
-</div>
-<div class="card-body pb-1">
-<div class="row">
-<div class="col-md-6">
-<div class="mb-3">
-<label class="form-label">Hostel</label>
-<select class="select">
-<option>Select</option>
-<option selected="">Phoenix Residence</option>
-<option>Tranquil Haven</option>
-<option>Radiant Towers</option>
-<option>Nova Nest</option>
-</select>
-</div>
-</div>
-<div class="col-md-6">
-<div class="mb-3">
-<label class="form-label">Room No</label>
-<select class="select">
-<option>Select</option>
-<option selected="">20</option>
-<option>22</option>
-<option>24</option>
-<option>26</option>
-</select>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="card">
-<div class="card-header bg-light">
-<div class="d-flex align-items-center">
-<span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-<i class="ti ti-building fs-16"></i>
-</span>
-<h4 class="text-dark">Social Media Links</h4>
-</div>
-</div>
-<div class="card-body pb-1">
-<div class="row rows-cols-xxl-5">
-<div class="col-xxl col-xl-3 col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Facebook</label>
-<input type="text" class="form-control" value="www.facebook.com">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Instagram</label>
-<input type="text" class="form-control" value="www.twitter.com">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Linked In</label>
-<input type="text" class="form-control" value="www.Linkedin.com">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Youtube</label>
-<input type="text" class="form-control" value="www.youtube.com">
-</div>
-</div>
-<div class="col-xxl col-xl-3 col-lg-4 col-md-6">
-<div class="mb-3">
-<label class="form-label">Twitter URL</label>
-<input type="text" class="form-control" value="www.instagram.com">
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="card">
-<div class="card-header bg-light">
-<div class="d-flex align-items-center">
-<span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-<i class="ti ti-file fs-16"></i>
-</span>
-<h4 class="text-dark">Documents</h4>
-</div>
-</div>
-<div class="card-body pb-1">
-<div class="row">
-<div class="col-lg-6">
-<div class="mb-2">
-<div class="mb-3">
-<label class="form-label">Upload Resume</label>
-<p>Upload image size of 4MB, Accepted Format PDF</p>
-</div>
-<div class="d-flex align-items-center flex-wrap">
-<div class="btn btn-primary drag-upload-btn mb-2 me-2">
-<i class="ti ti-file-upload me-1"></i>Change
-<input type="file" class="form-control image_sign" multiple="">
-</div>
-<p class="mb-2">Resume.pdf</p>
-</div>
-</div>
-</div>
-<div class="col-lg-6">
-<div class="mb-2">
-<div class="mb-3">
-<label class="form-label">Upload Joining Letter</label>
-<p>Upload image size of 4MB, Accepted Format PDF</p>
-</div>
-<div class="d-flex align-items-center flex-wrap">
-<div class="btn btn-primary drag-upload-btn mb-2 me-2">
-<i class="ti ti-file-upload me-1"></i>Upload Document
-<input type="file" class="form-control image_sign" multiple="">
-</div>
-<p class="mb-2">Resume.pdf</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="card" hidden>
-<div class="card-header bg-light">
-<div class="d-flex align-items-center">
-<span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-<i class="ti ti-file fs-16"></i>
-</span>
-<h4 class="text-dark">Password</h4>
-</div>
-</div>
-<div class="card-body pb-1">
-<div class="row">
-<div class="col-md-6">
-<div class="mb-3">
-<label class="form-label">New Password</label>
-<input type="password" class="form-control">
-</div>
-</div>
-<div class="col-md-6">
-<div class="mb-3">
-<label class="form-label">Confirm Password</label>
-<input type="password" class="form-control">
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="text-end">
-<button type="button" class="btn btn-light me-3">Cancel</button>
-<button type="submit" class="btn btn-primary">Edit Teacher</button>
 </div>
 </form>
 </div>
 </div>
 </div>
-</div>
 
 </div>
 
 
-<script src="js/jquery-3.7.1.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
+<script data-cfasync="false" src="js/email-decode.min.js"></script><script src="js/jquery-3.7.1.min.js" type="dde9696b66c133de05567290-text/javascript"></script>
 
-<script src="js/bootstrap.bundle.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
+<script src="js/bootstrap.bundle.min.js" type="dde9696b66c133de05567290-text/javascript"></script>
 
-<script src="js/moment.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
-<script src="js/daterangepicker.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
+<script src="js/moment.js" type="dde9696b66c133de05567290-text/javascript"></script>
+<script src="js/daterangepicker.js" type="dde9696b66c133de05567290-text/javascript"></script>
 
-<script src="js/feather.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
+<script src="js/feather.min.js" type="dde9696b66c133de05567290-text/javascript"></script>
 
-<script src="js/jquery.slimscroll.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
+<script src="js/jquery.slimscroll.min.js" type="dde9696b66c133de05567290-text/javascript"></script>
 
-<script src="js/select2.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
+<script src="js/select2.min.js" type="dde9696b66c133de05567290-text/javascript"></script>
 
-<script src="js/moment.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
-<script src="js/bootstrap-datetimepicker.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
+<script src="js/jquery.dataTables.min.js" type="dde9696b66c133de05567290-text/javascript"></script>
+<script src="js/dataTables.bootstrap5.min.js" type="dde9696b66c133de05567290-text/javascript"></script>
 
-<script src="js/bootstrap-tagsinput.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
-
-<script src="js/script.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
-<script src="js/rocket-loader.min.js" data-cf-settings="78999ea27f21e5a5f951a766-|49" defer=""></script>
+<script src="js/script.js" type="dde9696b66c133de05567290-text/javascript"></script>
+<script src="js/rocket-loader.min.js" data-cf-settings="dde9696b66c133de05567290-|49" defer=""></script>
 </body></html>

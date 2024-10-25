@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     `permanentAddressOfStudent`, `districtOfStudent`, `provinceOfStudent`, `transportRoute`, `vehicleNumber`, `pickUpPoint`, `hostel`, `hostelRoomNumber`, 
     `documentOfBirthCertificate`, `documentOfTransferCertificate`, `allergiesOfStudent`, 
     `medicationOfStudent`, `previousSchoolName`, `previousSchoolAddress`, `bankName`, `branchOfBank`, `ifscNumber`, `otherInfo`) 
-    VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     if ($stmt === false) {
         echo "Error in SQL statement preparation: " . $mysqli->error;
@@ -146,75 +146,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Handle image uploads
-    $main_folder = '../studentDocuments/';
-    $image_folder = $main_folder . 'profilePictures/';
+    function uploadImage($file, $folder, $maxFileSize)
+    {
+        if ($file['size'] > $maxFileSize) {
+            return null;
+        }
 
-    if (!file_exists($image_folder)) {
-        mkdir($image_folder, 0755, true); // Create the folder if it doesn't exist
+        $fileName = basename($file["name"]);
+        $target_file = $folder . uniqid() . '_' . $fileName;
+        if (move_uploaded_file($file["tmp_name"], $target_file)) {
+            return substr($target_file, 3);  // Remove first 3 chars (../) for DB storage
+        }
+        return null;
     }
 
+    $image_folder = '../studentDocuments/profilePictures/';
+    if (!file_exists($image_folder)) {
+        mkdir($image_folder, 0755, true);
+    }
     $maxFileSize = 4 * 1024 * 1024; // 4MB limit
 
-    // Student image upload
-    if (isset($_FILES['imageOfStudent']) && $_FILES['imageOfStudent']['error'] == UPLOAD_ERR_OK) {
-        $imageOfStudent = $_FILES['imageOfStudent'];
-        $imageOfStudentName = uniqid('student_', true) . '.' . pathinfo($imageOfStudent['name'], PATHINFO_EXTENSION);
-        if ($imageOfStudent['size'] > $maxFileSize) {
-            echo "Image size exceeds 4MB.";
-            exit;
-        }
-        move_uploaded_file($imageOfStudent['tmp_name'], $image_folder . $imageOfStudentName);
-    } else {
-        echo "Student image upload error.";
-        exit;
-    }
-
-    // Father's image upload
-    if (isset($_FILES['imageOfFather']) && $_FILES['imageOfFather']['error'] == UPLOAD_ERR_OK) {
-        $imageOfFather = $_FILES['imageOfFather'];
-        $imageOfFatherName = uniqid('father_', true) . '.' . pathinfo($imageOfFather['name'], PATHINFO_EXTENSION);
-        if ($imageOfFather['size'] > $maxFileSize) {
-            echo "Father's image size exceeds 4MB.";
-            exit;
-        }
-        move_uploaded_file($imageOfFather['tmp_name'], $image_folder . $imageOfFatherName);
-    } else {
-        echo "Father's image upload error.";
-        exit;
-    }
-
-    // Mother's image upload
-    if (isset($_FILES['imageOfMother']) && $_FILES['imageOfMother']['error'] == UPLOAD_ERR_OK) {
-        $imageOfMother = $_FILES['imageOfMother'];
-        $imageOfMotherName = uniqid('mother_', true) . '.' . pathinfo($imageOfMother['name'], PATHINFO_EXTENSION);
-        if ($imageOfMother['size'] > $maxFileSize) {
-            echo "Mother's image size exceeds 4MB.";
-            exit;
-        }
-        move_uploaded_file($imageOfMother['tmp_name'], $image_folder . $imageOfMotherName);
-    } else {
-        echo "Mother's image upload error.";
-        exit;
-    }
-
-    // Guardian's image upload
-    if (isset($_FILES['imageOfGuardian']) && $_FILES['imageOfGuardian']['error'] == UPLOAD_ERR_OK) {
-        $imageOfGuardian = $_FILES['imageOfGuardian'];
-        $imageOfGuardianName = uniqid('guardian_', true) . '.' . pathinfo($imageOfGuardian['name'], PATHINFO_EXTENSION);
-        if ($imageOfGuardian['size'] > $maxFileSize) {
-            echo "Guardian's image size exceeds 4MB.";
-            exit;
-        }
-        move_uploaded_file($imageOfGuardian['tmp_name'], $image_folder . $imageOfGuardianName);
-    } else {
-        echo "Guardian's image upload error.";
-        exit;
-    }
-
+    $imageOfStudent = !empty($_FILES["image"]["name"]) ? uploadImage($_FILES["image"], $image_folder, $maxFileSize) : null;
+    $imageOfFather = !empty($_FILES["father_image"]["name"]) ? uploadImage($_FILES["father_image"], $image_folder, $maxFileSize) : null;
+    $imageOfMother = !empty($_FILES["mother_image"]["name"]) ? uploadImage($_FILES["mother_image"], $image_folder, $maxFileSize) : null;
+    $imageOfGuardian = !empty($_FILES["guardian_image"]["name"]) ? uploadImage($_FILES["guardian_image"], $image_folder, $maxFileSize) : null;
+    $birthCertificate = !empty($_FILES["birthCertificate"]["name"]) ? uploadImage($_FILES["birthCertificate"], $image_folder, $maxFileSize) : null;
+    $transferCertificate = !empty($_FILES["transferCertificate"]["name"]) ? uploadImage($_FILES["transferCertificate"], $image_folder, $maxFileSize) : null;
     // Execute the prepared statement
     if ($stmt->bind_param(
-        "sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
-        $imageOfStudentName,
+        "sssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+        $imageOfStudent,
         $academic_year,
         $admission_number,
         $admission_date,
@@ -235,12 +196,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email,
         $mother_tongue,
         $languages_known,
-        $imageOfFatherName,
+        $imageOfFather,
         $father_name,
         $fatherEmail,
         $father_contact,
         $father_occupation,
-        $imageOfMotherName,
+        $imageOfMother,
         $mother_name,
         $motherEmail,
         $mother_contact,
@@ -251,7 +212,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $guardianEmail,
         $guardian_occupation,
         $guardian_address,
-        $imageOfGuardianName,
+        $imageOfGuardian,
         $current_addressOfStudent,
         $permanent_addressOfStudent,
         $districtOfStudent,
@@ -261,6 +222,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pickUpPoint,
         $hostel,
         $hostelRoomNumber,
+        $birthCertificate,
+        $transferCertificate,
         $allergiesOfStudent,
         $medicationOfStudent,
         $previousSchoolName,
@@ -280,4 +243,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $mysqli->close();
 }
-?>

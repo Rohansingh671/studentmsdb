@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-sidebar="light" data-color="primary" data-layout="default" data-topbar="white">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
 
-    <script src="js/theme-script.js" defer="" type="7480e71b2a16261724c725e9-text/javascript"></script>
+    <script src="js/theme-script.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -386,7 +386,7 @@
                         <li>
                             <ul>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);" class="active"><i class="ti ti-school"></i><span>Students</span><span class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i class="ti ti-school"></i><span>Students</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="student-grid.html">All Students</a></li>
                                         <li><a href="students.html">Student List</a></li>
@@ -409,7 +409,7 @@
                                     </ul>
                                 </li>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i class="ti ti-users"></i><span>Teachers</span><span class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);" class="active"><i class="ti ti-users"></i><span>Teachers</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="teacher-grid.html">All Teachers</a></li>
                                         <li><a href="teachers.html">Teacher List</a></li>
@@ -933,21 +933,20 @@
             </div>
         </div>
 
+
         <div class="page-wrapper">
             <div class="content content-two">
 
                 <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
                     <div class="my-auto mb-2">
-                        <h4 class="mb-1">Edit Student</h4>
+                        <h3 class="mb-1">Edit Teacher</h3>
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item">
                                     <a href="index.html">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item">
-                                    <a href="students.html">Students</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">Edit Student</li>
+                                <li class="breadcrumb-item">Teachers</li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit Teacher</li>
                             </ol>
                         </nav>
                     </div>
@@ -955,11 +954,12 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="php/updateStudent.php" method="POST" enctype="multipart/form-data">
+                        <form action="php/updateTeacher.php" method="POST" enctype="multipart/form-data">
                             <?php
 
-                            require_once 'php/allStudentGrid.php';
+                            require_once 'php/allTeacherGrid.php';
                             ?>
+
                             <div class="card">
                                 <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
@@ -969,18 +969,18 @@
                                         <h4 class="text-dark">Personal Information</h4>
                                     </div>
                                 </div>
-                                <div class="card-body pb-0">
+                                <div class="card-body pb-1">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="d-flex align-items-center flex-wrap row-gap-3 mb-4">
+                                            <div class="d-flex align-items-center flex-wrap row-gap-3 mb-3">
                                                 <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-                                                    <img src="<?php echo $image_path; ?>">
+                                                    <i class="ti ti-photo-plus fs-16"></i>
                                                 </div>
                                                 <div class="profile-upload">
                                                     <div class="profile-uploader d-flex align-items-center">
                                                         <div class="drag-upload-btn mb-3">
                                                             Upload
-                                                            <input type="file" class="form-control image-sign" multiple="" name="image" value="<?php echo $image_path; ?>">
+                                                            <input type="file" class="form-control image-sign" name="teacher_image" multiple="" value="<?php echo $teacher['teacher_image']; ?>">
                                                         </div>
                                                         <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
                                                     </div>
@@ -991,126 +991,94 @@
                                     </div>
                                     <div class="row row-cols-xxl-5 row-cols-md-6">
                                         <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Academic Year</label>
-                                                <select class="select" name="academic_year">
-                                                    <option>Choose</option>
-                                                    <option <?php if ($academic_year == 'June 2024/25') {
-                                                                echo 'selected';
-                                                            } ?>>June 2024/25</option>
-                                                    <option <?php if ($academic_year == 'June 2023/24') {
-                                                                echo 'selected';
-                                                            } ?>>June 2023/24</option>
-                                                    <option <?php if ($academic_year == 'Female') {
-                                                                echo 'selected';
-                                                            } ?>>June 2022/23</option>
-                                                </select>
-                                                </select>
+                                            <div class="mb-3">
+                                                <label class="form-label">Teacher ID</label>
+                                                <input type="text" class="form-control" name="teacher_id" value="<?php echo $teacher['teacher_id']; ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Admission Number</label>
-                                                <input type="text" class="form-control" name="admission_number" value="<?php echo $admission_number; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Admission Date</label>
-                                                <input type="date" class="form-control" name="admission_date" value="<?php echo $admission_date; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Roll Number</label>
-                                                <input type="text" class="form-control" name="roll_number" value="<?php echo $roll_number; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Status</label>
-                                                <select class="select" name="status">
-                                                    <option disabled>Select</option>
-                                                    <option value="Active" <?php if ($status == 'Active') {
-                                                                                echo 'selected';
-                                                                            } ?>>Active</option>
-                                                    <option value="Inactive" <?php if ($status == 'Inactive') {
-                                                                                    echo 'selected';
-                                                                                } ?>>Inactive</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label class="form-label">First Name</label>
-                                                <input type="text" class="form-control" name="first_name" value="<?php echo $first_name; ?>">
+                                                <input type="text" class="form-control" name="first_name" value="<?php echo $teacher['first_name']; ?>">
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" name="last_name" value="<?php echo $last_name; ?>">
+                                                <input type="text" class="form-control" name="last_name" value="<?php echo $teacher['last_name']; ?>">
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label class="form-label">Class</label>
                                                 <select class="select" name="class">
                                                     <option disabled>Select</option>
-                                                    <option value="I" <?php if ($class == 'I') {
+                                                    <option value="I" <?php if ($teacher['class'] == 'I') {
                                                                             echo 'selected';
                                                                         } ?>>I</option>
-                                                    <option value="II" <?php if ($class == 'II') {
+                                                    <option value="II" <?php if ($teacher['class'] == 'II') {
                                                                             echo 'selected';
                                                                         } ?>>II</option>
-                                                    <option value="III" <?php if ($class == 'III') {
+                                                    <option value="III" <?php if ($teacher['class'] == 'III') {
                                                                             echo 'selected';
                                                                         } ?>>III</option>
-                                                    <option value="IV" <?php if ($class == 'IV') {
+                                                    <option value="IV" <?php if ($teacher['class'] == 'IV') {
                                                                             echo 'selected';
                                                                         } ?>>IV</option>
-                                                    <option value="V" <?php if ($class == 'V') {
+                                                    <option value="V" <?php if ($teacher['class'] == 'V') {
                                                                             echo 'selected';
                                                                         } ?>>V</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Section</label>
-                                                <select class="select" name="section">
+                                            <div class="mb-3">
+                                                <label class="form-label">Subject</label>
+                                                <select class="select" name="subject">
                                                     <option disabled>Select</option>
-                                                    <option value="A" <?php if ($section == 'A') {
+                                                    <option value="Physics" <?php if ($teacher['subject'] == 'Physics') {
                                                                             echo 'selected';
-                                                                        } ?>>A</option>
-                                                    <option value="B" <?php if ($section == 'B') {
+                                                                        } ?>>Physics</option>
+                                                    <option value="Computer" <?php if ($teacher['subject'] == 'Computer') {
                                                                             echo 'selected';
-                                                                        } ?>>B</option>
+                                                                        } ?>>Computer</option>
+                                                    <option value="English" <?php if ($teacher['subject'] == 'English') {
+                                                                            echo 'selected';
+                                                                        } ?>>English</option>
+                                                    <option value="Spanish" <?php if ($teacher['subject'] == 'Spanish') {
+                                                                            echo 'selected';
+                                                                        } ?>>Spanish</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label class="form-label">Gender</label>
                                                 <select class="select" name="gender">
                                                     <option disabled>Select</option>
-                                                    <option value="Male" <?php if ($gender == 'Male') {
+                                                    <option value="Male" <?php if ($teacher['gender'] == 'Male') {
                                                                                 echo 'selected';
                                                                             } ?>>Male</option>
-                                                    <option value="Female" <?php if ($gender == 'Female') {
+                                                    <option value="Female" <?php if ($teacher['gender'] == 'Female') {
                                                                                 echo 'selected';
                                                                             } ?>>Female</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Date of Birth</label>
-                                                <input type="date" class="form-control" name="dob" value="<?php echo $dob; ?>">
+                                            <div class="mb-3">
+                                                <label class="form-label">Primary Contact Number</label>
+                                                <input type="text" class="form-control" name="primary_contact_number" value="<?php echo $teacher['primary_contact_number']; ?>">
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Email Address</label>
+                                                <input type="email" class="form-control" name="email_address" value="<?php echo $teacher['email_address']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
                                                 <label class="form-label">Blood Group</label>
                                                 <select class="select" name="blood_group">
                                                     <option disabled>Select</option>
@@ -1143,144 +1111,125 @@
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">House</label>
-                                                <select class="select" name="house">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date of Joining</label>
+                                                <div class="input-icon position-relative">
+                                                    <span class="input-icon-addon">
+                                                        <i class="ti ti-calendar"></i>
+                                                    </span>
+                                                    <input type="date" class="form-control" name="date_of_joining" value="<?php echo $teacher['date_of_joining']; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Father’s Name</label>
+                                                <input type="text" class="form-control" name="father_name" value="<?php echo $teacher['father_name']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Mother’s Name</label>
+                                                <input type="text" class="form-control" name="mother_name" value="<?php echo $teacher['mother_name']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date of Birth</label>
+                                                <div class="input-icon position-relative">
+                                                    <span class="input-icon-addon">
+                                                        <i class="ti ti-calendar"></i>
+                                                    </span>
+                                                    <input type="date" class="form-control" name="date_of_birth" value="<?php echo $teacher['date_of_birth']; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Marital Status</label>
+                                                <select class="select" name="marital_status">
                                                     <option disabled>Select</option>
-                                                    <option value="Red" <?php if ($house == 'Red') {
-                                                                            echo 'selected';
-                                                                        } ?>>Red</option>
-                                                    <option value="Blue" <?php if ($house == 'Blue') {
+                                                    <option value="Single" <?php if ($teacher['marital_status'] == 'Single') {
                                                                                 echo 'selected';
-                                                                            } ?>>Blue</option>
-                                                    <option value="Green" <?php if ($house == 'Green') {
-                                                                                echo 'selected';
-                                                                            } ?>>Green</option>
-                                                    <option value="Yellow" <?php if ($house == 'Yellow') {
-                                                                                echo 'selected';
-                                                                            } ?>>Yellow</option>
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Religion</label>
-                                                <select class="select" name="religion">
-                                                    <option disabled>Select</option>
-                                                    <option value="Hindu" <?php if ($religion == 'Hindu') {
-                                                                                echo 'selected';
-                                                                            } ?>>Hindu</option>
-                                                    <option value="Muslim" <?php if ($religion == 'Muslim') {
-                                                                                echo 'selected';
-                                                                            } ?>>Muslim</option>
-                                                    <option value="Christian" <?php if ($religion == 'Christian') {
+                                                                            } ?>>Single</option>
+                                                    <option value="Married" <?php if ($teacher['marital_status'] == 'Married') {
                                                                                     echo 'selected';
-                                                                                } ?>>Christian</option>
-                                                    <option value="Sikh" <?php if ($religion == 'Sikh') {
-                                                                                echo 'selected';
-                                                                            } ?>>Sikh</option>
-                                                    <option value="Buddhist" <?php if ($religion == 'Buddhist') {
-                                                                                    echo 'selected';
-                                                                                } ?>>Buddhist</option>
-                                                    <option value="Jain" <?php if ($religion == 'Jain') {
-                                                                                echo 'selected';
-                                                                            } ?>>Jain</option>
-                                                    <option value="Other" <?php if ($religion == 'Other') {
-                                                                                echo 'selected';
-                                                                            } ?>>Other</option>
+                                                                                } ?>>Married</option>
                                                 </select>
-
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Category</label>
-                                                <select class="select" name="category">
-                                                    <option disabled>Select</option>
-                                                    <option value="General" <?php if ($category == 'General') {
-                                                                                echo 'selected';
-                                                                            } ?>>General</option>
-                                                    <option value="OBC" <?php if ($category == 'OBC') {
-                                                                            echo 'selected';
-                                                                        } ?>>OBC</option>
-                                                    <option value="SC" <?php if ($category == 'SC') {
-                                                                            echo 'selected';
-                                                                        } ?>>SC</option>
-                                                    <option value="ST" <?php if ($category == 'ST') {
-                                                                            echo 'selected';
-                                                                        } ?>>ST</option>
-                                                    <option value="EWS" <?php if ($category == 'EWS') {
-                                                                            echo 'selected';
-                                                                        } ?>>EWS</option>
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Primary Contact Number</label>
-                                                <input type="text" class="form-control" name="primary_contact" value="<?php echo $primary_contact; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Email Address</label>
-                                                <input type="email" class="form-control" name="email" value="<?php echo $email; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Caste</label>
-                                                <input type="text" class="form-control" name="caste" value="<?php echo $caste; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Mother Tongue</label>
-                                                <select class="select" name="mother_tongue">
-                                                    <option disabled>Select</option>
-                                                    <option value="Hindi" <?php if ($mother_tongue == 'Hindi') {
-                                                                                echo 'selected';
-                                                                            } ?>>Hindi</option>
-                                                    <option value="English" <?php if ($mother_tongue == 'English') {
-                                                                                echo 'selected';
-                                                                            } ?>>English</option>
-                                                    <option value="Bengali" <?php if ($mother_tongue == 'Bengali') {
-                                                                                echo 'selected';
-                                                                            } ?>>Bengali</option>
-                                                    <option value="Telugu" <?php if ($mother_tongue == 'Telugu') {
-                                                                                echo 'selected';
-                                                                            } ?>>Telugu</option>
-                                                    <option value="Tamil" <?php if ($mother_tongue == 'Tamil') {
-                                                                                echo 'selected';
-                                                                            } ?>>Tamil</option>
-                                                    <option value="Gujarati" <?php if ($mother_tongue == 'Gujarati') {
-                                                                                    echo 'selected';
-                                                                                } ?>>Gujarati</option>
-                                                    <option value="Marathi" <?php if ($mother_tongue == 'Marathi') {
-                                                                                echo 'selected';
-                                                                            } ?>>Marathi</option>
-                                                    <option value="Punjabi" <?php if ($mother_tongue == 'Punjabi') {
-                                                                                echo 'selected';
-                                                                            } ?>>Punjabi</option>
-                                                    <option value="Kannada" <?php if ($mother_tongue == 'Kannada') {
-                                                                                echo 'selected';
-                                                                            } ?>>Kannada</option>
-                                                    <option value="Malayalam" <?php if ($mother_tongue == 'Malayalam') {
-                                                                                    echo 'selected';
-                                                                                } ?>>Malayalam</option>
-                                                    <option value="Other" <?php if ($mother_tongue == 'Other') {
-                                                                                echo 'selected';
-                                                                            } ?>>Other</option>
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label class="form-label">Language Known</label>
-                                                <input class="input-tags form-control" type="text" data-role="tagsinput" name="languages_known" value="<?php echo $languages_known; ?>">
+                                                <input class="input-tags form-control" type="text" data-role="tagsinput" name="language_known" value="<?php echo $teacher['language_known']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Qualification</label>
+                                                <input type="text" class="form-control" name="qualification" value="<?php echo $teacher['qualification']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Work Experience</label>
+                                                <input type="text" class="form-control" name="work_experience" value="<?php echo $teacher['work_experience']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Previous School if Any</label>
+                                                <input type="text" class="form-control" name="previous_school_name" value="<?php echo $teacher['previous_school_name']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Previous School Address</label>
+                                                <input type="text" class="form-control" name="previous_school_address" value="<?php echo $teacher['previous_school_address']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Previous School Phone No</label>
+                                                <input type="text" class="form-control" name="previous_school_contact_number" value="<?php echo $teacher['previous_school_contact_number']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-3 col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Current Address</label>
+                                                <input type="text" class="form-control" name="address" value="<?php echo $teacher['address']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-3 col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Permanent Address</label>
+                                                <input type="text" class="form-control" name="permanent_address" value="<?php echo $teacher['permanent_address']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-3 col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">PAN Number / ID Number</label>
+                                                <input type="text" class="form-control" name="pan_number" value="<?php echo $teacher['pan_number']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-3 col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Status</label>
+                                                <select class="select" name="status_of_teacher">
+                                                    <option disabled>Select</option>
+                                                    <option value="Active" <?php if ($teacher['status_of_teacher'] == 'Active') {
+                                                                                echo 'selected';
+                                                                            } ?>>Active</option>
+                                                    <option value="Inactive" <?php if ($teacher['status_of_teacher'] == 'Inactive') {
+                                                                                    echo 'selected';
+                                                                                } ?>>Inactive</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-12 col-xl-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Notes</label>
+                                                <textarea class="form-control" placeholder="Other Information" rows="4" name="other_info"><?php echo $teacher['other_info']; ?></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -1294,179 +1243,65 @@
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
                                             <i class="ti ti-user-shield fs-16"></i>
                                         </span>
-                                        <h4 class="text-dark">Parents &amp; Guardian Information</h4>
+                                        <h4 class="text-dark">Payroll</h4>
                                     </div>
                                 </div>
-                                <div class="card-body pb-0">
-                                    <div class="border-bottom mb-4">
-                                        <h5 class="mb-3">Father’s Info</h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="d-flex align-items-center flex-wrap row-gap-3 mb-4">
-                                                    <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-                                                        <img src="<?php echo $father_image_path; ?>">
-                                                    </div>
-                                                    <div class="profile-upload">
-                                                        <div class="profile-uploader d-flex align-items-center">
-                                                            <div class="drag-upload-btn mb-3">
-                                                                Upload
-                                                                <input type="file" class="form-control image-sign" name="father_image" multiple="" value="<?php echo $father_image_path; ?>">
-                                                            </div>
-                                                            <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
-                                                        </div>
-                                                        <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Father Name</label>
-                                                    <input type="text" class="form-control" name="father_name" value="<?php echo $father_name; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="text" class="form-control" name="father_email" value="<?php echo $fatherEmail; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Phone Number</label>
-                                                    <input type="text" class="form-control" name="father_contact" value="<?php echo $father_contact; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Father Occupation</label>
-                                                    <input type="text" class="form-control" name="father_occupation" value="<?php echo $father_occupation; ?>">
-                                                </div>
+                                <div class="card-body pb-1">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">EPF No</label>
+                                                <input type="text" class="form-control" name="epf_no" value="<?php echo $teacher['epf_no']; ?>">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="border-bottom mb-4">
-                                        <h5 class="mb-3">Mother’s Info</h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="d-flex align-items-center flex-wrap row-gap-3 mb-4">
-                                                    <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-                                                        <img src="<?php echo $mother_image_path; ?>">
-                                                    </div>
-                                                    <div class="profile-upload">
-                                                        <div class="profile-uploader d-flex align-items-center">
-                                                            <div class="drag-upload-btn mb-3">
-                                                                Upload
-                                                                <input type="file" class="form-control image-sign" multiple="" name="mother_image" value="<?php echo $mother_image_path; ?>">
-                                                            </div>
-                                                            <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
-                                                        </div>
-                                                        <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Mother Name</label>
-                                                    <input type="text" class="form-control" name="mother_name" value="<?php echo $mother_name; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="text" class="form-control" name="mother_email" value="<?php echo $motherEmail; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Phone Number</label>
-                                                    <input type="text" class="form-control" name="mother_contact" value="<?php echo $mother_contact; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Mother Occupation</label>
-                                                    <input type="text" class="form-control" name="mother_occupation" value="<?php echo $mother_occupation; ?>">
-                                                </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Basic Salary</label>
+                                                <input type="text" class="form-control" name="basic_salary" value="<?php echo $teacher['basic_salary']; ?>">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <h5 class="mb-3">Guardian Details</h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="mb-2" hidden>
-                                                    <div class="d-flex align-items-center flex-wrap">
-                                                        <label class="form-label text-dark fw-normal me-2">If Guardian Is</label>
-                                                        <div class="form-check me-3 mb-2">
-                                                            <input class="form-check-input" type="radio" name="guardian" id="parents" checked="">
-                                                            <label class="form-check-label" for="parents">
-                                                                Parents
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check me-3 mb-2">
-                                                            <input class="form-check-input" type="radio" name="guardian" id="guardian">
-                                                            <label class="form-check-label" for="guardian">
-                                                                Guardian
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check mb-2">
-                                                            <input class="form-check-input" type="radio" name="guardian" id="other">
-                                                            <label class="form-check-label" for="other">
-                                                                Others
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center flex-wrap row-gap-3 mb-4">
-                                                    <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-                                                        <img src="<?php echo $guardian_image_path; ?>">
-                                                    </div>
-                                                    <div class="profile-upload">
-                                                        <div class="profile-uploader d-flex align-items-center">
-                                                            <div class="drag-upload-btn mb-3">
-                                                                Upload
-                                                                <input type="file" class="form-control image-sign" multiple="" name="guardian_image" value="<?php echo $guardian_image_path; ?>">
-                                                            </div>
-                                                            <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
-                                                        </div>
-                                                        <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
-                                                    </div>
-                                                </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Contract Type</label>
+                                                <select class="select" name="contract_type">
+                                                    <option disabled>Select</option>
+                                                    <option value="Permanent" <?php if ($teacher['contract_type'] == 'Permanent') {
+                                                                                echo 'selected';
+                                                                            } ?>>Permanent</option>
+                                                    <option value="Temporary" <?php if ($teacher['contract_type'] == 'Temporary') {
+                                                                                    echo 'selected';
+                                                                                } ?>>Temporary</option>
+                                                </select>
                                             </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Guardian Name</label>
-                                                    <input type="text" class="form-control" name="guardian_name" value="<?php echo $guardian_name; ?>">
-                                                </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Work Shift</label>
+                                                <select class="select" name="work_shift">
+                                                    <option disabled>Select</option>
+                                                    <option value="Morning" <?php if ($teacher['work_shift'] == 'Morning') {
+                                                                                echo 'selected';
+                                                                            } ?>>Morning</option>
+                                                    <option value="Afternoon" <?php if ($teacher['work_shift'] == 'Afternoon') {
+                                                                                    echo 'selected';
+                                                                                } ?>>Afternoon</option>
+                                                </select>
                                             </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Guardian Relation</label>
-                                                    <input type="text" class="form-control" name="guardian_relation" value="<?php echo $guardian_relation; ?>">
-                                                </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Work Location</label>
+                                                <input type="text" class="form-control" name="work_location" value="<?php echo $teacher['work_location']; ?>">
                                             </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Phone Number</label>
-                                                    <input type="text" class="form-control" name="guardian_contact" value="<?php echo $guardian_contact; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control" name="guardian_email" value="<?php echo $guardianEmail; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Occupation</label>
-                                                    <input type="text" class="form-control" name="guardian_occupation" value="<?php echo $guardian_occupation; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Address</label>
-                                                    <input type="text" class="form-control" name="guardian_address" value="<?php echo $guardian_address; ?>">
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date of Leaving</label>
+                                                <div class="input-icon position-relative">
+                                                    <span class="input-icon-addon">
+                                                        <i class="ti ti-calendar"></i>
+                                                    </span>
+                                                    <input type="date" class="form-control" name="date_of_leaving" value="<?php echo $teacher['date_of_leaving']; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -1475,94 +1310,41 @@
                             </div>
 
 
-                            <div class="card" hidden>
+                            <div class="card">
                                 <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
                                             <i class="ti ti-users fs-16"></i>
                                         </span>
-                                        <h4 class="text-dark">Sibilings</h4>
+                                        <h4 class="text-dark">Leaves</h4>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="addsibling-info">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label">Sibiling Info</label>
-                                                    <div class="d-flex align-items-center flex-wrap">
-                                                        <label class="form-label text-dark fw-normal me-2">Is Sibiling studying in same school</label>
-                                                        <div class="form-check me-3 mb-2">
-                                                            <input class="form-check-input" type="radio" name="sibling" id="yes" checked="">
-                                                            <label class="form-check-label" for="yes">
-                                                                Yes
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check mb-2">
-                                                            <input class="form-check-input" type="radio" name="sibling" id="no">
-                                                            <label class="form-check-label" for="no">
-                                                                No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Name</label>
-                                                    <select class="select">
-                                                        <option>Select</option>
-                                                        <option selected="">Ralph Claudia</option>
-                                                        <option>Julie Scott</option>
-                                                        <option>Maria</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Roll No</label>
-                                                    <select class="select">
-                                                        <option>Select</option>
-                                                        <option selected="">35013</option>
-                                                        <option>35011</option>
-                                                        <option>35010</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Admission No</label>
-                                                    <select class="select">
-                                                        <option>Select</option>
-                                                        <option selected="">AD9892434</option>
-                                                        <option>AD9892433</option>
-                                                        <option>AD9892432</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="w-100">
-                                                            <label class="form-label">Class</label>
-                                                            <select class="select w-100">
-                                                                <option>Select</option>
-                                                                <option selected="">I</option>
-                                                                <option>II</option>
-                                                                <option>III</option>
-                                                            </select>
-                                                        </div>
-                                                        <div>
-                                                            <label class="form-label">�&nbsp;</label>
-                                                            <a href="javascript:void(0);" class="trash-icon ms-3"><i class="ti ti-trash-x"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                <div class="card-body pb-1">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Medical Leaves</label>
+                                                <input type="text" class="form-control" name="medical_leaves" value="<?php echo $teacher['medical_leaves']; ?>">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="border-top pt-4">
-                                        <a href="javascript:void(0);" class="add-sibling btn btn-primary d-inline-flex align-items-center"><i class="ti ti-circle-plus me-2"></i>Add New</a>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Casual Leaves</label>
+                                                <input type="text" class="form-control" name="casual_leaves" value="<?php echo $teacher['casual_leaves']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Maternity Leaves</label>
+                                                <input type="text" class="form-control" name="maternity_leaves" value="<?php echo $teacher['maternity_leaves']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Sick Leaves</label>
+                                                <input type="text" class="form-control" name="sick_leaves" value="<?php echo $teacher['sick_leaves']; ?>">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1574,57 +1356,39 @@
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
                                             <i class="ti ti-map fs-16"></i>
                                         </span>
-                                        <h4 class="text-dark">Address</h4>
+                                        <h4 class="text-dark">Bank Account Detail</h4>
                                     </div>
                                 </div>
-                                <div class="card-body pb-0">
+                                <div class="card-body pb-1">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Current Address</label>
-                                                <input type="text" class="form-control" placeholder="Enter Current Address" name="current_addressOfStudent" value="<?php echo $current_addressOfStudent; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Permanent Address</label>
-                                                <input type="text" class="form-control" name="permanent_addressOfStudent" value="<?php echo $permanent_addressOfStudent; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                        <div class="col-lg-4 col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label">District</label>
-                                                <input type="text" class="form-control" name="districtOfStudent" value="<?php echo $districtOfStudent; ?>">
+                                                <label class="form-label">Account Name</label>
+                                                <input type="text" class="form-control" name="account_name" value="<?php echo $teacher['account_name']; ?>">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-lg-4 col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Select Province</label>
-                                                <select class="select" name="provinceOfStudent">
-                                                    <option disabled selected>Select</option>
-                                                    <option value="Province 1" <?php if ($provinceOfStudent == 'Province 1') {
-                                                                                    echo 'selected';
-                                                                                } ?>>Province 1</option>
-                                                    <option value="Madhesh Pradesh" <?php if ($provinceOfStudent == 'Madhesh Pradesh') {
-                                                                                        echo 'selected';
-                                                                                    } ?>>Madhesh Pradesh</option>
-                                                    <option value="Bagmati Province" <?php if ($provinceOfStudent == 'Bagmati Province') {
-                                                                                            echo 'selected';
-                                                                                        } ?>>Bagmati Province</option>
-                                                    <option value="Gandaki" <?php if ($provinceOfStudent == 'Gandaki') {
-                                                                                echo 'selected';
-                                                                            } ?>>Gandaki</option>
-                                                    <option value="Lumbini" <?php if ($provinceOfStudent == 'Lumbini') {
-                                                                                echo 'selected';
-                                                                            } ?>>Lumbini</option>
-                                                    <option value="Karnali" <?php if ($provinceOfStudent == 'Karnali') {
-                                                                                echo 'selected';
-                                                                            } ?>>Karnali</option>
-                                                    <option value="Sudurpaschim" <?php if ($provinceOfStudent == 'Sudurpaschim') {
-                                                                                        echo 'selected';
-                                                                                    } ?>>Sudurpaschim</option>
-                                                </select>
-
+                                                <label class="form-label">Account Number</label>
+                                                <input type="text" class="form-control" name="account_number" value="<?php echo $teacher['account_number']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Bank Name</label>
+                                                <input type="text" class="form-control" name="bank_name" value="<?php echo $teacher['bank_name']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">IFSC Code</label>
+                                                <input type="text" class="form-control" name="ifsc_code" value="<?php echo $teacher['ifsc_code']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Branch Name</label>
+                                                <input type="text" class="form-control" name="branch_name" value="<?php echo $teacher['branch_name']; ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -1633,53 +1397,47 @@
 
 
                             <div class="card">
-                                <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                                <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
                                             <i class="ti ti-bus-stop fs-16"></i>
                                         </span>
                                         <h4 class="text-dark">Transport Information</h4>
                                     </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
                                 </div>
-                                <div class="card-body pb-0">
+                                <div class="card-body pb-1">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6">
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label class="form-label">Route</label>
-                                                <select class="select" name="transportationRoute">
+                                                <select class="select" name="route">
                                                     <option disabled>Select Transportation Route</option>
-                                                    <option <?php if ($transportationRoute == 'NewYork') echo 'selected'; ?>>NewYork</option>
-                                                    <option <?php if ($transportationRoute == 'Denver') echo 'selected'; ?>>Denver</option>
-                                                    <option <?php if ($transportationRoute == 'Chicago') echo 'selected'; ?>>Chicago</option>
+                                                    <option <?php if ($teacher['route'] == 'NewYork') echo 'selected'; ?>>NewYork</option>
+                                                    <option <?php if ($teacher['route'] == 'Denver') echo 'selected'; ?>>Denver</option>
+                                                    <option <?php if ($teacher['route'] == 'Chicago') echo 'selected'; ?>>Chicago</option>
                                                 </select>
-
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6">
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label class="form-label">Vehicle Number</label>
-                                                <select class="select" name="vehicleNumber">
+                                                <select class="select" name="vehicle_number">
                                                     <option>Select</option>
-                                                    <option value="AM 54548" <?php if ($vehicleNumber == 'AM 54548') echo 'selected'; ?>>AM 54548</option>
-                                                    <option value="AM 64528" <?php if ($vehicleNumber == 'AM 64528') echo 'selected'; ?>>AM 64528</option>
-                                                    <option value="AM 123548" <?php if ($vehicleNumber == 'AM 123548') echo 'selected'; ?>>AM 123548</option>
+                                                    <option value="AM 54548" <?php if ($teacher['vehicle_number'] == 'AM 54548') echo 'selected'; ?>>AM 54548</option>
+                                                    <option value="AM 64528" <?php if ($teacher['vehicle_number'] == 'AM 64528') echo 'selected'; ?>>AM 64528</option>
+                                                    <option value="AM 123548" <?php if ($teacher['vehicle_number'] == 'AM 123548') echo 'selected'; ?>>AM 123548</option>
                                                 </select>
-
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6">
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label class="form-label">Pickup Point</label>
-                                                <select class="select" name="pickUpPoint">
+                                                <select class="select" name="pickup_point">
                                                     <option>Select</option>
-                                                    <option value="Cincinatti" <?php if ($pickUpPoint == 'Cincinatti') echo 'selected'; ?>>Cincinatti</option>
-                                                    <option value="Illinois" <?php if ($pickUpPoint == 'Illinois') echo 'selected'; ?>>Illinois</option>
-                                                    <option value="Morgan" <?php if ($pickUpPoint == 'Morgan') echo 'selected'; ?>>Morgan</option>
+                                                    <option value="Cincinatti" <?php if ($teacher['pickup_point'] == 'Cincinatti') echo 'selected'; ?>>Cincinatti</option>
+                                                    <option value="Illinois" <?php if ($teacher['pickup_point'] == 'Illinois') echo 'selected'; ?>>Illinois</option>
+                                                    <option value="Morgan" <?php if ($teacher['pickup_point'] == 'Morgan') echo 'selected'; ?>>Morgan</option>
                                                 </select>
-
                                             </div>
                                         </div>
                                     </div>
@@ -1688,43 +1446,84 @@
 
 
                             <div class="card">
-                                <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                                <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
                                             <i class="ti ti-building-fortress fs-16"></i>
                                         </span>
                                         <h4 class="text-dark">Hostel Information</h4>
                                     </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
                                 </div>
-                                <div class="card-body pb-0">
+                                <div class="card-body pb-1">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label class="form-label">Hostel</label>
                                                 <select class="select" name="hostel">
                                                     <option>Select</option>
-                                                    <option value="Phoenix Residence" <?php if ($hostel == 'Phoenix Residence') echo 'selected'; ?>>Phoenix Residence</option>
-                                                    <option value="Tranquil Haven" <?php if ($hostel == 'Tranquil Haven') echo 'selected'; ?>>Tranquil Haven</option>
-                                                    <option value="Radiant Towers" <?php if ($hostel == 'Radiant Towers') echo 'selected'; ?>>Radiant Towers</option>
-                                                    <option value="Nova Nest" <?php if ($hostel == 'Nova Nest') echo 'selected'; ?>>Nova Nest</option>
+                                                    <option value="Phoenix Residence" <?php if ($teacher['hostel'] == 'Phoenix Residence') echo 'selected'; ?>>Phoenix Residence</option>
+                                                    <option value="Tranquil Haven" <?php if ($teacher['hostel'] == 'Tranquil Haven') echo 'selected'; ?>>Tranquil Haven</option>
+                                                    <option value="Radiant Towers" <?php if ($teacher['hostel'] == 'Radiant Towers') echo 'selected'; ?>>Radiant Towers</option>
+                                                    <option value="Nova Nest" <?php if ($teacher['hostel'] == 'Nova Nest') echo 'selected'; ?>>Nova Nest</option>
                                                 </select>
-
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label class="form-label">Room No</label>
-                                                <select class="select" name="hostelRoomNumber">
+                                                <select class="select" name="room_number">
                                                     <option>Select</option>
-                                                    <option value="20" <?php if ($hostelRoomNumber == '20') echo 'selected'; ?>>20</option>
-                                                    <option value="22" <?php if ($hostelRoomNumber == '22') echo 'selected'; ?>>22</option>
-                                                    <option value="24" <?php if ($hostelRoomNumber == '24') echo 'selected'; ?>>24</option>
-                                                    <option value="26" <?php if ($hostelRoomNumber == '26') echo 'selected'; ?>>26</option>
+                                                    <option value="20" <?php if ($teacher['room_number'] == '20') echo 'selected'; ?>>20</option>
+                                                    <option value="22" <?php if ($teacher['room_number'] == '22') echo 'selected'; ?>>22</option>
+                                                    <option value="24" <?php if ($teacher['room_number'] == '24') echo 'selected'; ?>>24</option>
+                                                    <option value="26" <?php if ($teacher['room_number'] == '26') echo 'selected'; ?>>26</option>
                                                 </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <div class="d-flex align-items-center">
+                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
+                                            <i class="ti ti-building fs-16"></i>
+                                        </span>
+                                        <h4 class="text-dark">Social Media Links</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-1">
+                                    <div class="row rows-cols-xxl-5">
+                                        <div class="col-xxl col-xl-3 col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Facebook</label>
+                                                <input type="text" class="form-control" name="facebook" value="<?php echo $teacher['facebook']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Instagram</label>
+                                                <input type="text" class="form-control" name="instagram" value="<?php echo $teacher['instagram']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Linked In</label>
+                                                <input type="text" class="form-control" name="linkedin" value="<?php echo $teacher['linkedin']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Youtube</label>
+                                                <input type="text" class="form-control" name="youtube" value="<?php echo $teacher['youtube']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Twitter URL</label>
+                                                <input type="text" class="form-control" name="twitter_url" value="<?php echo $teacher['twitter_url']; ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -1746,30 +1545,30 @@
                                         <div class="col-lg-6">
                                             <div class="mb-2">
                                                 <div class="mb-3">
-                                                    <label class="form-label mb-1">Update Birth Certificate</label>
+                                                    <label class="form-label">Update Resume</label>
                                                     <p>Upload image size of 4MB, Accepted Format PDF</p>
                                                 </div>
                                                 <div class="d-flex align-items-center flex-wrap">
                                                     <div class="btn btn-primary drag-upload-btn mb-2 me-2">
-                                                        <i class="ti ti-file-upload me-1"></i>Change Document
-                                                        <input type="file" class="form-control image_sign" multiple="" name="birthCertificate" value="<?php echo $birthCertificate_image_path; ?>">
+                                                        <i class="ti ti-file-upload me-1"></i>Change
+                                                        <input type="file" class="form-control image_sign" multiple="" name="resume" value="<?php echo $teacher['resume']; ?>">
                                                     </div>
-                                                    <p class="mb-2">BirthCertificate.pdf</p>
+                                                    <p class="mb-2"><?php echo $teacher['resume']; ?></p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-2">
                                                 <div class="mb-3">
-                                                    <label class="form-label mb-1">Update Transfer Certificate</label>
+                                                    <label class="form-label">Update Joining Letter</label>
                                                     <p>Upload image size of 4MB, Accepted Format PDF</p>
                                                 </div>
                                                 <div class="d-flex align-items-center flex-wrap">
-                                                    <div class="btn btn-primary drag-upload-btn mb-2">
-                                                        <i class="ti ti-file-upload me-1"></i>Change Document
-                                                        <input type="file" class="form-control image_sign" multiple="" name="transferCertificate" value="<?php echo $transferCertificate_image_path; ?>">
+                                                    <div class="btn btn-primary drag-upload-btn mb-2 me-2">
+                                                        <i class="ti ti-file-upload me-1"></i>Change
+                                                        <input type="file" class="form-control image_sign" multiple="" name="joining_letter" value="<?php echo $teacher['joining_letter']; ?>">
                                                     </div>
-                                                    <p class="mb-2">TransferCertificate.pdf</p>
+                                                    <p class="mb-2"><?php echo $teacher['joining_letter']; ?></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1778,127 +1577,37 @@
                             </div>
 
 
-                            <div class="card">
+                            <div class="card" hidden>
                                 <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-                                            <i class="ti ti-medical-cross fs-16"></i>
+                                            <i class="ti ti-file fs-16"></i>
                                         </span>
-                                        <h4 class="text-dark">Medical History</h4>
+                                        <h4 class="text-dark">Password</h4>
                                     </div>
                                 </div>
                                 <div class="card-body pb-1">
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="mb-2" hidden>
-                                                <label class="form-label">Medical Condition</label>
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <label class="form-label text-dark fw-normal me-2">Medical Condition of a Student</label>
-                                                    <div class="form-check me-3 mb-2">
-                                                        <input class="form-check-input" type="radio" name="medicalConditionSelected" id="good" checked="">
-                                                        <label class="form-check-label" for="good">
-                                                            Good
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check me-3 mb-2">
-                                                        <input class="form-check-input" type="radio" name="medicalConditionSelected" id="bad">
-                                                        <label class="form-check-label" for="bad">
-                                                            Bad
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check mb-2">
-                                                        <input class="form-check-input" type="radio" name="medicalConditionSelected" id="others">
-                                                        <label class="form-check-label" for="others">
-                                                            Others
-                                                        </label>
-                                                    </div>
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">New Password</label>
+                                                <input type="password" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Allergies</label>
-                                            <input class="input-tags form-control" type="text" data-role="tagsinput" name="allergiesOfStudent" value="Allergy, Skin Allergy">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Medications</label>
-                                            <input class="input-tags form-control" type="text" data-role="tagsinput" name="medicationOfStudent" value="Medecine Name">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Confirm Password</label>
+                                                <input type="password" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-
-                                <div class="card">
-                                    <div class="card-header bg-light">
-                                        <div class="d-flex align-items-center">
-                                            <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-                                                <i class="ti ti-building fs-16"></i>
-                                            </span>
-                                            <h4 class="text-dark">Previous School Details</h4>
-                                        </div>
-                                    </div>
-                                    <div class="card-body pb-0">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">School Name</label>
-                                                    <input type="text" class="form-control" name="previousSchoolName" value="<?php echo $previousSchoolName; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Address</label>
-                                                    <input type="text" class="form-control" name="previousSchoolAddress" value="<?php echo $previousSchoolAddress; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="card">
-                                    <div class="card-header bg-light">
-                                        <div class="d-flex align-items-center">
-                                            <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-                                                <i class="ti ti-building-bank fs-16"></i>
-                                            </span>
-                                            <h4 class="text-dark">Other Details</h4>
-                                        </div>
-                                    </div>
-                                    <div class="card-body pb-0">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Bank Name</label>
-                                                    <input type="text" class="form-control" name="bankName" value="<?php echo $bankName; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Branch</label>
-                                                    <input type="text" class="form-control" name="branchOfBank" value="<?php echo $branchOfBank; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="mb-4">
-                                                    <label class="form-label">IFSC Number</label>
-                                                    <input type="text" class="form-control" name="ifscNumber" value="<?php echo $ifscNumber; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Other Information</label>
-                                                    <textarea class="form-control" placeholder="Other Information" rows="3" name="otherInfo"><?php echo $otherInfo; ?></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="text-end">
-                                    <button type="button" class="btn btn-light me-3">Cancel</button>
-                                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                                </div>
+                            <div class="text-end">
+                                <button type="button" class="btn btn-light me-3">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Edit Teacher</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -1908,26 +1617,26 @@
     </div>
 
 
-    <script src="js/jquery-3.7.1.min.js" type="7480e71b2a16261724c725e9-text/javascript"></script>
+    <script src="js/jquery-3.7.1.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
 
-    <script src="js/bootstrap.bundle.min.js" type="7480e71b2a16261724c725e9-text/javascript"></script>
+    <script src="js/bootstrap.bundle.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
 
-    <script src="js/moment.js" type="7480e71b2a16261724c725e9-text/javascript"></script>
-    <script src="js/daterangepicker.js" type="7480e71b2a16261724c725e9-text/javascript"></script>
+    <script src="js/moment.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
+    <script src="js/daterangepicker.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
 
-    <script src="js/feather.min.js" type="7480e71b2a16261724c725e9-text/javascript"></script>
+    <script src="js/feather.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
 
-    <script src="js/jquery.slimscroll.min.js" type="7480e71b2a16261724c725e9-text/javascript"></script>
+    <script src="js/jquery.slimscroll.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
 
-    <script src="js/select2.min.js" type="7480e71b2a16261724c725e9-text/javascript"></script>
+    <script src="js/select2.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
 
-    <script src="js/moment.js" type="7480e71b2a16261724c725e9-text/javascript"></script>
-    <script src="js/bootstrap-datetimepicker.min.js" type="7480e71b2a16261724c725e9-text/javascript"></script>
+    <script src="js/moment.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
+    <script src="js/bootstrap-datetimepicker.min.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
 
-    <script src="js/bootstrap-tagsinput.js" type="7480e71b2a16261724c725e9-text/javascript"></script>
+    <script src="js/bootstrap-tagsinput.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
 
-    <script src="js/script.js" type="7480e71b2a16261724c725e9-text/javascript"></script>
-    <script src="js/rocket-loader.min.js" data-cf-settings="7480e71b2a16261724c725e9-|49" defer=""></script>
+    <script src="js/script.js" type="78999ea27f21e5a5f951a766-text/javascript"></script>
+    <script src="js/rocket-loader.min.js" data-cf-settings="78999ea27f21e5a5f951a766-|49" defer=""></script>
 </body>
 
 </html>
