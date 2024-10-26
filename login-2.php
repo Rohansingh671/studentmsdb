@@ -38,7 +38,7 @@
 <div class="col-lg-6 col-md-12 col-sm-12">
 <div class="row justify-content-center align-items-center vh-100 overflow-auto flex-wrap ">
 <div class="col-md-8 mx-auto p-4">
-<form action="index.html">
+<form method="POST" action="php/login_sms.php" data-parsley-validate>
 <div>
 <div class=" mx-auto mb-5 text-center">
 <img src="images/authentication-logo.svg" class="img-fluid" alt="Logo">
@@ -77,11 +77,11 @@
 <span class="input-icon-addon">
 <i class="ti ti-mail"></i>
 </span>
-<input type="text" value="" class="form-control">
+<input type="text" value="" class="form-control" name="smsEmail" data-parsley-required="true" data-parsley-error-message="Email is required.">
 </div>
 <label class="form-label">Password</label>
 <div class="pass-group">
-<input type="password" class="pass-input form-control">
+<input type="password" class="pass-input form-control" name="smsPassword" data-parsley-required="true" data-parsley-error-message="Password is required.">
 <span class="ti toggle-password ti-eye-off"></span>
 </div>
 </div>
@@ -101,7 +101,7 @@ Password?</a>
 <button type="submit" class="btn btn-primary w-100">Sign In</button>
 </div>
 <div class="text-center">
-<h6 class="fw-normal text-dark mb-0">Don’t have an account? <a href="register-2.html" class="hover-a "> Create Account</a>
+<h6 class="fw-normal text-dark mb-0">Don’t have an account? <a href="register-2.php" class="hover-a "> Create Account</a>
 </h6>
 </div>
 </div>

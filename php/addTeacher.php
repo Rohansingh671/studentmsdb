@@ -268,65 +268,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ) VALUES (
         NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
     )");
-    
 
-// Adjust binding parameters according to the updated column count
-$stmt->bind_param(
-    'sssssssssssssssssssssssssssssssssssssssssssssssssssss',
-    $teacher_id,                // s: Assuming teacher_id is a string
-    $teacher_image,             // s: String (file path or URL)
-    $first_name,                // s: String
-    $last_name,                 // s: String
-    $gender,                    // s: String
-    $email_address,             // s: String
-    $primary_contact_number,    // s: String
-    $qualification,             // s: String
-    $work_experience,           // s: String
-    $address,                   // s: String
-    $permanent_address,         // s: String
-    $date_of_birth,             // s: String (in YYYY-MM-DD format)
-    $pan_number,                // s: String
-    $class,                     // s: String
-    $subject,                   // s: String
-    $date_of_joining,           // s: String
-    $language_known,            // s: String
-    $status_of_teacher,         // s: String
-    $marital_status,            // s: String
-    $blood_group,               // s: String
-    $father_name,               // s: String
-    $mother_name,               // s: String
-    $epf_no,                    // s: String
-    $basic_salary,              // d: Assuming decimal
-    $contract_type,             // s: String
-    $date_of_leaving,           // s: String (optional; NULL if not applicable)
-    $work_shift,                // s: String
-    $work_location,             // s: String
-    $medical_leaves,            // i: Integer
-    $casual_leaves,             // i: Integer
-    $maternity_leaves,          // i: Integer
-    $sick_leaves,               // i: Integer
-    $account_name,              // s: String
-    $account_number,            // s: String
-    $ifsc_code,                 // s: String
-    $bank_name,                 // s: String
-    $branch_name,               // s: String
-    $route,                     // s: String
-    $vehicle_number,            // s: String
-    $pickup_point,              // s: String
-    $hostel,                    // s: String
-    $room_number,               // s: String
-    $facebook,                  // s: String (optional; NULL if not applicable)
-    $instagram,                 // s: String (optional; NULL if not applicable)
-    $linkedin,                  // s: String (optional; NULL if not applicable)
-    $twitter_url,               // s: String (optional; NULL if not applicable)
-    $youtube,                   // s: String (optional; NULL if not applicable)
-    $resume_file,               // s: String
-    $letter_file,               // s: String
-    $previous_school_name,      // s: String
-    $previous_school_address,   // s: String
-    $previous_school_contact_number, // s: String
-    $other_info                 // s: String (optional; NULL if not applicable)
-);
+
+    // Adjust binding parameters according to the updated column count
+    $stmt->bind_param(
+        'sssssssssssssssssssssssssssssssssssssssssssssssssssss',
+        $teacher_id,                // s: Assuming teacher_id is a string
+        $teacher_image,             // s: String (file path or URL)
+        $first_name,                // s: String
+        $last_name,                 // s: String
+        $gender,                    // s: String
+        $email_address,             // s: String
+        $primary_contact_number,    // s: String
+        $qualification,             // s: String
+        $work_experience,           // s: String
+        $address,                   // s: String
+        $permanent_address,         // s: String
+        $date_of_birth,             // s: String (in YYYY-MM-DD format)
+        $pan_number,                // s: String
+        $class,                     // s: String
+        $subject,                   // s: String
+        $date_of_joining,           // s: String
+        $language_known,            // s: String
+        $status_of_teacher,         // s: String
+        $marital_status,            // s: String
+        $blood_group,               // s: String
+        $father_name,               // s: String
+        $mother_name,               // s: String
+        $epf_no,                    // s: String
+        $basic_salary,              // d: Assuming decimal
+        $contract_type,             // s: String
+        $date_of_leaving,           // s: String (optional; NULL if not applicable)
+        $work_shift,                // s: String
+        $work_location,             // s: String
+        $medical_leaves,            // i: Integer
+        $casual_leaves,             // i: Integer
+        $maternity_leaves,          // i: Integer
+        $sick_leaves,               // i: Integer
+        $account_name,              // s: String
+        $account_number,            // s: String
+        $ifsc_code,                 // s: String
+        $bank_name,                 // s: String
+        $branch_name,               // s: String
+        $route,                     // s: String
+        $vehicle_number,            // s: String
+        $pickup_point,              // s: String
+        $hostel,                    // s: String
+        $room_number,               // s: String
+        $facebook,                  // s: String (optional; NULL if not applicable)
+        $instagram,                 // s: String (optional; NULL if not applicable)
+        $linkedin,                  // s: String (optional; NULL if not applicable)
+        $twitter_url,               // s: String (optional; NULL if not applicable)
+        $youtube,                   // s: String (optional; NULL if not applicable)
+        $resume_file,               // s: String
+        $letter_file,               // s: String
+        $previous_school_name,      // s: String
+        $previous_school_address,   // s: String
+        $previous_school_contact_number, // s: String
+        $other_info                 // s: String (optional; NULL if not applicable)
+    );
 
 
 
