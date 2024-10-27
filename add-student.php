@@ -1,7 +1,14 @@
 <?php
 
+session_start();
+
 require_once 'php/databaseConnection.php';
 
+if (!isset($_SESSION['userEmail'])) {
+    header("Location: login-2.php");
+    exit(); 
+}
+$userEmail = $_SESSION['userEmail'];
 ?>
 
 <!DOCTYPE html>

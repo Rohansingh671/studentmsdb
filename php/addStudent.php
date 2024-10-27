@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $caste = $_POST['caste'] ?? "";
         $house = $_POST['house'] ?? "";
         $religion = $_POST['religion'] ?? "";
-        $category = $_POST['category'] ?? "";
+        $feesGroup = $_POST['feesGroup'] ?? "";
         $mother_tongue = $_POST['mother_tongue'] ?? "";
         $languages_known = $_POST['languages_known'] ?? "";
         $father_occupation = $_POST['father_occupation'] ?? "";
@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $mysqli->prepare("INSERT INTO `addstudent`(`ID`, `imageOfStudent`, `academicYear`, 
     `admissionNumber`, `admissionDate`, `rollNumber`, `studentStatus`, `fnameOfStudent`, 
     `lnameOfStudent`, `class`, `section`, `gender`, `dateOfBirth`, `bloodGroup`, `house`, 
-    `religion`, `category`, `caste`, `primaryContact`, `emailOfstudent`, `motherTongue`, 
+    `religion`, `feesGroup`, `caste`, `primaryContact`, `emailOfstudent`, `motherTongue`, 
     `languageKnown`, `imageOfFather`, `fatherName`, `emailOfFather`, `fatherContact`, 
     `fatherProfession`, `imageOfMother`, `motherName`, `emailOfMother`, `motherContact`, 
     `motherProfession`, `guardianName`, `guardianRelation`, `guardianContact`, 
@@ -190,7 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $blood_group,
         $house,
         $religion,
-        $category,
+        $feesGroup,
         $caste,
         $primary_contact,
         $email,

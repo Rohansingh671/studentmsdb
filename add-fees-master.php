@@ -1,7 +1,14 @@
 <?php
 
+session_start();
+
 require_once 'php/databaseConnection.php';
 
+if (!isset($_SESSION['userEmail'])) {
+    header("Location: login-2.php");
+    exit(); 
+}
+$userEmail = $_SESSION['userEmail'];
 ?>
 
 <!DOCTYPE html>
@@ -523,7 +530,7 @@ require_once 'php/databaseConnection.php';
                         <li>
                             <ul>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"  class="active"><i class="ti ti-report-money"></i><span>Fees
+                                    <a href="javascript:void(0);" class="active"><i class="ti ti-report-money"></i><span>Fees
                                             Collection</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="fees-group.php">Fees Group</a></li>
@@ -1077,28 +1084,6 @@ require_once 'php/databaseConnection.php';
                                     </div>
                                 </div>
                                 <div class="card-body pb-1">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="d-flex align-items-center flex-wrap row-gap-3 mb-3">
-                                                <div
-                                                    class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-                                                    <i class="ti ti-photo-plus fs-16"></i>
-                                                </div>
-                                                <div class="profile-upload">
-                                                    <div class="profile-uploader d-flex align-items-center">
-                                                        <div class="drag-upload-btn mb-3">
-                                                            Upload
-                                                            <input type="file" class="form-control image-sign"
-                                                                multiple="" name="image">
-                                                        </div>
-                                                        <a href="javascript:void(0);"
-                                                            class="btn btn-primary mb-3">Remove</a>
-                                                    </div>
-                                                    <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="row row-cols-xxl-5 row-cols-md-6">
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
@@ -1146,9 +1131,9 @@ require_once 'php/databaseConnection.php';
                                                 </select>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-xxl col-xl-3 col-md-6">
-                                        <?php
+                                            <?php
                                             require_once 'php/feesGroupDataFromDatabase.php';
                                             ?>
                                             <div class="mb-3">

@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+
+require_once 'php/databaseConnection.php';
+
+if (!isset($_SESSION['userEmail'])) {
+    header("Location: login-2.php");
+    exit();
+}
+$userEmail = $_SESSION['userEmail'];
+?>
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light" data-sidebar="light" data-color="primary" data-layout="default" data-topbar="white">
 
@@ -1194,27 +1207,27 @@
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
+                                        <?php
+                                            require_once 'php/feesGroupDataFromDatabase.php';
+                                            ?>
                                             <div class="mb-4">
-                                                <label class="form-label">Category</label>
-                                                <select class="select" name="category">
-                                                    <option disabled>Select</option>
-                                                    <option value="General" <?php if ($category == 'General') {
-                                                                                echo 'selected';
-                                                                            } ?>>General</option>
-                                                    <option value="OBC" <?php if ($category == 'OBC') {
-                                                                            echo 'selected';
-                                                                        } ?>>OBC</option>
-                                                    <option value="SC" <?php if ($category == 'SC') {
-                                                                            echo 'selected';
-                                                                        } ?>>SC</option>
-                                                    <option value="ST" <?php if ($category == 'ST') {
-                                                                            echo 'selected';
-                                                                        } ?>>ST</option>
-                                                    <option value="EWS" <?php if ($category == 'EWS') {
-                                                                            echo 'selected';
-                                                                        } ?>>EWS</option>
-                                                </select>
+                                                <label class="form-label">Fees Group</label>
+                                                <?php
+                                                require_once 'php/feesGroupDataFromDatabase.php';
+                                                ?>
 
+                                                <select class="select" name="feesGroup">
+                                                <option disabled>Select</option>
+                                                    <?php
+                                                    foreach ($groups as $group) {
+                                                        echo "<option value='" . htmlspecialchars($group['feesGroupID']) . "'";
+                                                        if ($group['feesGroupID'] == $currentFeesGroupID) {
+                                                            echo " selected";
+                                                        }
+                                                        echo ">" . htmlspecialchars($group['feesGroup']) . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
@@ -1828,77 +1841,77 @@
                             </div>
 
 
-                                <div class="card">
-                                    <div class="card-header bg-light">
-                                        <div class="d-flex align-items-center">
-                                            <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-                                                <i class="ti ti-building fs-16"></i>
-                                            </span>
-                                            <h4 class="text-dark">Previous School Details</h4>
-                                        </div>
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <div class="d-flex align-items-center">
+                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
+                                            <i class="ti ti-building fs-16"></i>
+                                        </span>
+                                        <h4 class="text-dark">Previous School Details</h4>
                                     </div>
-                                    <div class="card-body pb-0">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">School Name</label>
-                                                    <input type="text" class="form-control" name="previousSchoolName" value="<?php echo $previousSchoolName; ?>">
-                                                </div>
+                                </div>
+                                <div class="card-body pb-0">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-4">
+                                                <label class="form-label">School Name</label>
+                                                <input type="text" class="form-control" name="previousSchoolName" value="<?php echo $previousSchoolName; ?>">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Address</label>
-                                                    <input type="text" class="form-control" name="previousSchoolAddress" value="<?php echo $previousSchoolAddress; ?>">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-4">
+                                                <label class="form-label">Address</label>
+                                                <input type="text" class="form-control" name="previousSchoolAddress" value="<?php echo $previousSchoolAddress; ?>">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
 
-                                <div class="card">
-                                    <div class="card-header bg-light">
-                                        <div class="d-flex align-items-center">
-                                            <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-                                                <i class="ti ti-building-bank fs-16"></i>
-                                            </span>
-                                            <h4 class="text-dark">Other Details</h4>
-                                        </div>
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <div class="d-flex align-items-center">
+                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
+                                            <i class="ti ti-building-bank fs-16"></i>
+                                        </span>
+                                        <h4 class="text-dark">Other Details</h4>
                                     </div>
-                                    <div class="card-body pb-0">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Bank Name</label>
-                                                    <input type="text" class="form-control" name="bankName" value="<?php echo $bankName; ?>">
-                                                </div>
+                                </div>
+                                <div class="card-body pb-0">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="mb-4">
+                                                <label class="form-label">Bank Name</label>
+                                                <input type="text" class="form-control" name="bankName" value="<?php echo $bankName; ?>">
                                             </div>
-                                            <div class="col-md-2">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Branch</label>
-                                                    <input type="text" class="form-control" name="branchOfBank" value="<?php echo $branchOfBank; ?>">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="mb-4">
+                                                <label class="form-label">Branch</label>
+                                                <input type="text" class="form-control" name="branchOfBank" value="<?php echo $branchOfBank; ?>">
                                             </div>
-                                            <div class="col-md-5">
-                                                <div class="mb-4">
-                                                    <label class="form-label">IFSC Number</label>
-                                                    <input type="text" class="form-control" name="ifscNumber" value="<?php echo $ifscNumber; ?>">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="mb-4">
+                                                <label class="form-label">IFSC Number</label>
+                                                <input type="text" class="form-control" name="ifscNumber" value="<?php echo $ifscNumber; ?>">
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Other Information</label>
-                                                    <textarea class="form-control" placeholder="Other Information" rows="3" name="otherInfo"><?php echo $otherInfo; ?></textarea>
-                                                </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-4">
+                                                <label class="form-label">Other Information</label>
+                                                <textarea class="form-control" placeholder="Other Information" rows="3" name="otherInfo"><?php echo $otherInfo; ?></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="text-end">
-                                    <button type="button" class="btn btn-light me-3">Cancel</button>
-                                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                                </div>
+                            <div class="text-end">
+                                <button type="button" class="btn btn-light me-3">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
                         </form>
                     </div>
                 </div>

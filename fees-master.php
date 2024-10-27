@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+
+require_once 'php/databaseConnection.php';
+
+if (!isset($_SESSION['userEmail'])) {
+    header("Location: login-2.php");
+    exit(); 
+}
+$userEmail = $_SESSION['userEmail'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1233,13 +1246,14 @@
                                                 <input class="form-check-input" type="checkbox" id="select-all">
                                             </div>
                                         </th>
-                                        <th>ID</th>
+                                        <th>Adm_No</th>
+                                        <th>Name Of Student</th>
+                                        <th>Class</th>
+                                        <th>Roll_No</th>
                                         <th>Fees Group</th>
-                                        <th>Fees Type</th>
                                         <th>Due Date</th>
-                                        <th>Amount ($)</th>
-                                        <th>Fine Type</th>
-                                        <th>Fine Amount ($)</th>
+                                        <th>Grand Total</th>
+                                        <th>Total Paid</th>
                                         <th>Status </th>
                                         <th>Action</th>
                                     </tr>
@@ -1251,417 +1265,19 @@
                                                 <input class="form-check-input" type="checkbox">
                                             </div>
                                         </td>
-                                        <td><a href="#" class="link-primary">FG80482</a></td>
-                                        <td>Admission-Fees</td>
+                                        <td><a href="#" class="link-primary">Ad001</a></td>
+                                        <td>Rohan Singh</td>
+                                        <td>III (A)</td>
+                                        <td>RL001</td>
                                         <td>Tuition Fees</td>
-                                        <td>30 Jan 2025</td>
-                                        <td>1250</td>
                                         <td>
-                                            <span class="badge badge-soft-warning">None</span>
+                                            20 June 2018
                                         </td>
-                                        <td>200</td>
+                                        <td>Rs 5500</td>
+                                        <td>Rs 500</td>
                                         <td>
                                             <span class="badge badge-soft-success d-inline-flex align-items-center"><i
-                                                    class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="dropdown">
-                                                    <a href="#"
-                                                        class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="ti ti-dots-vertical fs-14"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-menu-right p-3">
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#edit_fees_master"><i
-                                                                    class="ti ti-edit-circle me-2"></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal" data-bs-target="#delete-modal"><i
-                                                                    class="ti ti-trash-x me-2"></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-check-md">
-                                                <input class="form-check-input" type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td><a href="#" class="link-primary">FG80481</a></td>
-                                        <td>Class 1 General</td>
-                                        <td>Monthly Fees</td>
-                                        <td>12 May 2025</td>
-                                        <td>250</td>
-                                        <td>
-                                            <span class="badge badge-soft-info">Percentage</span>
-                                        </td>
-                                        <td>300</td>
-                                        <td>
-                                            <span class="badge badge-soft-success d-inline-flex align-items-center"><i
-                                                    class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="dropdown">
-                                                    <a href="#"
-                                                        class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="ti ti-dots-vertical fs-14"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-menu-right p-3">
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#edit_fees_master"><i
-                                                                    class="ti ti-edit-circle me-2"></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal" data-bs-target="#delete-modal"><i
-                                                                    class="ti ti-trash-x me-2"></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-check-md">
-                                                <input class="form-check-input" type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td><a href="#" class="link-primary">FG80481</a></td>
-                                        <td>Monthly Fees</td>
-                                        <td>Admission Fees</td>
-                                        <td>12 May 2025</td>
-                                        <td>250</td>
-                                        <td>
-                                            <span class="badge badge-soft-info">Percentage</span>
-                                        </td>
-                                        <td>300</td>
-                                        <td>
-                                            <span class="badge badge-soft-success d-inline-flex align-items-center"><i
-                                                    class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="dropdown">
-                                                    <a href="#"
-                                                        class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="ti ti-dots-vertical fs-14"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-menu-right p-3">
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#edit_fees_master"><i
-                                                                    class="ti ti-edit-circle me-2"></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal" data-bs-target="#delete-modal"><i
-                                                                    class="ti ti-trash-x me-2"></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-check-md">
-                                                <input class="form-check-input" type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td><a href="#" class="link-primary">FG80481 </a></td>
-                                        <td>Class 1 Lump Sum</td>
-                                        <td>Bus Fees</td>
-                                        <td>12 May 2025</td>
-                                        <td>250</td>
-                                        <td>
-                                            <span class="badge badge-soft-info">Percentage</span>
-                                        </td>
-                                        <td>300</td>
-                                        <td>
-                                            <span class="badge badge-soft-success d-inline-flex align-items-center"><i
-                                                    class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="dropdown">
-                                                    <a href="#"
-                                                        class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="ti ti-dots-vertical fs-14"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-menu-right p-3">
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#edit_fees_master"><i
-                                                                    class="ti ti-edit-circle me-2"></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal" data-bs-target="#delete-modal"><i
-                                                                    class="ti ti-trash-x me-2"></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-check-md">
-                                                <input class="form-check-input" type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td><a href="#" class="link-primary">FG80481</a></td>
-                                        <td>Class 1- I Installment</td>
-                                        <td>Monthly Fees</td>
-                                        <td>12 May 2025</td>
-                                        <td>250</td>
-                                        <td>
-                                            <span
-                                                class="badge badge-soft-danger d-inline-flex align-items-center">Fixed</span>
-                                        </td>
-                                        <td>300</td>
-                                        <td>
-                                            <span class="badge badge-soft-success d-inline-flex align-items-center"><i
-                                                    class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="dropdown">
-                                                    <a href="#"
-                                                        class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="ti ti-dots-vertical fs-14"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-menu-right p-3">
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#edit_fees_master"><i
-                                                                    class="ti ti-edit-circle me-2"></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal" data-bs-target="#delete-modal"><i
-                                                                    class="ti ti-trash-x me-2"></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-check-md">
-                                                <input class="form-check-input" type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td><a href="#" class="link-primary">FG80481</a></td>
-                                        <td>Class 1-II Installment</td>
-                                        <td>Monthly Fees</td>
-                                        <td>12 May 2025</td>
-                                        <td>250</td>
-                                        <td>
-                                            <span class="badge badge-soft-info">Percentage</span>
-                                        </td>
-                                        <td>300</td>
-                                        <td>
-                                            <span class="badge badge-soft-danger d-inline-flex align-items-center"><i
-                                                    class="ti ti-circle-filled fs-5 me-1"></i>Inactive</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="dropdown">
-                                                    <a href="#"
-                                                        class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="ti ti-dots-vertical fs-14"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-menu-right p-3">
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#edit_fees_master"><i
-                                                                    class="ti ti-edit-circle me-2"></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal" data-bs-target="#delete-modal"><i
-                                                                    class="ti ti-trash-x me-2"></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-check-md">
-                                                <input class="form-check-input" type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td><a href="#" class="link-primary">FG80481</a></td>
-                                        <td>Discount</td>
-                                        <td>Topper Discount</td>
-                                        <td>12 May 2025</td>
-                                        <td>250</td>
-                                        <td>
-                                            <span class="badge badge-soft-warning">None</span>
-                                        </td>
-                                        <td>300</td>
-                                        <td>
-                                            <span class="badge badge-soft-danger d-inline-flex align-items-center"><i
-                                                    class="ti ti-circle-filled fs-5 me-1"></i>Inactive</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="dropdown">
-                                                    <a href="#"
-                                                        class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="ti ti-dots-vertical fs-14"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-menu-right p-3">
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#edit_fees_master"><i
-                                                                    class="ti ti-edit-circle me-2"></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal" data-bs-target="#delete-modal"><i
-                                                                    class="ti ti-trash-x me-2"></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-check-md">
-                                                <input class="form-check-input" type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td><a href="#" class="link-primary">FG80481</a></td>
-                                        <td>Class 3- I Installment</td>
-                                        <td>3rd-Installment-Fees</td>
-                                        <td>12 May 2025</td>
-                                        <td>250</td>
-                                        <td>
-                                            <span class="badge badge-soft-warning">None</span>
-                                        </td>
-                                        <td>300</td>
-                                        <td>
-                                            <span class="badge badge-soft-success d-inline-flex align-items-center"><i
-                                                    class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="dropdown">
-                                                    <a href="#"
-                                                        class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="ti ti-dots-vertical fs-14"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-menu-right p-3">
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#edit_fees_master"><i
-                                                                    class="ti ti-edit-circle me-2"></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal" data-bs-target="#delete-modal"><i
-                                                                    class="ti ti-trash-x me-2"></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-check-md">
-                                                <input class="form-check-input" type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td><a href="#" class="link-primary">FG80481</a></td>
-                                        <td>Class 2- I Installment</td>
-                                        <td>3rd-Installment-Fees</td>
-                                        <td>12 May 2025</td>
-                                        <td>250</td>
-                                        <td>
-                                            <span
-                                                class="badge badge-soft-danger d-inline-flex align-items-center">Fixed</span>
-                                        </td>
-                                        <td>300</td>
-                                        <td>
-                                            <span class="badge badge-soft-success d-inline-flex align-items-center"><i
-                                                    class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="dropdown">
-                                                    <a href="#"
-                                                        class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="ti ti-dots-vertical fs-14"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-menu-right p-3">
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#edit_fees_master"><i
-                                                                    class="ti ti-edit-circle me-2"></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item rounded-1" href="#"
-                                                                data-bs-toggle="modal" data-bs-target="#delete-modal"><i
-                                                                    class="ti ti-trash-x me-2"></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-check-md">
-                                                <input class="form-check-input" type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td><a href="#" class="link-primary">FG80481</a></td>
-                                        <td>Class 4- I Installment</td>
-                                        <td>3rd Installment Fees</td>
-                                        <td>12 May 2025</td>
-                                        <td>250</td>
-                                        <td>
-                                            <span
-                                                class="badge badge-soft-danger d-inline-flex align-items-center">Fixed</span>
-                                        </td>
-                                        <td>300</td>
-                                        <td>
-                                            <span class="badge badge-soft-success d-inline-flex align-items-center"><i
-                                                    class="ti ti-circle-filled fs-5 me-1"></i>Active</span>
+                                                    class="ti ti-circle-filled fs-5 me-1"></i>Pending</span>
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">

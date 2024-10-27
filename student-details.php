@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+
+require_once 'php/databaseConnection.php';
+
+if (!isset($_SESSION['userEmail'])) {
+    header("Location: login-2.php");
+    exit(); 
+}
+$userEmail = $_SESSION['userEmail'];
+?>
+
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -995,8 +1008,8 @@ created by <span class="text-dark fw-semibold"> Teressa</span></p>
 <dd class="col-6 mb-3"><?php echo $religion; ?></dd>
 <dt class="col-6 fw-medium text-dark mb-3">Caste</dt>
 <dd class="col-6 mb-3"><?php echo $caste; ?></dd>
-<dt class="col-6 fw-medium text-dark mb-3">Category</dt>
-<dd class="col-6 mb-3"><?php echo $category; ?></dd>
+<dt class="col-6 fw-medium text-dark mb-3">Fees Group</dt>
+<dd class="col-6 mb-3"><?php echo $feesGroup; ?></dd>
 <dt class="col-6 fw-medium text-dark mb-3">Mother tongue</dt>
 <dd class="col-6 mb-3"><?php echo $mother_tongue; ?></dd>
 <dt class="col-6 fw-medium text-dark mb-3">Language</dt>

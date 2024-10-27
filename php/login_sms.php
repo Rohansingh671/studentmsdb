@@ -17,11 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Validate password length
-    if (strlen($password) < 8 || strlen($password) > 20) {
-        echo "Password must be between 8 and 20 characters.";
-        exit;
-    }
 
     // Database connection
     $mysqli = db_connect();

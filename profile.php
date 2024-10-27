@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+
+require_once 'php/databaseConnection.php';
+
+if (!isset($_SESSION['userEmail'])) {
+    header("Location: login-2.php");
+    exit(); 
+}
+$userEmail = $_SESSION['userEmail'];
+?>
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">

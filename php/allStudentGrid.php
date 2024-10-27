@@ -3,7 +3,7 @@ require_once 'databaseConnection.php';
 $mysqli = db_connect();
 
 $stmt = $mysqli->prepare("SELECT `imageOfStudent`, `academicYear`, `admissionNumber`, `admissionDate`, `rollNumber`, `studentStatus`, 
-`fnameOfStudent`, `lnameOfStudent`, `class`, `section`, `gender`, `dateOfBirth`, `bloodGroup`, `house`, `religion`, `category`, 
+`fnameOfStudent`, `lnameOfStudent`, `class`, `section`, `gender`, `dateOfBirth`, `bloodGroup`, `house`, `religion`, `feesGroup`, 
 `caste`, `primaryContact`, `emailOfstudent`, `motherTongue`, `languageKnown`, `imageOfFather`, `fatherName`, 
 `emailOfFather`, `fatherContact`, `fatherProfession`, `imageOfMother`, `motherName`, `emailOfMother`, 
 `motherContact`, `motherProfession`, `guardianName`, `guardianRelation`, `guardianContact`, `guardianEmail`, 
@@ -33,7 +33,7 @@ $stmt->bind_result(
     $blood_group,
     $house,
     $religion,
-    $category,
+    $feesGroup,
     $caste,
     $primary_contact,
     $email,
@@ -98,7 +98,7 @@ while ($stmt->fetch()) {
         'blood_group' => $blood_group,
         'house' => $house,
         'religion' => $religion,
-        'category' => $category,
+        'feesGroup' => $feesGroup,
         'caste' => $caste,
         'primary_contact' => $primary_contact,
         'email' => $email,
