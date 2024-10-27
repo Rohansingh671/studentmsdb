@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mysqli = db_connect();
     if ($mysqli) {
         // Prepare SQL query to check if user exists
-        $stmt = $mysqli->prepare("SELECT userPassword FROM wadamemberlogindata WHERE userEmail = ?");
+        $stmt = $mysqli->prepare("SELECT userPassword FROM smslogindata WHERE userEmail = ?");
         if ($stmt) {
             $stmt->bind_param("s", $email);
             $stmt->execute();

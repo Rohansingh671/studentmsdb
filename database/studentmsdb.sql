@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 24, 2024 at 07:54 AM
+-- Generation Time: Oct 27, 2024 at 06:30 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -88,14 +88,139 @@ CREATE TABLE IF NOT EXISTS `addstudent` (
   `ifscNumber` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
   `otherInfo` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `addstudent`
 --
 
 INSERT INTO `addstudent` (`ID`, `imageOfStudent`, `academicYear`, `admissionNumber`, `admissionDate`, `rollNumber`, `studentStatus`, `fnameOfStudent`, `lnameOfStudent`, `class`, `section`, `gender`, `dateOfBirth`, `bloodGroup`, `house`, `religion`, `category`, `caste`, `primaryContact`, `emailOfstudent`, `motherTongue`, `languageKnown`, `imageOfFather`, `fatherName`, `emailOfFather`, `fatherContact`, `fatherProfession`, `imageOfMother`, `motherName`, `emailOfMother`, `motherContact`, `motherProfession`, `guardianName`, `guardianRelation`, `guardianContact`, `guardianEmail`, `guardianOccupation`, `guardianAddress`, `imageOfGuardian`, `currentAddressOfStudent`, `permanentAddressOfStudent`, `districtOfStudent`, `provinceOfStudent`, `transportRoute`, `vehicleNumber`, `pickUpPoint`, `hostel`, `hostelRoomNumber`, `documentOfBirthCertificate`, `documentOfTransferCertificate`, `allergiesOfStudent`, `medicationOfStudent`, `previousSchoolName`, `previousSchoolAddress`, `bankName`, `branchOfBank`, `ifscNumber`, `otherInfo`) VALUES
-(3, 'studentDocuments/profilePictures/6719fb91aba98_Screenshot 2024-10-23 182107.png', 'June 2023/24', 'AD001', '2024-10-09', 'RL001', 'Active', 'Haitomns', 'Rohan', 'III', 'A', 'Male', '2024-10-03', 'O -', 'Blue', 'Muslim', 'BC', 'Kurmi', '9820998994', 'sankar8242@gmail.com', 'English', 'English, Spanish', 'studentDocuments/profilePictures/6719fb91abd53_Screenshot 2024-09-06 163741.png', 'Harishankar kurmi', 'harishankarpatel144@gmail.com', '9852635652', 'Worker', 'studentDocuments/profilePictures/6719fb91af68a_Screenshot 2024-05-28 021649.png', 'Laxmi Devi', 'laxmidevi22@gmail.com', '9822550000', 'HouseWife', 'Gaurishankar', 'Uncle', '9812110620', 'gauri122@gmail.com', 'Operator', 'Pipara-14', 'studentDocuments/profilePictures/6719fb91af9fc_singh.jpg', 'Bhairahwa-14, Biratnagar', 'Parwanipur-21, Birgunj,parsa', 'Parsa', 'Madhesh Pradesh', 'Newyork', 'AM 54548', 'Cincinatti', 'Phoenix Residence', '22', 'studentDocuments/profilePictures/6719fb91afc74_haitomns.jpg', 'studentDocuments/profilePictures/6719fb91b04ae_rohan.jpg', 'Allergy, Skin Allergy', 'Medecine Name', 'Shree Nrisingh Madhyamik Vidhyalay', 'Piparamathh-14, Birgunj', 'Nepal Central Bank', 'Kathmandu', '12340008907654', 'sdzfxghgjhkjglkhl');
+(3, 'studentDocuments/profilePictures/671a0b1e4fe48_Screenshot 2024-10-24 124154.png', 'June 2023/24', 'AD001', '2024-10-09', 'RL001', 'Active', 'Haitomns', 'Rohit', 'III', 'A', 'Male', '2024-10-03', 'O -', 'Blue', 'Muslim', 'BC', 'Kurmi', '9820998994', 'sankar8242@gmail.com', 'English', 'English, Spanish', 'studentDocuments/profilePictures/671a0b1e7932f_Screenshot 2024-10-24 142100.png', 'Harishankar kurmi', 'harishankarpatel144@gmail.com', '9852635652', 'Worker', 'studentDocuments/profilePictures/671a0b1ea5bb7_Screenshot 2024-10-23 230518.png', 'Laxmi Devi', 'laxmidevi22@gmail.com', '9822550000', 'HouseWife', 'Gaurishankar', 'Uncle', '9812110620', 'gauri122@gmail.com', 'Operator', 'Pipara-14', 'studentDocuments/profilePictures/671a0b1ecf656_Screenshot 2024-10-23 145438.png', 'Bhairahwa-14, Biratnagar', 'Parwanipur-21, Birgunj,parsa', 'Parsa', 'Madhesh Pradesh', 'NewYork', 'AM 54548', 'Cincinatti', 'Phoenix Residence', '22', 'studentDocuments/profilePictures/6719fb91afc74_haitomns.jpg', 'studentDocuments/profilePictures/6719fb91b04ae_rohan.jpg', 'Allergy, Skin Allergy', 'Medecine Name', 'Shree Nrisingh Madhyamik Vidhyalay', 'Piparamathh-14, Birgunj', 'Nepal Central Bank', 'Kathmandu', '12340008907654', 'sdzfxghgjhkjglkhl'),
+(4, 'studentDocuments/profilePictures/671bb2679bc42_singh.jpg', 'June 2023/24', 'AD002', '2024-10-02', 'RL001', 'Active', 'Rohan', 'Sharma', 'III', 'B', 'Male', '2024-11-01', 'A +', 'Red', 'Sikh', 'ST', 'Kurmi', '9820998994', 'haitomnsrohan2024@gmail.com', 'English', 'English, Spanish', 'studentDocuments/profilePictures/671a14e563941_Screenshot 2024-09-06 163741.png', 'Harishankar kurmi', 'harishankarpatel144@gmail.com', '9852635652', 'Worker', 'studentDocuments/profilePictures/671a14e563bcd_Screenshot 2024-09-18 125846.png', 'Laxmi Devi', 'laxmidevi22@gmail.com', '9845190056', 'HouseWife', 'Gaurishankar', 'Uncle', '9812110620', 'gauri122@gmail.com', 'Operator', 'Pipara-14', 'studentDocuments/profilePictures/671a14e563df8_Screenshot 2024-09-13 203337.png', 'Bhairahwa-14, Biratnagar', 'Parwanipur-21, Birgunj,parsa', 'Parsa', 'Bagmati Province', 'NewYork', 'AM 54548', 'Illinois', 'Tranquil Haven', '20', 'studentDocuments/profilePictures/671a15650b031_Screenshot 2024-10-24 145309.png', 'studentDocuments/profilePictures/671a15650b26d_Screenshot (3).png', 'Allergy, Skin Allergy', 'Medecine Name', 'ghp', 'Piparamathh-14, Birgunj', 'Nepal Central Bank', 'murli', '12340008907654', 'jgfghfxddfgfgl;');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `addteacher`
+--
+
+DROP TABLE IF EXISTS `addteacher`;
+CREATE TABLE IF NOT EXISTS `addteacher` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `teacher_id` varchar(15) NOT NULL,
+  `teacher_image` varchar(255) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `gender` enum('Male','Female','Other') NOT NULL,
+  `email_address` varchar(100) NOT NULL,
+  `primary_contact_number` varchar(10) NOT NULL,
+  `qualification` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `work_experience` varchar(30) NOT NULL,
+  `address` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `permanent_address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `pan_number` varchar(10) NOT NULL,
+  `class` varchar(50) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `date_of_joining` date NOT NULL,
+  `language_known` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `status_of_teacher` varchar(30) NOT NULL,
+  `marital_status` varchar(30) NOT NULL,
+  `blood_group` varchar(10) NOT NULL,
+  `father_name` varchar(40) NOT NULL,
+  `mother_name` varchar(40) NOT NULL,
+  `epf_no` varchar(20) NOT NULL,
+  `basic_salary` decimal(10,2) NOT NULL,
+  `contract_type` varchar(30) NOT NULL,
+  `date_of_leaving` date NOT NULL,
+  `work_shift` varchar(50) NOT NULL,
+  `work_location` varchar(100) NOT NULL,
+  `medical_leaves` int NOT NULL,
+  `casual_leaves` int NOT NULL,
+  `maternity_leaves` int NOT NULL,
+  `sick_leaves` int NOT NULL,
+  `account_name` varchar(100) NOT NULL,
+  `account_number` varchar(20) NOT NULL,
+  `ifsc_code` varchar(11) NOT NULL,
+  `bank_name` varchar(100) NOT NULL,
+  `branch_name` varchar(100) NOT NULL,
+  `route` varchar(100) DEFAULT NULL,
+  `vehicle_number` varchar(20) DEFAULT NULL,
+  `pickup_point` varchar(100) DEFAULT NULL,
+  `hostel` varchar(100) DEFAULT NULL,
+  `room_number` varchar(10) DEFAULT NULL,
+  `facebook` varchar(255) DEFAULT NULL,
+  `instagram` varchar(255) DEFAULT NULL,
+  `linkedin` varchar(255) DEFAULT NULL,
+  `twitter_url` varchar(255) DEFAULT NULL,
+  `youtube` varchar(255) DEFAULT NULL,
+  `resume` varchar(255) DEFAULT NULL,
+  `joining_letter` varchar(255) DEFAULT NULL,
+  `previous_school_name` varchar(100) NOT NULL,
+  `previous_school_address` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `previous_school_contact_number` varchar(12) NOT NULL,
+  `other_info` varchar(100) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `addteacher`
+--
+
+INSERT INTO `addteacher` (`ID`, `teacher_id`, `teacher_image`, `first_name`, `last_name`, `gender`, `email_address`, `primary_contact_number`, `qualification`, `work_experience`, `address`, `permanent_address`, `date_of_birth`, `pan_number`, `class`, `subject`, `date_of_joining`, `language_known`, `status_of_teacher`, `marital_status`, `blood_group`, `father_name`, `mother_name`, `epf_no`, `basic_salary`, `contract_type`, `date_of_leaving`, `work_shift`, `work_location`, `medical_leaves`, `casual_leaves`, `maternity_leaves`, `sick_leaves`, `account_name`, `account_number`, `ifsc_code`, `bank_name`, `branch_name`, `route`, `vehicle_number`, `pickup_point`, `hostel`, `room_number`, `facebook`, `instagram`, `linkedin`, `twitter_url`, `youtube`, `resume`, `joining_letter`, `previous_school_name`, `previous_school_address`, `previous_school_contact_number`, `other_info`) VALUES
+(1, 'TID01', 'haitomns.jpg', 'Haitomns', 'Kurmi', 'Male', 'haitomns@gmail.com', '9825252525', 'Computer Experience', 'Typing Master', 'Parwanipur', 'Bariyarpur', '2024-10-09', '0021365489', 'I A', 'Physics', '2024-10-03', 'English, Spanish', 'Active', 'Single', 'A+', 'Harishankar kurmi', 'Laxmi Devi', '895264', 520000.00, 'Permanent', '2024-10-09', 'Morning', 'Gahawamai', 20, 20, 20, 20, 'Harishanakar Prasad kurmi', '0012236548956', '12036648952', 'Sidhharth', 'Sidhhatrth', 'Denver', 'AM 54548', 'Cincinatti', 'Radiant Towers', '22', 'www.facebook.com', 'www.instagram.com', 'www.linkedIn.com', 'www.twitter.com', 'www.youtube.com', 'boyle\'s_law_and_charle\'s_law_(1)_8633d4464ed0af57.pdf', 'avogadro_law,_combind_ras_eq_3052be3fa5f8f78e (1).pdf', 'Shree Nrisingh', 'pipara', '9865656565', 'hdsgkuwgrigvfhsjkDepending on the specific needs of your organization or system, additional informat');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classdata`
+--
+
+DROP TABLE IF EXISTS `classdata`;
+CREATE TABLE IF NOT EXISTS `classdata` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `classID` varchar(10) NOT NULL,
+  `className` varchar(10) NOT NULL,
+  `classSection` varchar(5) NOT NULL,
+  `numberOfStudent` int NOT NULL,
+  `numberOfSubject` int NOT NULL,
+  `classStatus` varchar(10) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `classdata`
+--
+
+INSERT INTO `classdata` (`ID`, `classID`, `className`, `classSection`, `numberOfStudent`, `numberOfSubject`, `classStatus`) VALUES
+(2, 'C1381', 'I', 'A', 85, 5, 'Inactive'),
+(3, 'C1382', 'I', 'A', 85, 5, 'Inactive'),
+(4, 'C1383', 'I', 'A', 85, 5, 'Inactive'),
+(5, 'C1384', 'I', 'A', 85, 5, 'Inactive');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `smslogindata`
+--
+
+DROP TABLE IF EXISTS `smslogindata`;
+CREATE TABLE IF NOT EXISTS `smslogindata` (
+  `usersLoginID` int NOT NULL AUTO_INCREMENT,
+  `userEmail` varchar(320) NOT NULL,
+  `userUsername` varchar(256) NOT NULL,
+  `userPassword` varchar(256) NOT NULL,
+  `userType` int NOT NULL,
+  `userLastLogin` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`usersLoginID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `smslogindata`
+--
+
+INSERT INTO `smslogindata` (`usersLoginID`, `userEmail`, `userUsername`, `userPassword`, `userType`, `userLastLogin`) VALUES
+(7, 'haitomnsrohan2024@gmail.com', 'Haitomnsrohan', '$2y$10$d1kNlD4byLrUtVAu53kSpe2RevTS0QGFlULPMqGOTa/KX2ycWqtiW', 3, '2024-10-25 23:45:20');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

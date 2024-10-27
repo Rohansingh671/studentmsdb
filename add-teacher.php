@@ -429,11 +429,11 @@
                                         <li><a href="schedule-classes.php">Schedule</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="class-room.php"><i class="ti ti-building"></i><span>Class Room</span></a>
+                                <li hidden><a href="class-room.php"><i class="ti ti-building"></i><span>Class Room</span></a>
                                 </li>
-                                <li><a href="class-routine.php"><i class="ti ti-bell-school"></i><span>Class
+                                <li hidden><a href="class-routine.php"><i class="ti ti-bell-school"></i><span>Class
                                             Routine</span></a></li>
-                                <li><a href="class-section.php"><i class="ti ti-square-rotated-forbid-2"></i><span>Section</span></a></li>
+                                <li hidden><a href="class-section.php"><i class="ti ti-square-rotated-forbid-2"></i><span>Section</span></a></li>
                                 <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Subject</span></a></li>
                                 <li hidden><a href="class-syllabus.php"><i class="ti ti-book-upload"></i><span>Syllabus</span></a></li>
                                 <li hidden><a href="class-time-table.php"><i class="ti ti-table"></i><span>Time
@@ -460,7 +460,7 @@
                                             Collection</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="fees-group.php">Fees Group</a></li>
-                                        <li><a href="fees-type.php">Fees Type</a></li>
+                                        <li hidden><a href="fees-type.php">Fees Type</a></li>
                                         <li><a href="fees-master.php">Fees Master</a></li>
                                         <li hidden><a href="fees-assign.php">Fees Assign</a></li>
                                         <li><a href="collect-fees.php">Collect Fees</a></li>

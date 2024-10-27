@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
 
-    <script src="js/theme-script.js" type="6bf8b19fe6833c5e9d01c30b-text/javascript"></script>
+    <script src="js/theme-script.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
 
     <link rel="stylesheet" href="css/select2.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -384,10 +386,10 @@
                         <li>
                             <ul>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i class="ti ti-school"></i><span>Students</span><span class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);" class="subdrop active"><i class="ti ti-school"></i><span>Students</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="student-grid.php">All Students</a></li>
-                                        <li><a href="students.php">Student List</a></li>
+                                        <li><a href="students.php" class="active">Student List</a></li>
                                         <li><a href="student-details.php">Student Details</a></li>
                                         <li><a href="student-promotion.php">Student Promotion</a></li>
                                     </ul>
@@ -420,9 +422,9 @@
                         <li>
                             <ul>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);" class="subdrop active"><i class="ti ti-school-bell"></i><span>Classes</span><span class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i class="ti ti-school-bell"></i><span>Classes</span><span class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="classes.php" class="active">All Classes</a></li>
+                                        <li><a href="classes.php">All Classes</a></li>
                                         <li><a href="schedule-classes.php">Schedule</a></li>
                                     </ul>
                                 </li>
@@ -937,16 +939,16 @@
 
                 <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
                     <div class="my-auto mb-2">
-                        <h3 class="page-title mb-1">Classes List</h3>
+                        <h3 class="page-title mb-1">Students List</h3>
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item">
                                     <a href="index.php">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="javascript:void(0);">Classes </a>
+                                    Students
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">All Classes</li>
+                                <li class="breadcrumb-item active" aria-current="page">All Students</li>
                             </ol>
                         </nav>
                     </div>
@@ -967,16 +969,15 @@
                             </a>
                             <ul class="dropdown-menu  dropdown-menu-end p-3">
                                 <li>
-                                    <a href="javascript:void(0);" class="dropdown-item rounded-1"><i class="ti ti-file-type-pdf me-1"></i>Export as PDF</a>
+                                    <a href="javascript:void(0);" class="dropdown-item rounded-1"><i class="ti ti-file-type-pdf me-2"></i>Export as PDF</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);" class="dropdown-item rounded-1"><i class="ti ti-file-type-xls me-1"></i>Export as Excel </a>
+                                    <a href="javascript:void(0);" class="dropdown-item rounded-1"><i class="ti ti-file-type-xls me-2"></i>Export as Excel </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="mb-2">
-                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_class"><i class="ti ti-square-rounded-plus-filled me-2"></i>Add
-                                Class</a>
+                            <a href="add-student.php" class="btn btn-primary d-flex align-items-center"><i class="ti ti-square-rounded-plus me-2"></i>Add Student</a>
                         </div>
                     </div>
                 </div>
@@ -984,7 +985,7 @@
 
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between flex-wrap pb-0">
-                        <h4 class="mb-3">Classes List</h4>
+                        <h4 class="mb-3">Students List</h4>
                         <div class="d-flex align-items-center flex-wrap">
                             <div class="input-icon-start mb-3 me-2 position-relative">
                                 <span class="icon-addon">
@@ -995,13 +996,13 @@
                             <div class="dropdown mb-3 me-2">
                                 <a href="javascript:void(0);" class="btn btn-outline-light bg-white dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ti ti-filter me-2"></i>Filter</a>
                                 <div class="dropdown-menu drop-width">
-                                    <form action="classes.php">
+                                    <form action="students.php">
                                         <div class="d-flex align-items-center border-bottom p-3">
                                             <h4>Filter</h4>
                                         </div>
-                                        <div class="p-3 border-bottom pb-0">
+                                        <div class="p-3 pb-0 border-bottom">
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Class</label>
                                                         <select class="select">
@@ -1012,7 +1013,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Section</label>
                                                         <select class="select">
@@ -1024,6 +1025,27 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Name</label>
+                                                        <select class="select">
+                                                            <option>Select</option>
+                                                            <option>Janet</option>
+                                                            <option>Joann</option>
+                                                            <option>Kathleen</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Gender</label>
+                                                        <select class="select">
+                                                            <option>Select</option>
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Status</label>
                                                         <select class="select">
@@ -1041,6 +1063,10 @@
                                         </div>
                                     </form>
                                 </div>
+                            </div>
+                            <div class="d-flex align-items-center bg-white border rounded-2 p-1 mb-3 me-2">
+                                <a href="students.php" class="active btn btn-icon btn-sm me-1 primary-hover"><i class="ti ti-list-tree"></i></a>
+                                <a href="student-grid.php" class="btn btn-icon btn-sm bg-light primary-hover"><i class="ti ti-grid-dots"></i></a>
                             </div>
                             <div class="dropdown mb-3">
                                 <a href="javascript:void(0);" class="btn btn-outline-light bg-white dropdown-toggle" data-bs-toggle="dropdown"><i class="ti ti-sort-ascending-2 me-2"></i>Sort by A-Z
@@ -1081,56 +1107,84 @@
                                                 <input class="form-check-input" type="checkbox" id="select-all">
                                             </div>
                                         </th>
-                                        <th>ID</th>
+                                        <th>Admission No</th>
+                                        <th>Roll No</th>
+                                        <th>Name</th>
                                         <th>Class </th>
                                         <th>Section</th>
-                                        <th>No of Students</th>
-                                        <th>No of Subjects</th>
+                                        <th>Gender</th>
                                         <th>Status</th>
+                                        <th>Date of Join</th>
+                                        <th>DOB</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
 
-                                    require_once 'php/classDataFromDatabase.php';
-                                    foreach ($classes as $class) {
+                                    require_once 'php/allStudentClasswise.php';
+                                    foreach ($students as $student) {
                                     ?>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-md">
-                                                    <input class="form-check-input" type="checkbox">
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-check-md">
+                                                <input class="form-check-input" type="checkbox">
+                                            </div>
+                                        </td>
+                                        <td><a href="student-details.php" class="link-primary"><?php echo $student['admission_number']; ?></a></td>
+                                        <td><?php echo $roll_number; ?></td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <a href="student-details.php" class="avatar avatar-md"><img src="<?php echo $student['image_path']; ?>" class="img-fluid rounded-circle" alt="img"></a>
+                                                <div class="ms-2">
+                                                    <p class="text-dark mb-0"><a href="student-details.php"><?php echo $student['first_name']; ?></a>
+                                                    </p>
                                                 </div>
-                                            </td>
-                                            <td><a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#view_class"><?php echo $class['classID']; ?></a></a></td>
-                                            <td><?php echo $class['className']; ?></a></td>
-                                            <td><?php echo $class['classSection']; ?></a></td>
-                                            <td><?php echo $class['numberOfStudent']; ?></a></td>
-                                            <td><?php echo $class['numberOfSubject']; ?></a></td>
-                                            <td>
-                                                <span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i><?php echo $class['classStatus']; ?></a></span>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="dropdown">
-                                                        <a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            <i class="ti ti-dots-vertical fs-14"></i>
-                                                        </a>
-                                                        <ul class="dropdown-menu dropdown-menu-right p-3">
-                                                            <li>
-                                                                <a class="dropdown-item rounded-1" href="classwise-student-list.php?id=<?php echo $class['classID']; ?>"><i class="ti ti-menu me-2"></i>View Student</a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="dropdown-item rounded-1" href="#" data-id="<?= $class['classID'] ?>" data-bs-toggle="modal" data-bs-target="#edit_class"><i class="ti ti-edit-circle me-2"></i>Edit</a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                            </div>
+                                        </td>
+                                        <td><?php echo $student['class']; ?></td>
+                                        <td><?php echo $student['section']; ?></td>
+                                        <td><?php echo $student['gender']; ?></td>
+                                        <td>
+                                            <span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i><?php echo $status; ?></span>
+                                        </td>
+                                        <td><?php echo $student['admission_date']; ?></td>
+                                        <td><?php echo $student['dob']; ?></td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <a href="#" class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle  p-0 me-2"><i class="ti ti-brand-hipchat"></i></a>
+                                                <a href="#" class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle  p-0 me-2"><i class="ti ti-phone"></i></a>
+                                                <a href="#" class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle p-0 me-3"><i class="ti ti-mail"></i></a>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#add_fees_collect" class="btn btn-light fs-12 fw-semibold me-3">Collect Fees</a>
+                                                <div class="dropdown">
+                                                    <a href="#" class="btn btn-white btn-icon btn-sm d-flex align-items-center justify-content-center rounded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="ti ti-dots-vertical fs-14"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right p-3">
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="student-details.php"><i class="ti ti-menu me-2"></i>View Student</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="edit-student.php"><i class="ti ti-edit-circle me-2"></i>Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#login_detail"><i class="ti ti-lock me-2"></i>Login Details</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="javascript:void(0);"><i class="ti ti-toggle-right me-2"></i>Disable</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="student-promotion.php"><i class="ti ti-arrow-ramp-right-2 me-2"></i>Promote
+                                                                Student</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item rounded-1" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="ti ti-trash-x me-2"></i>Delete</a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                            </td>
-                                        </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <?php } ?>
                                 </tbody>
                             </table>
@@ -1143,143 +1197,58 @@
         </div>
 
 
-        <div class="modal fade" id="add_class">
-            <div class="modal-dialog modal-dialog-centered">
+        <div class="modal fade" id="login_detail">
+            <div class="modal-dialog modal-dialog-centered  modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Class</h4>
+                        <h4 class="modal-title">Login Details</h4>
                         <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <i class="ti ti-x"></i>
                         </button>
                     </div>
-                    <form action="php/addClass.php" method="POSt">
-                        <div class="modal-body">
-                            <div class="row">
-                                <?php
-                                require_once 'php/databaseConnection.php';
-
-                                $mysqli = db_connect();
-
-                                $result = $mysqli->query("SELECT COUNT(ID) FROM classdata;");
-                                $row = $result->fetch_row();
-                                $total_class_id = $row[0] + 1;
-
-                                ?>
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">Class ID</label>
-                                        <input type="text" class="form-control" name="classID" value="C138<?php echo $total_class_id ?>" readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Class Name</label>
-                                        <input type="text" class="form-control" name="className">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Section</label>
-                                        <select class="select" name="classSection">
-                                            <option>Select</option>
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>C</option>
-                                            <option>D</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">No of Students</label>
-                                        <input type="text" class="form-control" name="numberOfStudent">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">No of Subjects</label>
-                                        <input type="text" class="form-control" name="numberOfSubject">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="status-title">
-                                            <h5>Status</h5>
-                                            <p>Change the Status by toggle </p>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="switch-sm" name="classStatus">
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="modal-body">
+                        <div class="student-detail-info">
+                            <span class="student-img"><img src="images/student-01.jpg" alt="Img"></span>
+                            <div class="name-info">
+                                <h6>Janet <span>III, A</span></h6>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Add Class</button>
+                        <div class="table-responsive custom-table no-datatable_length">
+                            <table class="table datanew">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>User Type</th>
+                                        <th>User Name</th>
+                                        <th>Password </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Parent</td>
+                                        <td>parent53</td>
+                                        <td>parent@53</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Student</td>
+                                        <td>student20</td>
+                                        <td>stdt@53</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="modal fade" id="edit_class">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Class</h4>
-                        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <i class="ti ti-x"></i>
-                        </button>
                     </div>
-                    <form action="php/updateClass.php" method="POST">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">Class ID</label>
-                                        <input type="text" class="form-control" placeholder="Enter Class ID" value="<?php echo htmlspecialchars($classID); ?>" name="classID" id="classID" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Class Name</label>
-                                        <input type="text" class="form-control" placeholder="Enter Class Name" value="<?php echo htmlspecialchars($className); ?>" name="className" id="className" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Section</label>
-                                        <select class="select" name="classSection" id="classSection" required>
-                                            <option disabled>Select</option>
-                                            <option value="A" <?php if ($classSection == 'A') echo 'selected'; ?>>A</option>
-                                            <option value="B" <?php if ($classSection == 'B') echo 'selected'; ?>>B</option>
-                                            <option value="C" <?php if ($classSection == 'C') echo 'selected'; ?>>C</option>
-                                            <option value="D" <?php if ($classSection == 'D') echo 'selected'; ?>>D</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">No of Students</label>
-                                        <input type="number" class="form-control" placeholder="Enter No of Students" value="<?php echo htmlspecialchars($numberOfStudent); ?>" name="numberOfStudent" id="numberOfStudent" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">No of Subjects</label>
-                                        <input type="number" class="form-control" placeholder="Enter No of Subjects" value="<?php echo htmlspecialchars($numberOfSubject); ?>" name="numberOfSubject" id="numberOfSubject" required>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="status-title">
-                                            <h5>Status</h5>
-                                            <p>Change the Status by toggling</p>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="classStatus" name="classStatus" <?php echo ($classStatus == 'Active') ? 'checked' : ''; ?>>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
-                        </div>
-                    </form>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
+                    </div>
                 </div>
             </div>
         </div>
-
 
 
         <div class="modal fade" id="delete-modal">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form action="classes.php">
+                    <form action="students.php">
                         <div class="modal-body text-center">
                             <span class="delete-icon">
                                 <i class="ti ti-trash-x"></i>
@@ -1297,46 +1266,128 @@
         </div>
 
 
-        <div class="modal fade" id="view_class">
-            <div class="modal-dialog modal-dialog-centered">
+        <div class="modal fade" id="add_fees_collect">
+            <div class="modal-dialog modal-dialog-centered  modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="modal-title">Class Details</h4>
-                            <span class="badge badge-soft-success ms-2"><i class="ti ti-circle-filled me-1 fs-5"></i>Active</span>
+                            <h4 class="modal-title">Collect Fees</h4>
+                            <span class="badge badge-sm bg-primary ms-2">AD124556</span>
                         </div>
                         <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <i class="ti ti-x"></i>
                         </button>
                     </div>
-                    <form action="classes.php">
+                    <form action="students.php">
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="class-detail-info">
-                                        <p>Class Name</p>
-                                        <span>III</span>
+                            <div class="bg-light-300 p-3 pb-0 rounded mb-4">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <a href="student-details.php" class="avatar avatar-md me-2">
+                                                <img src="images/student-01.jpg" alt="img">
+                                            </a>
+                                            <a href="student-details.php" class="d-flex flex-column"><span class="text-dark">Janet</span>III, A</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="class-detail-info">
-                                        <p>Section</p>
-                                        <span>A</span>
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="mb-3">
+                                            <span class="fs-12 mb-1">Total Outstanding</span>
+                                            <p class="text-dark">2000</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="class-detail-info">
-                                        <p>No of Subjects</p>
-                                        <span>05</span>
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="mb-3">
+                                            <span class="fs-12 mb-1">Last Date</span>
+                                            <p class="text-dark">25 May 2024</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="class-detail-info">
-                                        <p>No of Students</p>
-                                        <span>25</span>
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="mb-3">
+                                            <span class="badge badge-soft-danger"><i class="ti ti-circle-filled me-2"></i>Unpaid</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Fees Group</label>
+                                        <select class="select">
+                                            <option>Select</option>
+                                            <option>Class 1 General</option>
+                                            <option>Monthly Fees</option>
+                                            <option>Admission-Fees</option>
+                                            <option>Class 1- I Installment</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Fees Type</label>
+                                        <select class="select">
+                                            <option>Select</option>
+                                            <option>Tuition Fees</option>
+                                            <option>Monthly Fees</option>
+                                            <option>Admission Fees</option>
+                                            <option>Bus Fees</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Amount</label>
+                                        <input type="text" class="form-control" placeholder="Enter Amout">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Collection Date</label>
+                                        <div class="date-pic">
+                                            <input type="text" class="form-control datetimepicker" placeholder="Select">
+                                            <span class="cal-icon"><i class="ti ti-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Payment Type</label>
+                                        <select class="select">
+                                            <option>Select</option>
+                                            <option>Paytm</option>
+                                            <option>Cash On Delivery</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Payment Reference No</label>
+                                        <input type="text" class="form-control" placeholder="Enter Payment Reference No">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="modal-satus-toggle d-flex align-items-center justify-content-between mb-3">
+                                        <div class="status-title">
+                                            <h5>Status</h5>
+                                            <p>Change the Status by toggle </p>
+                                        </div>
+                                        <div class="status-toggle modal-status">
+                                            <input type="checkbox" id="user1" class="check">
+                                            <label for="user1" class="checktoggle"> </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-0">
+                                        <label class="form-label">Notes</label>
+                                        <textarea rows="4" class="form-control" placeholder="Add Notes"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Pay Fees</button>
                         </div>
                     </form>
                 </div>
@@ -1346,45 +1397,26 @@
     </div>
 
 
-    <script src="js/jquery-3.7.1.min.js" type="6bf8b19fe6833c5e9d01c30b-text/javascript"></script>
+    <script src="js/jquery-3.7.1.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/bootstrap.bundle.min.js" type="6bf8b19fe6833c5e9d01c30b-text/javascript"></script>
+    <script src="js/bootstrap.bundle.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/moment.js" type="6bf8b19fe6833c5e9d01c30b-text/javascript"></script>
-    <script src="js/daterangepicker.js" type="6bf8b19fe6833c5e9d01c30b-text/javascript"></script>
+    <script src="js/moment.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
+    <script src="js/daterangepicker.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/feather.min.js" type="6bf8b19fe6833c5e9d01c30b-text/javascript"></script>
+    <script src="js/feather.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/jquery.slimscroll.min.js" type="6bf8b19fe6833c5e9d01c30b-text/javascript"></script>
+    <script src="js/jquery.slimscroll.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/jquery.dataTables.min.js" type="6bf8b19fe6833c5e9d01c30b-text/javascript"></script>
-    <script src="js/dataTables.bootstrap5.min.js" type="6bf8b19fe6833c5e9d01c30b-text/javascript"></script>
+    <script src="js/jquery.dataTables.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
+    <script src="js/dataTables.bootstrap5.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/select2.min.js" type="6bf8b19fe6833c5e9d01c30b-text/javascript"></script>
+    <script src="js/select2.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
 
-    <script src="js/script.js" type="6bf8b19fe6833c5e9d01c30b-text/javascript"></script>
-    <script src="js/rocket-loader.min.js" data-cf-settings="6bf8b19fe6833c5e9d01c30b-|49" defer=""></script>
+    <script src="js/bootstrap-datetimepicker.min.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
+
+    <script src="js/script.js" type="44d8235a5b1af716cddb820b-text/javascript"></script>
+    <script src="js/rocket-loader.min.js" data-cf-settings="44d8235a5b1af716cddb820b-|49" defer=""></script>
 </body>
 
 </html>
-<script>
-    document.querySelectorAll('.dropdown-item').forEach(item => {
-        item.addEventListener('click', function() {
-            const classID = this.getAttribute('data-id');
-
-            // AJAX request to fetch class details
-            fetch(`fetch_class.php?classID=${classID}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Populate modal form with fetched data
-                    document.getElementById('classID').value = data.classID;
-                    document.getElementById('className').value = data.className;
-                    document.getElementById('classSection').value = data.classSection;
-                    document.getElementById('numberOfStudent').value = data.numberOfStudent;
-                    document.getElementById('numberOfSubject').value = data.numberOfSubject;
-                    document.getElementById('classStatus').checked = data.classStatus === 'Active';
-                })
-                .catch(error => console.error('Error fetching data:', error));
-        });
-    });
-</script>
