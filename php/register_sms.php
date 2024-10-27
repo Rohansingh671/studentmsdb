@@ -16,16 +16,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!preg_match($emailPattern, $email)) {
         echo "Invalid email format.";
+        exit;
     }
     if (!preg_match($usernamePattern, $username)) {
         echo "Username must be between 5 and 15 characters and contain only letters and numbers.";
+        exit;
     }
     if (strlen($password) < 8 || strlen($password) > 20) {
         echo "Password must be between 8 and 20 characters.";
+        exit;
     }
     if ($password !== $confirmPassword) {
         echo "Passwords do not match.";
-        exit();
+        exit;
     }
 
     if (empty($errors)) {

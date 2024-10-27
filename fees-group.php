@@ -1465,17 +1465,21 @@ Recently Added
 <i class="ti ti-x"></i>
 </button>
 </div>
-<form action="fees-group.php">
+<form action="phpfeesGroup.php">
 <div class="modal-body">
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
 <label class="form-label">Fees Group</label>
-<input type="text" class="form-control">
+<input type="text" class="form-control" name="fees_group">
+</div>
+<div class="mb-3">
+<label class="form-label">Fees Amount</label>
+<input type="text" class="form-control" name="fees_amount" value="Rs &nbsp;">
 </div>
 <div class="mb-3">
 <label class="form-label">Description</label>
-<textarea class="form-control" rows="4"></textarea>
+<textarea class="form-control" rows="4" name="remark"></textarea>
 </div>
 <div class="d-flex align-items-center justify-content-between">
 <div class="status-title">
@@ -1483,7 +1487,7 @@ Recently Added
 <p>Change the Status by toggle </p>
 </div>
 <div class="form-check form-switch">
-<input class="form-check-input" type="checkbox" role="switch" id="switch-sm">
+<input class="form-check-input" type="checkbox" role="switch" id="switch-sm" name="fees_group_status">
 </div>
 </div>
 </div>
