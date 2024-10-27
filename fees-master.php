@@ -1087,9 +1087,7 @@
                             </ul>
                         </div>
                         <div class="mb-2">
-                            <a href="#" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
-                                data-bs-target="#add_fees_master"><i class="ti ti-square-rounded-plus me-2"></i>Add
-                                Fees Master</a>
+                        <a href="add-fees-master.php" class="btn btn-primary d-flex align-items-center me-3"><i class="ti ti-square-rounded-plus me-2"></i>Add Fees Master</a>
                         </div>
                     </div>
                 </div>
@@ -1701,7 +1699,7 @@
         </div>
 
 
-        <div class="modal fade" id="add_fees_master">
+        <div class="modal fade" id="add_fees_master" hidden>
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">

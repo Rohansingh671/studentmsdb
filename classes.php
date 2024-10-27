@@ -1168,7 +1168,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Class ID</label>
-                                        <input type="text" class="form-control" name="classID" value="C138<?php echo $total_class_id ?>" readonly>
+                                        <input type="text" class="form-control" name="classID" value="CID<?php echo $total_class_id ?>" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Class Name</label>

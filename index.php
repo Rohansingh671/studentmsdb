@@ -973,7 +973,7 @@ Level</span><span class="menu-arrow"></span></a>
 <a href="add-student.php" class="btn btn-primary d-flex align-items-center me-3"><i class="ti ti-square-rounded-plus me-2"></i>Add New Student</a>
 </div>
 <div class="mb-2">
-<a href="collect-fees.php" class="btn btn-light d-flex align-items-center">Fees Details</a>
+<a href="php/logout_sms.php" class="btn btn-light d-flex align-items-center me-3">Logout</a>
 </div>
 </div>
 </div>
