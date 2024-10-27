@@ -25,13 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if ($password !== $confirmPassword) {
         echo "Passwords do not match.";
+        exit();
     }
 
     if (empty($errors)) {
         $mysqli = db_connect();
         if ($mysqli) {
 
-            $stmt = $mysqli->prepare("SELECT userEmail, userUsername FROM wadamemberlogindata WHERE userEmail = ? OR userUsername = ?");
+            $stmt = $mysqli->prepare("SELECT userEmail, userUsername FROM smslogindata WHERE userEmail = ? OR userUsername = ?");
             if ($stmt) {
                 $stmt->bind_param("ss", $email, $username);
                 $stmt->execute();
@@ -46,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "Username already exists.";
                     }
                 } else {
-                    $stmt = $mysqli->prepare("INSERT INTO wadamemberlogindata(userEmail, userUsername, userPassword, userType, userLastLogin) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)");
+                    $stmt = $mysqli->prepare("INSERT INTO smslogindata(userEmail, userUsername, userPassword, userType, userLastLogin) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)");
                     if ($stmt) {
                         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                         $stmt->bind_param("ssss", $email, $username, $hashed_password, $role);
